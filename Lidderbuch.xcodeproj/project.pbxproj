@@ -1,0 +1,495 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C8E1B033860004B64AA /* LBSongbook.swift */; };
+		A51E1C941B035E9B004B64AA /* LBSongbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */; };
+		A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */; };
+		A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */; };
+		A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */; };
+		A5BA0E9D1B056BAB0049967B /* LBAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */; };
+		A5BA0E9F1B064C390049967B /* LBSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9E1B064C390049967B /* LBSongViewController.swift */; };
+		A5DEC22E1AF7F577009F41D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC22D1AF7F577009F41D9 /* AppDelegate.swift */; };
+		A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DEC2311AF7F577009F41D9 /* Main.storyboard */; };
+		A5DEC2351AF7F577009F41D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5DEC2341AF7F577009F41D9 /* Images.xcassets */; };
+		A5DEC2381AF7F577009F41D9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5DEC2361AF7F577009F41D9 /* LaunchScreen.xib */; };
+		A5DEC2441AF7F577009F41D9 /* LidderbuchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC2431AF7F577009F41D9 /* LidderbuchTests.swift */; };
+		A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */; };
+		A5DEC2501AFD0BEB009F41D9 /* LBParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */; };
+		A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE72921B065094007F8EA9 /* LBViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A5DEC23E1AF7F577009F41D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5DEC2201AF7F577009F41D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5DEC2271AF7F577009F41D9;
+			remoteInfo = Lidderbuch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A51E1C8E1B033860004B64AA /* LBSongbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbook.swift; sourceTree = "<group>"; };
+		A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbookViewController.swift; sourceTree = "<group>"; };
+		A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongTableViewCell.swift; sourceTree = "<group>"; };
+		A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBLyricsView.swift; sourceTree = "<group>"; };
+		A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBHeaderBar.swift; sourceTree = "<group>"; };
+		A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		A5BA0E9E1B064C390049967B /* LBSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongViewController.swift; sourceTree = "<group>"; };
+		A5DEC2281AF7F577009F41D9 /* Lidderbuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lidderbuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DEC22C1AF7F577009F41D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5DEC22D1AF7F577009F41D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5DEC2321AF7F577009F41D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A5DEC2341AF7F577009F41D9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A5DEC2371AF7F577009F41D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A5DEC23D1AF7F577009F41D9 /* LidderbuchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LidderbuchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DEC2421AF7F577009F41D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5DEC2431AF7F577009F41D9 /* LidderbuchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LidderbuchTests.swift; sourceTree = "<group>"; };
+		A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSong.swift; sourceTree = "<group>"; };
+		A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBParagraph.swift; sourceTree = "<group>"; };
+		A5EE72921B065094007F8EA9 /* LBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5DEC2251AF7F577009F41D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DEC23A1AF7F577009F41D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A51E1C901B035486004B64AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A51E1C8E1B033860004B64AA /* LBSongbook.swift */,
+				A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */,
+				A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A51E1C951B035EC4004B64AA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */,
+				A5BA0E9E1B064C390049967B /* LBSongViewController.swift */,
+				A5EE72921B065094007F8EA9 /* LBViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A51E1C961B036E81004B64AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */,
+				A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */,
+				A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */,
+				A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A5DEC21F1AF7F577009F41D9 = {
+			isa = PBXGroup;
+			children = (
+				A5DEC22A1AF7F577009F41D9 /* Lidderbuch */,
+				A5DEC2401AF7F577009F41D9 /* LidderbuchTests */,
+				A5DEC2291AF7F577009F41D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5DEC2291AF7F577009F41D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5DEC2281AF7F577009F41D9 /* Lidderbuch.app */,
+				A5DEC23D1AF7F577009F41D9 /* LidderbuchTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5DEC22A1AF7F577009F41D9 /* Lidderbuch */ = {
+			isa = PBXGroup;
+			children = (
+				A51E1C951B035EC4004B64AA /* Controller */,
+				A51E1C901B035486004B64AA /* Model */,
+				A51E1C961B036E81004B64AA /* View */,
+				A5DEC2311AF7F577009F41D9 /* Main.storyboard */,
+				A5DEC2361AF7F577009F41D9 /* LaunchScreen.xib */,
+				A5DEC2341AF7F577009F41D9 /* Images.xcassets */,
+				A5DEC22B1AF7F577009F41D9 /* Supporting Files */,
+			);
+			path = Lidderbuch;
+			sourceTree = "<group>";
+		};
+		A5DEC22B1AF7F577009F41D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5DEC22D1AF7F577009F41D9 /* AppDelegate.swift */,
+				A5DEC22C1AF7F577009F41D9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5DEC2401AF7F577009F41D9 /* LidderbuchTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5DEC2431AF7F577009F41D9 /* LidderbuchTests.swift */,
+				A5DEC2411AF7F577009F41D9 /* Supporting Files */,
+			);
+			path = LidderbuchTests;
+			sourceTree = "<group>";
+		};
+		A5DEC2411AF7F577009F41D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5DEC2421AF7F577009F41D9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5DEC2271AF7F577009F41D9 /* Lidderbuch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5DEC2471AF7F577009F41D9 /* Build configuration list for PBXNativeTarget "Lidderbuch" */;
+			buildPhases = (
+				A5DEC2241AF7F577009F41D9 /* Sources */,
+				A5DEC2251AF7F577009F41D9 /* Frameworks */,
+				A5DEC2261AF7F577009F41D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lidderbuch;
+			productName = Lidderbuch;
+			productReference = A5DEC2281AF7F577009F41D9 /* Lidderbuch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A5DEC23C1AF7F577009F41D9 /* LidderbuchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5DEC24A1AF7F577009F41D9 /* Build configuration list for PBXNativeTarget "LidderbuchTests" */;
+			buildPhases = (
+				A5DEC2391AF7F577009F41D9 /* Sources */,
+				A5DEC23A1AF7F577009F41D9 /* Frameworks */,
+				A5DEC23B1AF7F577009F41D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5DEC23F1AF7F577009F41D9 /* PBXTargetDependency */,
+			);
+			name = LidderbuchTests;
+			productName = LidderbuchTests;
+			productReference = A5DEC23D1AF7F577009F41D9 /* LidderbuchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5DEC2201AF7F577009F41D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = ACEL;
+				TargetAttributes = {
+					A5DEC2271AF7F577009F41D9 = {
+						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = KYUPXVD86A;
+					};
+					A5DEC23C1AF7F577009F41D9 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = A5DEC2271AF7F577009F41D9;
+					};
+				};
+			};
+			buildConfigurationList = A5DEC2231AF7F577009F41D9 /* Build configuration list for PBXProject "Lidderbuch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A5DEC21F1AF7F577009F41D9;
+			productRefGroup = A5DEC2291AF7F577009F41D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5DEC2271AF7F577009F41D9 /* Lidderbuch */,
+				A5DEC23C1AF7F577009F41D9 /* LidderbuchTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5DEC2261AF7F577009F41D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */,
+				A5DEC2381AF7F577009F41D9 /* LaunchScreen.xib in Resources */,
+				A5DEC2351AF7F577009F41D9 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DEC23B1AF7F577009F41D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5DEC2241AF7F577009F41D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A51E1C941B035E9B004B64AA /* LBSongbookViewController.swift in Sources */,
+				A5BA0E9F1B064C390049967B /* LBSongViewController.swift in Sources */,
+				A5DEC2501AFD0BEB009F41D9 /* LBParagraph.swift in Sources */,
+				A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */,
+				A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */,
+				A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */,
+				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,
+				A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */,
+				A5BA0E9D1B056BAB0049967B /* LBAnimatedTransitioning.swift in Sources */,
+				A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */,
+				A5DEC22E1AF7F577009F41D9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DEC2391AF7F577009F41D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DEC2441AF7F577009F41D9 /* LidderbuchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A5DEC23F1AF7F577009F41D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5DEC2271AF7F577009F41D9 /* Lidderbuch */;
+			targetProxy = A5DEC23E1AF7F577009F41D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A5DEC2311AF7F577009F41D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5DEC2321AF7F577009F41D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A5DEC2361AF7F577009F41D9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5DEC2371AF7F577009F41D9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5DEC2451AF7F577009F41D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A5DEC2461AF7F577009F41D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5DEC2481AF7F577009F41D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Lidderbuch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		A5DEC2491AF7F577009F41D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Lidderbuch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		A5DEC24B1AF7F577009F41D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LidderbuchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lidderbuch.app/Lidderbuch";
+			};
+			name = Debug;
+		};
+		A5DEC24C1AF7F577009F41D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LidderbuchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lidderbuch.app/Lidderbuch";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5DEC2231AF7F577009F41D9 /* Build configuration list for PBXProject "Lidderbuch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DEC2451AF7F577009F41D9 /* Debug */,
+				A5DEC2461AF7F577009F41D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5DEC2471AF7F577009F41D9 /* Build configuration list for PBXNativeTarget "Lidderbuch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DEC2481AF7F577009F41D9 /* Debug */,
+				A5DEC2491AF7F577009F41D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5DEC24A1AF7F577009F41D9 /* Build configuration list for PBXNativeTarget "LidderbuchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DEC24B1AF7F577009F41D9 /* Debug */,
+				A5DEC24C1AF7F577009F41D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A5DEC2201AF7F577009F41D9 /* Project object */;
+}
