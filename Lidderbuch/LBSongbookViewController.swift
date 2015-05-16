@@ -8,12 +8,24 @@
 
 import UIKit
 
-class LBSongbookViewController: LBViewController, LBSongbookDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate
+class LBSongbookViewController: LBViewController,
+    LBSongbookDelegate,
+    UINavigationControllerDelegate,
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UITextFieldDelegate
 {
     var songbook: LBSongbook!
     var songs = [LBSong]()
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchTextField: UITextField!
+    
+    var searchActive: Bool = false {
+        didSet {
+            headerBar.disableVerticalTranslation = searchActive
+        }
+    }
 
     override func viewDidLoad()
     {
@@ -33,7 +45,11 @@ class LBSongbookViewController: LBViewController, LBSongbookDelegate, UINavigati
     
     func update()
     {
-        songs = songbook.songs
+        if (!searchActive) {
+            songs = songbook.songs
+        } else {
+            songs = songbook.filterSongs(searchTextField.text)
+        }
         
         tableView.reloadData()
     }
@@ -61,6 +77,7 @@ class LBSongbookViewController: LBViewController, LBSongbookDelegate, UINavigati
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        searchTextField.resignFirstResponder()
         performSegueWithIdentifier("ShowSong", sender: self)
     }
     
@@ -83,5 +100,32 @@ class LBSongbookViewController: LBViewController, LBSongbookDelegate, UINavigati
                 tableView.deselectRowAtIndexPath(selectedRowIndexPath, animated: animated)
             }
         }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        searchActive = true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if searchTextField.text == "" {
+            searchActive = false
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
+    }
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchTextField.resignFirstResponder()
+    }
+    
+    @IBAction func handleSearchTextFieldChange(textField: UITextField)
+    {
+        // scroll to top
+        scrollView.contentOffset = CGPoint(x: 0.0, y: -scrollView.contentInset.top)
+        
+        update()
     }
 }

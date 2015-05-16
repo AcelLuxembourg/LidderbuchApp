@@ -74,7 +74,33 @@
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bQ8-tm-gWV">
+                                        <rect key="frame" x="15" y="0.0" width="20" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="mQn-ZL-XmG"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sich" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR">
+                                        <rect key="frame" x="45" y="0.0" width="535" height="60"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="handleSearchTextFieldChange:" destination="pX0-Er-gsZ" eventType="editingChanged" id="KgG-SD-elc"/>
+                                            <outlet property="delegate" destination="pX0-Er-gsZ" id="ebK-3V-3EQ"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="SgQ-br-pXR" firstAttribute="leading" secondItem="bQ8-tm-gWV" secondAttribute="trailing" constant="10" id="4PV-aL-UoR"/>
+                                    <constraint firstAttribute="bottom" secondItem="SgQ-br-pXR" secondAttribute="bottom" id="ADO-YE-u0k"/>
+                                    <constraint firstAttribute="bottom" secondItem="bQ8-tm-gWV" secondAttribute="bottom" id="C5L-hT-0Ow"/>
+                                    <constraint firstItem="bQ8-tm-gWV" firstAttribute="top" secondItem="rCO-Qz-oTi" secondAttribute="top" id="GBf-dx-Op9"/>
+                                    <constraint firstItem="SgQ-br-pXR" firstAttribute="top" secondItem="rCO-Qz-oTi" secondAttribute="top" id="NAY-qJ-1F5"/>
+                                    <constraint firstAttribute="trailing" secondItem="SgQ-br-pXR" secondAttribute="trailing" constant="20" symbolic="YES" id="YAK-T5-UJz"/>
+                                    <constraint firstItem="bQ8-tm-gWV" firstAttribute="leading" secondItem="rCO-Qz-oTi" secondAttribute="leading" constant="15" id="jjl-94-p3u"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,6 +118,7 @@
                     <connections>
                         <outlet property="headerBar" destination="rCO-Qz-oTi" id="hYI-tp-jbH"/>
                         <outlet property="scrollView" destination="Dmz-Bh-x2H" id="yCQ-MI-IAa"/>
+                        <outlet property="searchTextField" destination="SgQ-br-pXR" id="SNy-qB-Qjh"/>
                         <outlet property="tableView" destination="Dmz-Bh-x2H" id="fiC-wm-Hgm"/>
                         <segue destination="vQV-v3-ytI" kind="show" identifier="ShowSong" id="VEY-qG-YDL"/>
                     </connections>
@@ -224,5 +251,6 @@
     </scenes>
     <resources>
         <image name="BackIcon" width="25" height="20"/>
+        <image name="SearchIcon" width="20" height="20"/>
     </resources>
 </document>

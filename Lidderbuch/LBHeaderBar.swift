@@ -10,8 +10,31 @@ import UIKit
 
 class LBHeaderBar: UIView, UIScrollViewDelegate
 {
-    var verticalTranslation: CGFloat = 0
+    var lastVerticalTranslation: CGFloat = 0
+    var verticalTranslation: CGFloat {
+        get {
+            return lastVerticalTranslation
+        }
+        set(newValue) {
+            let verticalTranslation = max(min(newValue, bounds.size.height), 0)
+            if lastVerticalTranslation != verticalTranslation && !disableVerticalTranslation {
+                transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, -verticalTranslation)
+                lastVerticalTranslation = verticalTranslation
+            }
+        }
+    }
+    
     var cancelSlideTimer: NSTimer?
+    
+    var disableVerticalTranslation = false {
+        didSet {
+            if disableVerticalTranslation {
+                UIView.animateWithDuration(0.1) {
+                    self.verticalTranslation = 0
+                }
+            }
+        }
+    }
     
     required init(coder aDecoder: NSCoder)
     {
@@ -42,7 +65,7 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
         separatorLine.stroke()
     }
     
-    func slideVertically(delta: CGFloat)
+    func translateVertically(delta: CGFloat)
     {
         let verticalTranslation = max(min(self.verticalTranslation + delta, bounds.size.height), 0)
         
@@ -50,7 +73,6 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
         if self.verticalTranslation != verticalTranslation
         {
             // translate view
-            transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, -verticalTranslation)
             self.verticalTranslation = verticalTranslation
             
             // create finish timer
@@ -63,9 +85,9 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
     {
         // slide down animated if slide not finished yet
         if verticalTranslation != bounds.size.height && verticalTranslation != 0 {
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                self.slideVertically(-self.bounds.size.height)
-            })
+            UIView.animateWithDuration(0.1) {
+                self.verticalTranslation = 0
+            }
         }
     }
 }

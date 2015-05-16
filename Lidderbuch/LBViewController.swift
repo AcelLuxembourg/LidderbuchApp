@@ -35,14 +35,14 @@ class LBViewController: UIViewController, UINavigationControllerDelegate, UIGest
         {
             swipeToPopGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("handleSwipeGestureRecognizer:"))
             swipeToPopGestureRecognizer.delegate = self
-            scrollView.addGestureRecognizer(swipeToPopGestureRecognizer)
+            view.addGestureRecognizer(swipeToPopGestureRecognizer)
         }
     }
     
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         // only catch horizontal gesture
-        let velocity = swipeToPopGestureRecognizer.velocityInView(scrollView)
+        let velocity = swipeToPopGestureRecognizer.velocityInView(view)
         return fabs(velocity.x) > fabs(velocity.y)
     }
     
@@ -93,7 +93,7 @@ class LBViewController: UIViewController, UINavigationControllerDelegate, UIGest
             // prevent sliding down when not decelerating and not reached the top
             || (!scrollViewDecelerating && scrollViewVerticalOffset > 0 && delta < 0)
         ) {
-            headerBar.slideVertically(delta)
+            headerBar.translateVertically(delta)
         }
     }
     
@@ -113,7 +113,7 @@ class LBViewController: UIViewController, UINavigationControllerDelegate, UIGest
     @IBAction func handleSwipeGestureRecognizer(gestureRecognizer: UIPanGestureRecognizer)
     {
         // calculate percent by gesture distance
-        var percent: CGFloat = gestureRecognizer.translationInView(scrollView).x / scrollView.bounds.size.width
+        var percent: CGFloat = gestureRecognizer.translationInView(view).x / view.bounds.size.width
         percent = min(1.0, max(0.0, percent))
         
         switch gestureRecognizer.state {
