@@ -268,8 +268,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackIcon" width="31" height="50"/>
-        <image name="SearchIcon" width="20" height="20"/>
+        <image name="BackIcon" width="35" height="50"/>
+        <image name="SearchIcon" width="40" height="50"/>
         <image name="ShareIcon" width="40" height="50"/>
     </resources>
 </document>
