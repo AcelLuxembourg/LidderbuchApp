@@ -13,13 +13,6 @@ class LBSongbook
     lazy var songs: [LBSong] = self.load()
     var delegate: LBSongbookDelegate?
     
-    func filterSongs(keywords: String) -> [LBSong]
-    {
-        return songs.filter { (song: LBSong) -> Bool in
-            return song.filter(keywords)
-        }
-    }
-    
     private func load() -> [LBSong]
     {
         return [LBSong]()
@@ -70,6 +63,34 @@ class LBSongbook
         
         // add song
         songs.append(song)
+    }
+    
+    func search(keywords: String, callback: (([LBSong], String) -> Void))
+    {
+        if count(keywords) < 3 {
+            callback(songs, keywords)
+            return
+        }
+        
+        // run search in background
+        let backgroundQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
+        dispatch_async(backgroundQueue, {
+            
+            // filter songs by keywords
+            var songs = self.songs.filter { (song) -> Bool in
+                return song.search(keywords) != 0
+            }
+            
+            // use cached scores to sort by relevance
+            songs.sort { (a, b) -> Bool in
+                return a.search(keywords) > b.search(keywords)
+            }
+            
+            // propagate results in main queue, they may cause ui changes
+            dispatch_async(dispatch_get_main_queue(), {
+                callback(songs, keywords)
+            })
+        })
     }
 }
 

@@ -94,13 +94,49 @@ class LBSong: Printable
         return nil
     }
     
-    func filter(keywords: String) -> Bool
+    private var lastSearchKeywords: String?
+    private var lastSearchScore: Int?
+    
+    func search(keywords: String) -> Int
     {
-        var i = -1, filter = false
-        while (++i < paragraphs.count && !filter) {
-            filter = paragraphs[i].filter(keywords)
+        // retrieve cached result
+        if lastSearchKeywords == keywords {
+            return lastSearchScore!
         }
-        return filter
+        
+        // determin search score for given keywords
+        var score = 0
+        
+        // search in meta data
+        score += name.countOccurencesOfString(keywords)
+        
+        if let way = self.way {
+            score += way.countOccurencesOfString(keywords)
+        }
+        
+        if let lyricsAuthor = self.lyricsAuthor {
+            score += lyricsAuthor.countOccurencesOfString(keywords)
+        }
+        
+        if lyricsAuthor != melodyAuthor {
+            if let melodyAuthor = self.melodyAuthor {
+                score += melodyAuthor.countOccurencesOfString(keywords)
+            }
+        }
+        
+        // an occurence in meta data is 3x more important
+        score *= 3
+        
+        // search score of paragraphs
+        for paragraph in paragraphs {
+            score += paragraph.search(keywords)
+        }
+        
+        // cache search result
+        lastSearchKeywords = keywords
+        lastSearchScore = score
+        
+        return score
     }
 }
 

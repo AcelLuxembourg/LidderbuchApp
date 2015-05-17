@@ -22,6 +22,7 @@
 		A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */; };
 		A5DEC2501AFD0BEB009F41D9 /* LBParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */; };
 		A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE72921B065094007F8EA9 /* LBViewController.swift */; };
+		A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE729A1B08CDF2007F8EA9 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSong.swift; sourceTree = "<group>"; };
 		A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBParagraph.swift; sourceTree = "<group>"; };
 		A5EE72921B065094007F8EA9 /* LBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBViewController.swift; sourceTree = "<group>"; };
+		A5EE729A1B08CDF2007F8EA9 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				A51E1C8E1B033860004B64AA /* LBSongbook.swift */,
 				A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */,
 				A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */,
+				A5EE729A1B08CDF2007F8EA9 /* String.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */,
 				A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */,
 				A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */,
+				A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */,
 				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,
 				A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */,
 				A5BA0E9D1B056BAB0049967B /* LBAnimatedTransitioning.swift in Sources */,
@@ -407,7 +411,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "92f1bb60-de44-4d96-8b3a-c46732fa53e5";
 			};
 			name = Debug;
 		};
@@ -421,7 +425,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "92f1bb60-de44-4d96-8b3a-c46732fa53e5";
 			};
 			name = Release;
 		};

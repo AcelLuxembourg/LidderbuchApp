@@ -40,15 +40,10 @@ class LBParagraph
         return nil
     }
     
-    func filter(keywords: String) -> Bool
+    func search(keywords: String) -> Int
     {
-        if (keywords == "") {
-            return true
-        }
-        
-        return (content.rangeOfString(keywords,
-            options: .DiacriticInsensitiveSearch | .CaseInsensitiveSearch
-        ) != nil)
+        // search score is determined by occurence count
+        return content.countOccurencesOfString(keywords)
     }
 }
 

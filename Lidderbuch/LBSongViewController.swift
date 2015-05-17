@@ -23,7 +23,18 @@ class LBSongViewController: LBViewController
         lyricsView.paragraphs = song.paragraphs
     }
     
-    @IBAction func handleBackButtonClick() {
+    @IBAction func back() {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func share(sender: UIButton)
+    {
+        let activityItems = [song.name, song.url]
+        
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop]
+        
+        presentViewController(activityViewController, animated: true, completion: nil)
     }
 }

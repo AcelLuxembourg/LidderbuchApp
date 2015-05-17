@@ -16,14 +16,23 @@ class LBSongbookViewController: LBViewController,
     UITextFieldDelegate
 {
     var songbook: LBSongbook!
-    var songs = [LBSong]()
+    var songs = [LBSong]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     
-    var searchActive: Bool = false {
+    var searchingInBackground = false
+    var searchActive = false {
         didSet {
             headerBar.disableVerticalTranslation = searchActive
+            
+            if !searchActive {
+                songs = songbook.songs
+            }
         }
     }
 
@@ -40,18 +49,11 @@ class LBSongbookViewController: LBViewController,
     
     func songbookDidChange(songbook: LBSongbook)
     {
-        update()
-    }
-    
-    func update()
-    {
-        if (!searchActive) {
+        if !searchActive {
             songs = songbook.songs
         } else {
-            songs = songbook.filterSongs(searchTextField.text)
+            tableView.reloadData()
         }
-        
-        tableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -102,6 +104,37 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
+    func search()
+    {
+        // cancel if already searching in background
+        if !searchingInBackground
+        {
+            let keywords = searchTextField.text
+            
+            searchingInBackground = true
+            
+            songbook.search(keywords, callback: {
+                (songs, keywords) in
+                
+                self.searchingInBackground = false
+                
+                if (self.searchActive)
+                {
+                    // show search results
+                    self.songs = songs
+                    
+                    // scroll to top
+                    self.scrollView.contentOffset = CGPoint(x: 0.0, y: -self.scrollView.contentInset.top)
+                    
+                    // search again if keywords have been changed
+                    if keywords != self.searchTextField.text {
+                        self.search()
+                    }
+                }
+            })
+        }
+    }
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         searchActive = true
     }
@@ -121,11 +154,7 @@ class LBSongbookViewController: LBViewController,
         searchTextField.resignFirstResponder()
     }
     
-    @IBAction func handleSearchTextFieldChange(textField: UITextField)
-    {
-        // scroll to top
-        scrollView.contentOffset = CGPoint(x: 0.0, y: -scrollView.contentInset.top)
-        
-        update()
+    @IBAction func handleSearchTextFieldChange(textField: UITextField) {
+        search()
     }
 }
