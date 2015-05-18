@@ -166,7 +166,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEZ-Mi-H9l" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="289"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="269"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewB-9a-Ib3">
                                                 <rect key="frame" x="20" y="20" width="560" height="22"/>
@@ -175,7 +175,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97F-5z-gD7" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="69" width="560" height="200"/>
+                                                <rect key="frame" x="45" y="69" width="535" height="200"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" placeholder="YES" id="qCy-0g-cYV"/>
@@ -184,11 +184,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="97F-5z-gD7" secondAttribute="bottom" constant="20" id="AKz-vp-1NE"/>
+                                            <constraint firstAttribute="bottom" secondItem="97F-5z-gD7" secondAttribute="bottom" id="AKz-vp-1NE"/>
                                             <constraint firstItem="97F-5z-gD7" firstAttribute="top" secondItem="ewB-9a-Ib3" secondAttribute="bottom" constant="27" id="CYM-fI-DmX"/>
                                             <constraint firstItem="ewB-9a-Ib3" firstAttribute="top" secondItem="BEZ-Mi-H9l" secondAttribute="top" constant="20" symbolic="YES" id="Jbi-VU-otN"/>
                                             <constraint firstAttribute="trailing" secondItem="97F-5z-gD7" secondAttribute="trailing" constant="20" symbolic="YES" id="aHz-LD-b6J"/>
-                                            <constraint firstItem="97F-5z-gD7" firstAttribute="leading" secondItem="BEZ-Mi-H9l" secondAttribute="leading" constant="20" symbolic="YES" id="fyu-uk-8A0"/>
+                                            <constraint firstItem="97F-5z-gD7" firstAttribute="leading" secondItem="BEZ-Mi-H9l" secondAttribute="leading" constant="45" id="p1z-co-GWe"/>
                                             <constraint firstItem="ewB-9a-Ib3" firstAttribute="leading" secondItem="BEZ-Mi-H9l" secondAttribute="leading" constant="20" symbolic="YES" id="tuW-FC-kD4"/>
                                             <constraint firstAttribute="trailing" secondItem="ewB-9a-Ib3" secondAttribute="trailing" constant="20" symbolic="YES" id="zy8-nb-adv"/>
                                         </constraints>

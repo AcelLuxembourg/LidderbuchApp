@@ -62,15 +62,15 @@ class LBViewController: UIViewController, UINavigationControllerDelegate, UIGest
         }
     }
     
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        scrollViewDecelerating = false
+    }
+    
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         scrollViewDecelerating = true
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        scrollViewDecelerating = false
-    }
-    
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         scrollViewDecelerating = false
     }
     
@@ -88,7 +88,7 @@ class LBViewController: UIViewController, UINavigationControllerDelegate, UIGest
             || (scrollViewVerticalOffset <= -scrollView.contentInset.top && delta > 0)
             
             // prevent sliding down at lower bounce
-            || (scrollViewVerticalOffset >= scrollView.contentSize.height - scrollView.bounds.size.height && delta < 0)
+            || (scrollViewVerticalOffset >= scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.size.height && delta < 0)
             
             // prevent sliding down when not decelerating and not reached the top
             || (!scrollViewDecelerating && scrollViewVerticalOffset > 0 && delta < 0)

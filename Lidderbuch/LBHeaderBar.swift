@@ -83,10 +83,10 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
     
     @IBAction func handleCancelSlideTimer(timer: NSTimer)
     {
-        // slide down animated if slide not finished yet
+        // cancel if slide not finished yet
         if verticalTranslation != bounds.size.height && verticalTranslation != 0 {
             UIView.animateWithDuration(0.1) {
-                self.verticalTranslation = 0
+                self.verticalTranslation = self.bounds.size.height
             }
         }
     }

@@ -12,6 +12,7 @@ class LBLyricsView: UIView
 {
     private var textLayout: [[[String]]]?
     private var textLayoutWidth: CGFloat?
+    private var textLayoutAnchors: [CGFloat]?
     
     private let lineWrapInset: CGFloat = 25
     
@@ -62,7 +63,7 @@ class LBLyricsView: UIView
         super.init(coder: aDecoder)
         
         // redraw content if bounds change
-        self.contentMode = .Redraw
+        contentMode = .Redraw
     }
     
     override func layoutSubviews()
@@ -71,7 +72,7 @@ class LBLyricsView: UIView
         
         if (
             textLayoutWidth != nil
-            && textLayoutWidth != self.bounds.size.width
+            && textLayoutWidth != bounds.size.width
         ) {
             // width changed, height may be invalid
             invalidateIntrinsicContentSize()
@@ -95,7 +96,7 @@ class LBLyricsView: UIView
         let lineBreakIconImage = UIImage(named: "LineBreakIcon")!
         
         // calculate text layout
-        let textLayout = layoutText(self.bounds.size.width)
+        let textLayout = layoutText(bounds.size.width)
         
         var y: CGFloat = 0
         for var i = 0; i < paragraphs.count; i++
@@ -137,7 +138,7 @@ class LBLyricsView: UIView
     
     override func intrinsicContentSize() -> CGSize
     {
-        let width = self.bounds.size.width
+        let width = bounds.size.width
         let textLayout = layoutText(width)
         
         // sum paragraph padding
@@ -153,11 +154,60 @@ class LBLyricsView: UIView
         return CGSize(width: width, height: height)
     }
     
+    func nextLineAnchor(position: CGFloat) -> CGFloat
+    {
+        // layout text if needed
+        if textLayoutAnchors == nil {
+            layoutText(bounds.size.width)
+        }
+        
+        if textLayoutAnchors!.count == 0 {
+            return 0.0
+        }
+        
+        if textLayoutAnchors!.count == 1 {
+            return textLayoutAnchors![0]
+        }
+        
+        var i = 0
+        while ++i < textLayoutAnchors!.count - 1 && textLayoutAnchors![i] <= position {
+            // nothing to do here
+            // just sitting around and waiting for the next turn
+        }
+        
+        return textLayoutAnchors![i]
+    }
+    
+    func nearestLineAnchor(position: CGFloat) -> CGFloat
+    {
+        let nextAnchor = nextLineAnchor(position)
+        
+        if (textLayoutAnchors!.count < 2) {
+            return nextAnchor
+        }
+        
+        let nextAnchorIndex = find(textLayoutAnchors!, nextAnchor)!
+        
+        if (nextAnchorIndex == 0) {
+            return nextAnchor
+        }
+        
+        let previousAnchor = textLayoutAnchors![nextAnchorIndex - 1]
+        
+        // choose the nearest neighbour
+        if (position < (nextAnchor - previousAnchor) * 0.5 + previousAnchor) {
+            return previousAnchor
+        } else {
+            return nextAnchor
+        }
+    }
+    
     private func invalidateLyricsLayout()
     {
         // reset precalculated lyrics layout
         textLayout = nil
         textLayoutWidth = nil
+        textLayoutAnchors = nil
         
         // notify possible bounds change
         invalidateIntrinsicContentSize()
@@ -178,9 +228,11 @@ class LBLyricsView: UIView
         // text layout array
         // paragraphs -> lines -> fragments
         textLayout = [[[String]]]()
+        textLayoutAnchors = [CGFloat]()
         textLayoutWidth = width
         
         // layout each paragraph's content
+        var y: CGFloat = 0.0
         for paragraph: LBParagraph in paragraphs
         {
             var paragraphLines = paragraph.content.componentsSeparatedByString("\n")
@@ -189,10 +241,12 @@ class LBLyricsView: UIView
             
             for paragraphLine: String in paragraphLines
             {
-                var fragments = [String]()
+                // leave an anchor at the beginning of this line
+                textLayoutAnchors!.append(y)
                 
                 // wrap line in multiple fragments
                 //  and consume remainder
+                var fragments = [String]()
                 var remainder: String? = paragraphLine
                 
                 while (remainder != nil)
@@ -204,8 +258,11 @@ class LBLyricsView: UIView
                     
                     // wrap line in container
                     let result = wrapText(remainder!, font: font, containerWidth: containerWidth)
-                    fragments.append(result.fragment)
                     remainder = result.remainder
+                    
+                    // add fragment to line
+                    fragments.append(result.fragment)
+                    y += lineHeight
                 }
                 
                 // add line fragments to paragraph lines
@@ -214,6 +271,7 @@ class LBLyricsView: UIView
             
             // add paragraph lines to paragraph
             textLayout!.append(lines)
+            y += paragraphPadding
         }
         
         return textLayout!
