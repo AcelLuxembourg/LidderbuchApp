@@ -86,7 +86,7 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
         // cancel if slide not finished yet
         if verticalTranslation != bounds.size.height && verticalTranslation != 0 {
             UIView.animateWithDuration(0.1) {
-                self.verticalTranslation = self.bounds.size.height
+                self.verticalTranslation = 0.0
             }
         }
     }

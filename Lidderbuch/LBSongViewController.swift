@@ -42,7 +42,7 @@ class LBSongViewController: LBViewController
         
         // layout line marker view
         let lineMarkerViewSize = lineMarkView.intrinsicContentSize()
-        let lineMarkerViewOrigin = CGPoint(x: lyricsView.frame.origin.x - lineMarkerViewSize.width - 10.0, y: lyricsView.frame.origin.y + scrollView.contentInset.top - lineMarkerViewSize.height * 0.5 + lyricsView.lineHeight * LBSongViewControllerConstants.lineMarkerPositionRelativeToLineHeight)
+        let lineMarkerViewOrigin = CGPoint(x: lyricsView.frame.origin.x - lineMarkerViewSize.width - 9.0, y: lyricsView.frame.origin.y + scrollView.contentInset.top - lineMarkerViewSize.height * 0.5 + lyricsView.lineHeight * LBSongViewControllerConstants.lineMarkerPositionRelativeToLineHeight)
         lineMarkView.frame = CGRect(origin: lineMarkerViewOrigin, size: lineMarkerViewSize)
         
         // layout bottom inset to scroll view
@@ -80,6 +80,10 @@ class LBSongViewController: LBViewController
     @IBAction func handleTap(gestureRecognizer: UITapGestureRecognizer) {
         var nextAnchor = lyricsView.nextLineAnchor(lyricsViewPosition())
         scrollToLyricsViewAnchor(nextAnchor)
+        
+        UIView.animateWithDuration(0.1) {
+            self.headerBar.verticalTranslation = self.headerBar.bounds.height
+        }
     }
     
     @IBAction func back() {

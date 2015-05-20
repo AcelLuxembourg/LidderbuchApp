@@ -84,7 +84,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sich" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sich" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR">
                                         <rect key="frame" x="50" y="0.0" width="530" height="60"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -218,10 +218,19 @@
                                             <action selector="back" destination="vQV-v3-ytI" eventType="touchUpInside" id="NRM-bJ-o1k"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b">
-                                        <rect key="frame" x="546" y="0.0" width="44" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b">
+                                        <rect key="frame" x="548" y="0.0" width="40" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="CHo-7P-aOz"/>
+                                            <constraint firstAttribute="width" constant="40" id="sYb-aR-xjz"/>
+                                        </constraints>
+                                        <state key="normal" image="BookmarkIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b">
+                                        <rect key="frame" x="508" y="0.0" width="40" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="CHo-7P-aOz"/>
                                         </constraints>
                                         <state key="normal" image="ShareIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -236,9 +245,12 @@
                                     <constraint firstAttribute="bottom" secondItem="Bgz-Zv-Emw" secondAttribute="bottom" id="51G-g2-shb"/>
                                     <constraint firstItem="Bgz-Zv-Emw" firstAttribute="top" secondItem="JWF-U9-ZXj" secondAttribute="top" id="7Zb-qb-THU"/>
                                     <constraint firstAttribute="bottom" secondItem="tGH-F9-M7b" secondAttribute="bottom" id="9E5-ym-ddx"/>
-                                    <constraint firstAttribute="trailing" secondItem="tGH-F9-M7b" secondAttribute="trailing" constant="10" id="Hbb-pD-uAh"/>
+                                    <constraint firstItem="cYG-GA-l6b" firstAttribute="top" secondItem="JWF-U9-ZXj" secondAttribute="top" id="Ewm-qF-Dqh"/>
                                     <constraint firstItem="tGH-F9-M7b" firstAttribute="top" secondItem="JWF-U9-ZXj" secondAttribute="top" id="U24-36-YDB"/>
+                                    <constraint firstAttribute="trailing" secondItem="cYG-GA-l6b" secondAttribute="trailing" constant="12" id="iMs-TG-aE8"/>
                                     <constraint firstItem="Bgz-Zv-Emw" firstAttribute="leading" secondItem="JWF-U9-ZXj" secondAttribute="leading" constant="10" id="jnY-lG-shP"/>
+                                    <constraint firstItem="cYG-GA-l6b" firstAttribute="leading" secondItem="tGH-F9-M7b" secondAttribute="trailing" id="nDG-YO-jrU"/>
+                                    <constraint firstAttribute="bottom" secondItem="cYG-GA-l6b" secondAttribute="bottom" id="qM4-88-ZoE"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -269,6 +281,7 @@
     </scenes>
     <resources>
         <image name="BackIcon" width="35" height="50"/>
+        <image name="BookmarkIcon" width="40" height="50"/>
         <image name="SearchIcon" width="40" height="50"/>
         <image name="ShareIcon" width="40" height="50"/>
     </resources>

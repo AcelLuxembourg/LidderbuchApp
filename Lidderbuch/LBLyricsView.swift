@@ -14,7 +14,7 @@ class LBLyricsView: UIView
     private var textLayoutWidth: CGFloat?
     private var textLayoutAnchors: [CGFloat]?
     
-    private let lineWrapInset: CGFloat = 25
+    private let lineWrapInset: CGFloat = 27
     
     var paragraphs = [LBParagraph]() {
         didSet {
