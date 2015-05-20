@@ -10,9 +10,9 @@ import UIKit
 
 class LBLyricsView: UIView
 {
-    private var textLayout: [[[String]]]?
-    private var textLayoutWidth: CGFloat?
-    private var textLayoutAnchors: [CGFloat]?
+    private var layoutSize: CGSize!
+    private var lineOrigins: [CGPoint]!
+    private var lineViews: [[UIView]]!
     
     private let lineWrapInset: CGFloat = 27
     
@@ -52,9 +52,26 @@ class LBLyricsView: UIView
         }
     }
     
-    var refrainParagraphTextColor = UIColor(white: 0.5, alpha: 1.0) {
+    var highlightedLine: Int? = nil {
         didSet {
-            setNeedsDisplay()
+            if highlightedLine != oldValue && lineViews != nil
+            {
+                // go through all anchor views
+                for i in 0..<lineViews!.count
+                {
+                    var anchorAlpha: CGFloat = 1.0
+                    
+                    if highlightedLine != nil &&  i != highlightedLine! {
+                        anchorAlpha = 0.4
+                    }
+                    
+                    // change alpha of views
+                    let views = lineViews![i]
+                    for view in views {
+                        view.alpha = anchorAlpha
+                    }
+                }
+            }
         }
     }
     
@@ -70,211 +87,158 @@ class LBLyricsView: UIView
     {
         super.layoutSubviews()
         
-        if (
-            textLayoutWidth != nil
-            && textLayoutWidth != bounds.size.width
-        ) {
+        if layoutSize == nil || layoutSize.width != bounds.size.width {
             // width changed, height may be invalid
             invalidateIntrinsicContentSize()
         }
+        
+        // layout lyrics
+        layoutLyrics()
     }
     
-    override func drawRect(rect: CGRect)
-    {
-        // compose text attributes
-        let normalTextAttributes = [
-            NSFontAttributeName: font,
-            NSForegroundColorAttributeName: textColor
-        ]
-        
-        let refrainTextAttributes = [
-            NSFontAttributeName: font,
-            NSForegroundColorAttributeName: refrainParagraphTextColor
-        ]
-        
-        // load images
-        let lineBreakIconImage = UIImage(named: "LineBreakIcon")!
-        
-        // calculate text layout
-        let textLayout = layoutText(bounds.size.width)
-        
-        var y: CGFloat = 0
-        for var i = 0; i < paragraphs.count; i++
-        {
-            // draw paragraph
-            let paragraph = paragraphs[i]
-            let lines: [[String]] = textLayout[i]
-            
-            for fragments: [String] in lines {
-                for var j = 0; j < fragments.count; j++
-                {
-                    var x: CGFloat = 0
-                        + (paragraph.refrain ? refrainParagraphInset : 0)
-                        + (j > 0 ? lineWrapInset : 0)
-                    
-                    var text = fragments[j]
-                    
-                    var textAttributes = (paragraph.refrain ?
-                        refrainTextAttributes : normalTextAttributes)
-                    
-                    if (j > 0)
-                    {
-                        // draw line break icon
-                        lineBreakIconImage.drawAtPoint(CGPoint(x: x - 22, y: y))
-                    }
-                    
-                    // draw line
-                    NSString(string: text).drawAtPoint(
-                        CGPoint(x: x, y: y),
-                        withAttributes: textAttributes)
-                    
-                    y += lineHeight
-                }
-            }
-            
-            y += paragraphPadding
-        }
+    override func intrinsicContentSize() -> CGSize {
+        layoutLyrics()
+        return layoutSize
     }
     
-    override func intrinsicContentSize() -> CGSize
+    func lineNextToTopOffset(topOffset: CGFloat) -> Int
     {
-        let width = bounds.size.width
-        let textLayout = layoutText(width)
+        layoutLyrics()
         
-        // sum paragraph padding
-        var height: CGFloat = CGFloat(textLayout.count - 1) * paragraphPadding
-        
-        // sum fragment line height
-        for lines: [[String]] in textLayout {
-            for fragments: [String] in lines {
-                height += CGFloat(fragments.count) * lineHeight
-            }
+        if lineOrigins.count < 2 {
+            return 0
         }
         
-        return CGSize(width: width, height: height)
-    }
-    
-    func nextLineAnchor(position: CGFloat) -> CGFloat
-    {
-        // layout text if needed
-        if textLayoutAnchors == nil {
-            layoutText(bounds.size.width)
-        }
-        
-        if textLayoutAnchors!.count == 0 {
-            return 0.0
-        }
-        
-        if textLayoutAnchors!.count == 1 {
-            return textLayoutAnchors![0]
-        }
-        
-        var i = 0
-        while ++i < textLayoutAnchors!.count - 1 && textLayoutAnchors![i] <= position {
+        var line = 0
+        while ++line < lineOrigins.count - 1 && lineOrigins[line].y <= topOffset {
             // nothing to do here
             // just sitting around and waiting for the next turn
         }
         
-        return textLayoutAnchors![i]
+        let middleBetweenLinesTopOffset = (lineOrigins[line].y - lineOrigins[line - 1].y) * 0.5 + lineOrigins[line - 1].y
+        
+        // choose nearest neighbour line
+        return (topOffset < middleBetweenLinesTopOffset ? line - 1 : line)
     }
     
-    func nearestLineAnchor(position: CGFloat) -> CGFloat
-    {
-        let nextAnchor = nextLineAnchor(position)
-        
-        if (textLayoutAnchors!.count < 2) {
-            return nextAnchor
-        }
-        
-        let nextAnchorIndex = find(textLayoutAnchors!, nextAnchor)!
-        
-        if (nextAnchorIndex == 0) {
-            return nextAnchor
-        }
-        
-        let previousAnchor = textLayoutAnchors![nextAnchorIndex - 1]
-        
-        // choose the nearest neighbour
-        if (position < (nextAnchor - previousAnchor) * 0.5 + previousAnchor) {
-            return previousAnchor
-        } else {
-            return nextAnchor
-        }
+    func lineCount() -> Int {
+        layoutLyrics()
+        return lineOrigins!.count
+    }
+    
+    func lineOrigin(line: Int) -> CGPoint {
+        layoutLyrics()
+        return lineOrigins[line]
     }
     
     private func invalidateLyricsLayout()
     {
-        // reset precalculated lyrics layout
-        textLayout = nil
-        textLayoutWidth = nil
-        textLayoutAnchors = nil
+        // reset layout
+        lineOrigins = nil
+        lineViews = nil
+        layoutSize = nil
         
         // notify possible bounds change
         invalidateIntrinsicContentSize()
     }
     
-    private func layoutText(width: CGFloat) -> [[[String]]]
+    private func layoutLyrics()
     {
-        // invalid width
-        if (width == 0) {
-            return [[[String]]]()
+        let width = bounds.size.width
+        
+        // only layout if width changed
+        if width == 0 || layoutSize?.width == width {
+            return
         }
         
-        // return cached result if available
-        if textLayoutWidth == width {
-            return textLayout!
+        // remove all views
+        if lineViews != nil {
+            for fragmentViews in lineViews {
+                for fragmentView in fragmentViews {
+                    fragmentView.removeFromSuperview()
+                }
+            }
         }
         
-        // text layout array
-        // paragraphs -> lines -> fragments
-        textLayout = [[[String]]]()
-        textLayoutAnchors = [CGFloat]()
-        textLayoutWidth = width
+        // reset layout
+        lineOrigins = [CGPoint]()
+        lineViews = [[UIView]]()
         
-        // layout each paragraph's content
+        // load images
+        let lineBreakImage = UIImage(named: "LineBreakIcon")!
+        
+        // layout each paragraph
         var y: CGFloat = 0.0
         for paragraph: LBParagraph in paragraphs
         {
-            var paragraphLines = paragraph.content.componentsSeparatedByString("\n")
-            
-            var lines = [[String]]()
-            
-            for paragraphLine: String in paragraphLines
+            var lines = paragraph.content.componentsSeparatedByString("\n")
+            for line: String in lines
             {
-                // leave an anchor at the beginning of this line
-                textLayoutAnchors!.append(y)
+                // determin line alpha according to highlighted line
+                var lineAlpha: CGFloat = 1.0
+                
+                if highlightedLine != nil && lineViews.count + 1 != highlightedLine! {
+                    lineAlpha = 0.4
+                }
                 
                 // wrap line in multiple fragments
                 //  and consume remainder
-                var fragments = [String]()
-                var remainder: String? = paragraphLine
+                var fragmentViews = [UIView]()
+                var remainder: String? = line
                 
                 while (remainder != nil)
                 {
-                    // calculate container width
-                    var containerWidth = width
-                        - (paragraph.refrain ? refrainParagraphInset : 0)
-                        - (fragments.count > 0 ? lineWrapInset : 0)
+                    // calculate line offset
+                    var x: CGFloat = 0
+                        + (paragraph.refrain ? refrainParagraphInset : 0)
+                        + (fragmentViews.count > 0 ? lineWrapInset : 0)
                     
-                    // wrap line in container
-                    let result = wrapText(remainder!, font: font, containerWidth: containerWidth)
+                    if fragmentViews.count == 0
+                    {
+                        // at first iteration store line origin
+                        lineOrigins.append(CGPoint(x: x, y: y))
+                    }
+                    else
+                    {
+                        // create line break view
+                        let lineBreakView = UIImageView()
+                        lineBreakView.image = lineBreakImage
+                        lineBreakView.alpha = lineAlpha
+                        lineBreakView.frame = CGRectMake(x - 22.0, y, 0.0, 0.0)
+                        lineBreakView.sizeToFit()
+                        
+                        fragmentViews.append(lineBreakView)
+                        addSubview(lineBreakView)
+                    }
+                    
+                    // wrap line in container width
+                    let result = wrapText(remainder!, font: font, containerWidth: width - x)
                     remainder = result.remainder
                     
-                    // add fragment to line
-                    fragments.append(result.fragment)
+                    // create line fragment view
+                    let fragmentView = UILabel()
+                    fragmentView.text = result.fragment
+                    fragmentView.textColor = textColor
+                    fragmentView.font = font
+                    fragmentView.alpha = lineAlpha
+                    fragmentView.frame = CGRectMake(x, y, 0.0, 0.0)
+                    fragmentView.sizeToFit()
+                    
+                    fragmentViews.append(fragmentView)
+                    addSubview(fragmentView)
+                    
                     y += lineHeight
                 }
                 
-                // add line fragments to paragraph lines
-                lines.append(fragments)
+                // add fragment views to line
+                lineViews.append(fragmentViews)
             }
             
-            // add paragraph lines to paragraph
-            textLayout!.append(lines)
             y += paragraphPadding
         }
         
-        return textLayout!
+        // set the intrinsic layout size
+        layoutSize = CGSize(width: width, height: y - paragraphPadding)
     }
     
     private func wrapText(text: String, font: UIFont, containerWidth: CGFloat)

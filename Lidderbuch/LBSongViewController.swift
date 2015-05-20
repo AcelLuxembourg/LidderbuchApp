@@ -8,16 +8,11 @@
 
 import UIKit
 
-struct LBSongViewControllerConstants {
-    static let lineMarkerPositionRelativeToLineHeight: CGFloat = 0.38
-}
-
 class LBSongViewController: LBViewController
 {
     var song: LBSong!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
-    var lineMarkView: UIImageView!
     
     @IBOutlet var lyricsView: LBLyricsView!
     @IBOutlet var nameLabel: UILabel!
@@ -28,76 +23,79 @@ class LBSongViewController: LBViewController
         nameLabel.text = song.name
         lyricsView.paragraphs = song.paragraphs
         
-        // create line marker view
-        lineMarkView = UIImageView(image: UIImage(named: "LineMarkIcon")!)
-        view.addSubview(lineMarkView)
-        
         // configure tab gesture recognizer
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTapGesture:"))
         scrollView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // layout line marker view
-        let lineMarkerViewSize = lineMarkView.intrinsicContentSize()
-        let lineMarkerViewOrigin = CGPoint(x: lyricsView.frame.origin.x - lineMarkerViewSize.width - 9.0, y: lyricsView.frame.origin.y + scrollView.contentInset.top - lineMarkerViewSize.height * 0.5 + lyricsView.lineHeight * LBSongViewControllerConstants.lineMarkerPositionRelativeToLineHeight)
-        lineMarkView.frame = CGRect(origin: lineMarkerViewOrigin, size: lineMarkerViewSize)
-        
-        // layout bottom inset to scroll view
-        var scrollViewContentInset = scrollView.contentInset
-        scrollViewContentInset.bottom = scrollView.bounds.size.height - lineMarkView.frame.midY - lyricsView.lineHeight * (1.0 - LBSongViewControllerConstants.lineMarkerPositionRelativeToLineHeight)
-        scrollView.contentInset = scrollViewContentInset
-    }
-    
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        super.scrollViewDidEndDecelerating(scrollView)
-        scrollToNextLyricsLineAnchor()
-    }
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            scrollToNextLyricsLineAnchor()
-        }
-    }
-    
-    func lyricsViewPosition() -> CGFloat {
-        return scrollView.contentOffset.y + scrollView.contentInset.top
-    }
-    
-    func scrollToLyricsViewAnchor(anchor: CGFloat) {
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView)
+    {
+        // clear highlighted line
         UIView.animateWithDuration(0.2) {
-            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: anchor - self.scrollView.contentInset.top)
+            self.lyricsView.highlightedLine = nil
         }
     }
     
-    func scrollToNextLyricsLineAnchor() {
-        var nearestAnchor = lyricsView.nearestLineAnchor(lyricsViewPosition())
-        scrollToLyricsViewAnchor(nearestAnchor)
-    }
-    
-    @IBAction func handleTap(gestureRecognizer: UITapGestureRecognizer) {
-        var nextAnchor = lyricsView.nextLineAnchor(lyricsViewPosition())
-        scrollToLyricsViewAnchor(nextAnchor)
+    func scrollToLyricsViewLine(line: Int)
+    {
+        let lineOrigin = lyricsView.lineOrigin(line)
+        let scrollViewOffsetTop = min(lineOrigin.y - self.scrollView.contentInset.top, scrollView.contentSize.height - scrollView.bounds.size.height)
         
-        UIView.animateWithDuration(0.1) {
-            self.headerBar.verticalTranslation = self.headerBar.bounds.height
+        UIView.animateWithDuration(0.2) {
+            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: scrollViewOffsetTop)
         }
     }
     
-    @IBAction func back() {
+    @IBAction func handleTapGesture(gestureRecognizer: UITapGestureRecognizer)
+    {
+        var line: Int?
+        
+        // choose line
+        if lyricsView.highlightedLine == nil {
+            line = lyricsView.lineNextToTopOffset(
+                scrollView.contentOffset.y + scrollView.contentInset.top)
+        } else {
+            line = lyricsView.highlightedLine! + 1
+        }
+        
+        if line < lyricsView.lineCount()
+        {
+            // scroll to chosen line
+            scrollToLyricsViewLine(line!)
+            
+            // hide header bar
+            UIView.animateWithDuration(0.1) {
+                self.headerBar.verticalTranslation = self.headerBar.bounds.height
+            }
+        }
+        else
+        {
+            // reached end of lyrics
+            line = nil
+            
+            // scroll to top
+            UIView.animateWithDuration(0.3) {
+                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: -self.scrollView.contentInset.top)
+            }
+        }
+        
+        // highlight line
+        UIView.animateWithDuration(0.15) {
+            self.lyricsView.highlightedLine = line
+        }
+    }
+    
+    @IBAction func back()
+    {
         navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func share(sender: UIButton)
     {
-        let activityItems = [song.name, song.url]
-        
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let activityViewController = UIActivityViewController(
+            activityItems: [song.name, song.url], applicationActivities: nil)
         
         activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop]
-        
         presentViewController(activityViewController, animated: true, completion: nil)
     }
 }
