@@ -8,80 +8,36 @@
 
 import UIKit
 
-class LBSongViewController: LBViewController
+class LBSongViewController: LBViewController,
+    LBLyricsViewDelegate
 {
     var song: LBSong!
     
-    var tapGestureRecognizer: UITapGestureRecognizer!
-    
-    @IBOutlet var lyricsView: LBLyricsView!
+    @IBOutlet var lyricsScrollView: LBLyricsView!
     @IBOutlet var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = song.name
-        lyricsView.paragraphs = song.paragraphs
-        
-        // configure tab gesture recognizer
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTapGesture:"))
-        scrollView.addGestureRecognizer(tapGestureRecognizer)
+        lyricsScrollView.paragraphs = song.paragraphs
+        lyricsScrollView.lyricsViewDelegate = self
     }
     
     override func scrollViewWillBeginDragging(scrollView: UIScrollView)
     {
         // clear highlighted line
         UIView.animateWithDuration(0.2) {
-            self.lyricsView.highlightedLine = nil
+            self.lyricsScrollView.highlightedLine = nil
         }
     }
     
-    func scrollToLyricsViewLine(line: Int)
+    func lyricsView(lyricsView: LBLyricsView, didHighlightLine line: Int?)
     {
-        let lineOrigin = lyricsView.lineOrigin(line)
-        let scrollViewOffsetTop = min(lineOrigin.y - self.scrollView.contentInset.top, scrollView.contentSize.height - scrollView.bounds.size.height)
-        
-        UIView.animateWithDuration(0.2) {
-            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: scrollViewOffsetTop)
-        }
-    }
-    
-    @IBAction func handleTapGesture(gestureRecognizer: UITapGestureRecognizer)
-    {
-        var line: Int?
-        
-        // choose line
-        if lyricsView.highlightedLine == nil {
-            line = lyricsView.lineNextToTopOffset(
-                scrollView.contentOffset.y + scrollView.contentInset.top)
-        } else {
-            line = lyricsView.highlightedLine! + 1
-        }
-        
-        if line < lyricsView.lineCount()
-        {
-            // scroll to chosen line
-            scrollToLyricsViewLine(line!)
-            
-            // hide header bar
-            UIView.animateWithDuration(0.1) {
+        // hide header bar
+        UIView.animateWithDuration(0.1) {
+            if line != nil {
                 self.headerBar.verticalTranslation = self.headerBar.bounds.height
             }
-        }
-        else
-        {
-            // reached end of lyrics
-            line = nil
-            
-            // scroll to top
-            UIView.animateWithDuration(0.3) {
-                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: -self.scrollView.contentInset.top)
-            }
-        }
-        
-        // highlight line
-        UIView.animateWithDuration(0.15) {
-            self.lyricsView.highlightedLine = line
         }
     }
     

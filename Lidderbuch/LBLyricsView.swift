@@ -8,13 +8,15 @@
 
 import UIKit
 
-class LBLyricsView: UIView
+class LBLyricsView: UIScrollView
 {
-    private var layoutSize: CGSize!
     private var lineOrigins: [CGPoint]!
     private var lineViews: [[UIView]]!
-    
     private let lineWrapInset: CGFloat = 26
+    
+    var lyricsViewDelegate: LBLyricsViewDelegate?
+    
+    var tapGestureRecognizer: UITapGestureRecognizer!
     
     var paragraphs = [LBParagraph]() {
         didSet {
@@ -28,9 +30,15 @@ class LBLyricsView: UIView
         }
     }
     
-    var textColor = UIColor(white: 0.2, alpha: 1.0) {
+    var textColor = UIColor(white: 0.15, alpha: 1.0) {
         didSet {
             setNeedsDisplay()
+        }
+    }
+    
+    var lyricsInset = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0) {
+        didSet {
+            invalidateLyricsLayout()
         }
     }
     
@@ -71,6 +79,15 @@ class LBLyricsView: UIView
                         view.alpha = anchorAlpha
                     }
                 }
+                
+                if highlightedLine != nil {
+                    scrollToLine(highlightedLine!)
+                }
+                
+                // inform delegate
+                if let delegate = lyricsViewDelegate {
+                    delegate.lyricsView(self, didHighlightLine: highlightedLine)
+                }
             }
         }
     }
@@ -81,24 +98,17 @@ class LBLyricsView: UIView
         
         // redraw content if bounds change
         contentMode = .Redraw
+        backgroundColor = UIColor.whiteColor()
+        
+        // configure tab gesture recognizer
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTapGesture:"))
+        addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func layoutSubviews()
     {
         super.layoutSubviews()
-        
-        if layoutSize == nil || layoutSize.width != bounds.size.width {
-            // width changed, height may be invalid
-            invalidateIntrinsicContentSize()
-        }
-        
-        // layout lyrics
         layoutLyrics()
-    }
-    
-    override func intrinsicContentSize() -> CGSize {
-        layoutLyrics()
-        return layoutSize
     }
     
     func lineNextToTopOffset(topOffset: CGFloat) -> Int
@@ -121,25 +131,11 @@ class LBLyricsView: UIView
         return (topOffset < middleBetweenLinesTopOffset ? line - 1 : line)
     }
     
-    func lineCount() -> Int {
-        layoutLyrics()
-        return lineOrigins!.count
-    }
-    
-    func lineOrigin(line: Int) -> CGPoint {
-        layoutLyrics()
-        return lineOrigins[line]
-    }
-    
     private func invalidateLyricsLayout()
     {
         // reset layout
         lineOrigins = nil
         lineViews = nil
-        layoutSize = nil
-        
-        // notify possible bounds change
-        invalidateIntrinsicContentSize()
     }
     
     private func layoutLyrics()
@@ -147,7 +143,7 @@ class LBLyricsView: UIView
         let width = bounds.size.width
         
         // only layout if width changed
-        if width == 0 || layoutSize?.width == width {
+        if contentSize.width == width {
             return
         }
         
@@ -168,7 +164,7 @@ class LBLyricsView: UIView
         let lineBreakImage = UIImage(named: "LineBreakIcon")!
         
         // layout each paragraph
-        var y: CGFloat = 0.0
+        var y: CGFloat = lyricsInset.top
         for paragraph: LBParagraph in paragraphs
         {
             var lines = paragraph.content.componentsSeparatedByString("\n")
@@ -190,6 +186,7 @@ class LBLyricsView: UIView
                 {
                     // calculate line offset
                     var x: CGFloat = 0
+                        + lyricsInset.left
                         + (paragraph.refrain ? refrainParagraphInset : 0)
                         + (fragmentViews.count > 0 ? lineWrapInset : 0)
                     
@@ -212,7 +209,7 @@ class LBLyricsView: UIView
                     }
                     
                     // wrap line in container width
-                    let result = wrapText(remainder!, font: font, containerWidth: width - x)
+                    let result = wrapText(remainder!, font: font, containerWidth: width - x - lyricsInset.right)
                     remainder = result.remainder
                     
                     // create line fragment view
@@ -237,8 +234,10 @@ class LBLyricsView: UIView
             y += paragraphPadding
         }
         
+        y += lyricsInset.bottom - paragraphPadding
+        
         // set the intrinsic layout size
-        layoutSize = CGSize(width: width, height: y - paragraphPadding)
+        contentSize = CGSize(width: width, height: y)
     }
     
     private func wrapText(text: String, font: UIFont, containerWidth: CGFloat)
@@ -279,4 +278,44 @@ class LBLyricsView: UIView
         
         return result!
     }
+    
+    func scrollToLine(line: Int)
+    {
+        let offsetTop = max(min(lineOrigins[line].y - contentInset.top - bounds.size.height * 0.15, contentSize.height - bounds.size.height), 0.0)
+        
+        self.contentOffset = CGPoint(x: self.contentOffset.x, y: offsetTop)
+    }
+    
+    @IBAction func handleTapGesture(gestureRecognizer: UITapGestureRecognizer)
+    {
+        var line: Int?
+        
+        // choose line
+        if highlightedLine == nil {
+            line = lineNextToTopOffset(contentOffset.y)
+        } else {
+            line = highlightedLine! + 1
+        }
+        
+        if line >= lineOrigins.count
+        {
+            // reached end of lyrics
+            line = nil
+            
+            // scroll to top
+            UIView.animateWithDuration(0.3) {
+                self.contentOffset = CGPoint(x: self.contentOffset.x, y: -self.contentInset.top)
+            }
+        }
+        
+        // highlight line
+        UIView.animateWithDuration(0.2) {
+            self.highlightedLine = line
+        }
+    }
+}
+
+protocol LBLyricsViewDelegate
+{
+    func lyricsView(lyricsView: LBLyricsView, didHighlightLine line: Int?)
 }
