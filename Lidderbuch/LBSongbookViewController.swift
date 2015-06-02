@@ -44,10 +44,10 @@ class LBSongbookViewController: LBViewController,
         
         songbook = LBSongbook()
         songbook.delegate = self
-        songbook.update()
+        songs = songbook.songs
     }
     
-    func songbookDidChange(songbook: LBSongbook)
+    func songbookDidUpdate(songbook: LBSongbook)
     {
         if !searchActive {
             songs = songbook.songs
@@ -61,7 +61,7 @@ class LBSongbookViewController: LBViewController,
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 105.0
+        return 95.0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

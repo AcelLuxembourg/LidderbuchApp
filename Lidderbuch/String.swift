@@ -29,4 +29,11 @@ extension String
         
         return count
     }
+    
+    func stringByAddingPercentEncodingForURLQueryValue() -> String?
+    {
+        let characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
+        characterSet.addCharactersInString("-._~")
+        return stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+    }
 }

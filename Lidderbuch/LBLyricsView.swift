@@ -14,7 +14,7 @@ class LBLyricsView: UIView
     private var lineOrigins: [CGPoint]!
     private var lineViews: [[UIView]]!
     
-    private let lineWrapInset: CGFloat = 27
+    private let lineWrapInset: CGFloat = 26
     
     var paragraphs = [LBParagraph]() {
         didSet {
@@ -22,7 +22,7 @@ class LBLyricsView: UIView
         }
     }
     
-    var font = UIFont(name: "Georgia", size: 17.0)! {
+    var font = UIFont(name: "Georgia", size: 16.0)! {
         didSet {
             invalidateLyricsLayout()
         }
@@ -34,13 +34,13 @@ class LBLyricsView: UIView
         }
     }
     
-    var lineHeight: CGFloat = 27 {
+    var lineHeight: CGFloat = 26 {
         didSet {
             invalidateLyricsLayout()
         }
     }
     
-    var paragraphPadding: CGFloat = 27 {
+    var paragraphPadding: CGFloat = 26 {
         didSet {
             invalidateLyricsLayout()
         }

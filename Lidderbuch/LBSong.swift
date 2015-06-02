@@ -47,10 +47,6 @@ class LBSong: Printable
     {
         if let songJson = json as? [String: AnyObject]
         {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-            
             // retrieve required attributes
             if let
                 id = songJson["id"] as? Int,
@@ -62,7 +58,7 @@ class LBSong: Printable
                 url = NSURL(string: urlString),
                 
                 updateTimeString = songJson["update_time"] as? String,
-                updateTime = dateFormatter.dateFromString(updateTimeString)
+                updateTime = LBSongbook.dateFormatter.dateFromString(updateTimeString)
             {
                 // basic attributes
                 self.id = id
@@ -92,6 +88,36 @@ class LBSong: Printable
         }
         
         return nil
+    }
+    
+    func json() -> [String: AnyObject]
+    {
+        // prepare paragraphs json object
+        var paragraphsJsonObject = [AnyObject]()
+        
+        for paragraph in paragraphs {
+            paragraphsJsonObject.append(paragraph.json())
+        }
+        
+        // prepare json object
+        var jsonObject: [String: AnyObject!] = [
+            "id": id,
+            "name": name,
+            "language": language,
+            "url": url.absoluteString!,
+            "update_time": LBSongbook.dateFormatter.stringFromDate(updateTime),
+            "paragraphs": paragraphsJsonObject,
+            
+            // replace nil values by NSNull values
+            "number": (number != nil ? number! : NSNull()),
+            "way": (way != nil ? way! : NSNull()),
+            "category": (category != nil ? category! : NSNull()),
+            "year": (year != nil ? year! : NSNull()),
+            "lyrics_author": (lyricsAuthor != nil ? lyricsAuthor! : NSNull()),
+            "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull())
+        ]
+        
+        return jsonObject
     }
     
     private var lastSearchKeywords: String?
@@ -142,7 +168,6 @@ class LBSong: Printable
 
 extension LBSong: Equatable {}
 
-func ==(lhs: LBSong, rhs: LBSong) -> Bool
-{
+func ==(lhs: LBSong, rhs: LBSong) -> Bool {
     return (lhs.id == rhs.id)
 }

@@ -40,6 +40,16 @@ class LBParagraph
         return nil
     }
     
+    func json() -> [String: AnyObject]
+    {
+        // prepare json object
+        return [
+            "id": id,
+            "type": type,
+            "content": content
+        ]
+    }
+    
     func search(keywords: String) -> Int
     {
         // search score is determined by occurence count
