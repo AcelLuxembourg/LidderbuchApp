@@ -10,13 +10,17 @@ import Foundation
 
 class LBSongbook
 {
-    lazy var songs: [LBSong] = self.load()
+    var songs: [LBSong]!
+    
+    var categories: [String]!
+    var categorySongs: [String: [LBSong]]!
+    
     var delegate: LBSongbookDelegate?
     
     var updateTime: NSDate? {
         // determin songbook update time by last updated song time
         var lastUpdatedSong: LBSong? = songs.first
-        for i in 1..<songs.count {
+        for var i = 1; i < songs.count; ++i {
             if songs[i].updateTime > lastUpdatedSong!.updateTime {
                 lastUpdatedSong = songs[i]
             }
@@ -35,6 +39,12 @@ class LBSongbook
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         return dateFormatter
     }()
+    
+    init()
+    {
+        songs = load()
+        mapCategories()
+    }
     
     private func load() -> [LBSong]
     {
@@ -57,6 +67,22 @@ class LBSongbook
         }
         
         return [LBSong]()
+    }
+    
+    private func mapCategories()
+    {
+        // collect songs for each category
+        categories = [String]()
+        categorySongs = [String: [LBSong]]()
+        
+        for song in songs {
+            if find(categories, song.category) == nil {
+                categories.append(song.category)
+                categorySongs[song.category] = [song]
+            } else {
+                categorySongs[song.category]!.append(song)
+            }
+        }
     }
     
     private func save()
@@ -88,6 +114,9 @@ class LBSongbook
                     for song in songs {
                         self.integrateSong(song)
                     }
+                    
+                    // reload categories
+                    self.mapCategories()
                     
                     // call delegate in the main queue, it could cause ui changes
                     if let delegate = self.delegate {
@@ -154,7 +183,7 @@ class LBSongbook
     func search(keywords: String, callback: (([LBSong], String) -> Void))
     {
         if count(keywords) < 3 {
-            callback(songs, keywords)
+            callback([LBSong](), keywords)
             return
         }
         

@@ -13,6 +13,7 @@
 		A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */; };
 		A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */ = {isa = PBXBuildFile; fileRef = A521D1091B1DBB0E002ADE4E /* songs.json */; };
 		A521D10D1B1DF287002ADE4E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D10C1B1DF287002ADE4E /* NSDate.swift */; };
+		A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */; };
 		A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */; };
 		A5BA0E9D1B056BAB0049967B /* LBAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */; };
 		A5BA0E9F1B064C390049967B /* LBSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9E1B064C390049967B /* LBSongViewController.swift */; };
@@ -44,6 +45,7 @@
 		A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBLyricsView.swift; sourceTree = "<group>"; };
 		A521D1091B1DBB0E002ADE4E /* songs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs.json; sourceTree = "<group>"; };
 		A521D10C1B1DF287002ADE4E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBHeaderBar.swift; sourceTree = "<group>"; };
 		A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		A5BA0E9E1B064C390049967B /* LBSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		A51E1C961B036E81004B64AA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */,
 				A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */,
 				A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */,
 				A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */,
@@ -292,6 +295,7 @@
 				A5DEC2501AFD0BEB009F41D9 /* LBParagraph.swift in Sources */,
 				A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */,
 				A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */,
+				A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */,
 				A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */,
 				A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */,
 				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,

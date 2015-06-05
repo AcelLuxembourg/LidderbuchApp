@@ -12,9 +12,19 @@ class LBLyricsView: UIScrollView
 {
     private var lineOrigins: [CGPoint]!
     private var lineViews: [[UIView]]!
-    private let lineWrapInset: CGFloat = 26
     
     var lyricsViewDelegate: LBLyricsViewDelegate?
+    @IBOutlet var headerView: UIView? {
+        didSet {
+            if headerView != nil {
+                addSubview(headerView!)
+            } else if oldValue != nil {
+                oldValue!.removeFromSuperview()
+            }
+            
+            invalidateLyricsLayout()
+        }
+    }
     
     var tapGestureRecognizer: UITapGestureRecognizer!
     
@@ -24,7 +34,7 @@ class LBLyricsView: UIScrollView
         }
     }
     
-    var font = UIFont(name: "Georgia", size: 16.0)! {
+    var font = UIFont(name: "Georgia", size: 17.0)! {
         didSet {
             invalidateLyricsLayout()
         }
@@ -42,19 +52,27 @@ class LBLyricsView: UIScrollView
         }
     }
     
-    var lineHeight: CGFloat = 26 {
+    var lineHeight: CGFloat = 27 {
         didSet {
             invalidateLyricsLayout()
         }
     }
     
-    var paragraphPadding: CGFloat = 26 {
+    var paragraphPadding: CGFloat = 27 {
         didSet {
             invalidateLyricsLayout()
         }
     }
+    
+    private let lineWrapInset: CGFloat = 27
     
     var refrainParagraphInset: CGFloat = 0 {
+        didSet {
+            invalidateLyricsLayout()
+        }
+    }
+    
+    var refrainFont: UIFont = UIFont(name: "Georgia-Italic", size: 17.0)! {
         didSet {
             invalidateLyricsLayout()
         }
@@ -111,26 +129,6 @@ class LBLyricsView: UIScrollView
         layoutLyrics()
     }
     
-    func lineNextToTopOffset(topOffset: CGFloat) -> Int
-    {
-        layoutLyrics()
-        
-        if lineOrigins.count < 2 {
-            return 0
-        }
-        
-        var line = 0
-        while ++line < lineOrigins.count - 1 && lineOrigins[line].y <= topOffset {
-            // nothing to do here
-            // just sitting around and waiting for the next turn
-        }
-        
-        let middleBetweenLinesTopOffset = (lineOrigins[line].y - lineOrigins[line - 1].y) * 0.5 + lineOrigins[line - 1].y
-        
-        // choose nearest neighbour line
-        return (topOffset < middleBetweenLinesTopOffset ? line - 1 : line)
-    }
-    
     private func invalidateLyricsLayout()
     {
         // reset layout
@@ -165,8 +163,16 @@ class LBLyricsView: UIScrollView
         
         // layout each paragraph
         var y: CGFloat = lyricsInset.top
+        
+        // let the cursor jump below header view
+        if headerView != nil {
+            y += headerView!.bounds.size.height
+        }
+        
         for paragraph: LBParagraph in paragraphs
         {
+            var paragraphFont: UIFont = (paragraph.refrain ? refrainFont : font)
+            
             var lines = paragraph.content.componentsSeparatedByString("\n")
             for line: String in lines
             {
@@ -216,7 +222,7 @@ class LBLyricsView: UIScrollView
                     let fragmentView = UILabel()
                     fragmentView.text = result.fragment
                     fragmentView.textColor = textColor
-                    fragmentView.font = font
+                    fragmentView.font = paragraphFont
                     fragmentView.alpha = lineAlpha
                     fragmentView.frame = CGRectMake(x, y, 0.0, 0.0)
                     fragmentView.sizeToFit()
@@ -279,9 +285,29 @@ class LBLyricsView: UIScrollView
         return result!
     }
     
+    func lineNextToTopOffset(topOffset: CGFloat) -> Int
+    {
+        layoutLyrics()
+        
+        if lineOrigins.count < 2 {
+            return 0
+        }
+        
+        var line = 0
+        while ++line < lineOrigins.count - 1 && lineOrigins[line].y <= topOffset + contentInset.top + bounds.size.height * 0.15 {
+            // nothing to do here
+            // just sitting around and waiting for the next turn
+        }
+        
+        let middleBetweenLinesTopOffset = (lineOrigins[line].y - lineOrigins[line - 1].y) * 0.5 + lineOrigins[line - 1].y
+        
+        // choose nearest neighbour line
+        return (topOffset < middleBetweenLinesTopOffset ? line - 1 : line)
+    }
+    
     func scrollToLine(line: Int)
     {
-        let offsetTop = max(min(lineOrigins[line].y - contentInset.top - bounds.size.height * 0.15, contentSize.height - bounds.size.height), 0.0)
+        let offsetTop = max(lineOrigins[line].y - contentInset.top - bounds.size.height * 0.15, 0.0)
         
         self.contentOffset = CGPoint(x: self.contentOffset.x, y: offsetTop)
     }
@@ -292,7 +318,11 @@ class LBLyricsView: UIScrollView
         
         // choose line
         if highlightedLine == nil {
-            line = lineNextToTopOffset(contentOffset.y)
+            if contentOffset.y <= 0 {
+                line = 0
+            } else {
+                line = lineNextToTopOffset(contentOffset.y)
+            }
         } else {
             line = highlightedLine! + 1
         }

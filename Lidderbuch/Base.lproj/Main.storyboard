@@ -21,49 +21,73 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="95" id="fg9-jO-P8m" customClass="LBSongTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="100" id="fg9-jO-P8m" customClass="LBCategoryTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fg9-jO-P8m" id="Vqo-bM-UJQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lf-bz-qjB">
-                                                    <rect key="frame" x="13" y="8" width="549" height="25"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
+                                                    <rect key="frame" x="33" y="33" width="226" height="49"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRADITIONELL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="226" height="49"/>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="30"/>
+                                                            <color key="textColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="ngP-dA-6ha"/>
+                                                        <constraint firstAttribute="trailing" secondItem="L0l-RE-MCF" secondAttribute="trailing" id="B8n-P6-Hdh"/>
+                                                        <constraint firstItem="L0l-RE-MCF" firstAttribute="leading" secondItem="qp8-V3-I8b" secondAttribute="leading" id="Hl4-xU-qBY"/>
+                                                        <constraint firstAttribute="bottom" secondItem="L0l-RE-MCF" secondAttribute="bottom" id="MP9-pb-7g8"/>
+                                                        <constraint firstItem="L0l-RE-MCF" firstAttribute="top" secondItem="qp8-V3-I8b" secondAttribute="top" id="YzI-im-sWw"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview 1 Preview 2" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-Qh-See">
-                                                    <rect key="frame" x="13" y="33" width="579" height="54"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="54" id="vtY-59-ylg"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
-                                                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="vtY-59-ylg"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="eis-Qh-See" firstAttribute="trailing" secondItem="Vqo-bM-UJQ" secondAttribute="trailingMargin" id="5wE-ZO-eVc"/>
-                                                <constraint firstItem="3Lf-bz-qjB" firstAttribute="top" secondItem="Vqo-bM-UJQ" secondAttribute="topMargin" id="Ahn-jl-1NT"/>
-                                                <constraint firstItem="3Lf-bz-qjB" firstAttribute="leading" secondItem="Vqo-bM-UJQ" secondAttribute="leadingMargin" constant="5" id="Ooo-ta-S5A"/>
-                                                <constraint firstItem="eis-Qh-See" firstAttribute="leading" secondItem="Vqo-bM-UJQ" secondAttribute="leadingMargin" constant="5" id="Xln-W4-cBo"/>
-                                                <constraint firstItem="3Lf-bz-qjB" firstAttribute="trailing" secondItem="Vqo-bM-UJQ" secondAttribute="trailingMargin" constant="-30" id="dbh-Fi-sQH"/>
-                                                <constraint firstItem="eis-Qh-See" firstAttribute="bottom" secondItem="Vqo-bM-UJQ" secondAttribute="bottomMargin" id="vGt-JD-Y3S"/>
-                                                <constraint firstItem="eis-Qh-See" firstAttribute="top" secondItem="3Lf-bz-qjB" secondAttribute="bottom" id="zWO-Ml-Uys"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qp8-V3-I8b" secondAttribute="bottom" constant="10" id="GnW-xV-ScJ"/>
+                                                <constraint firstItem="qp8-V3-I8b" firstAttribute="top" secondItem="Vqo-bM-UJQ" secondAttribute="topMargin" constant="25" id="JSo-eU-lLz"/>
+                                                <constraint firstItem="qp8-V3-I8b" firstAttribute="leading" secondItem="Vqo-bM-UJQ" secondAttribute="leadingMargin" constant="25" id="eNR-QB-y2o"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="nameLabel" destination="3Lf-bz-qjB" id="uUI-uR-oWL"/>
-                                            <outlet property="previewLabel" destination="eis-Qh-See" id="3Ij-ZA-hd2"/>
+                                            <outlet property="titleLabel" destination="L0l-RE-MCF" id="99i-qr-rnW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="90" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="00j-W9-pWp" customClass="LBSongTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00j-W9-pWp" id="Nqh-W2-vQj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-Ya-O6Z">
+                                                    <rect key="frame" x="13" y="13" width="549" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Preview 1 Preview 2" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjK-JV-RJ0">
+                                                    <rect key="frame" x="13" y="36" width="579" height="54"/>
+                                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
+                                                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LjK-JV-RJ0" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="5" id="GdB-uO-Ttu"/>
+                                                <constraint firstItem="gF0-Ya-O6Z" firstAttribute="top" secondItem="Nqh-W2-vQj" secondAttribute="top" constant="13" id="O3R-fi-QWS"/>
+                                                <constraint firstItem="LjK-JV-RJ0" firstAttribute="trailing" secondItem="Nqh-W2-vQj" secondAttribute="trailingMargin" id="UV0-h3-cgg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gF0-Ya-O6Z" secondAttribute="trailing" constant="30" id="Xjb-6I-FnU"/>
+                                                <constraint firstItem="LjK-JV-RJ0" firstAttribute="top" secondItem="gF0-Ya-O6Z" secondAttribute="bottom" constant="3" id="Ycd-8S-ZlL"/>
+                                                <constraint firstItem="gF0-Ya-O6Z" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="5" id="eDX-GU-P0i"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LjK-JV-RJ0" secondAttribute="bottom" constant="7" id="eds-PJ-9Om"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="gF0-Ya-O6Z" id="qoP-rc-U1m"/>
+                                            <outlet property="previewLabel" destination="LjK-JV-RJ0" id="8H4-hd-75k"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -162,19 +186,45 @@
                         <rect key="frame" x="0.0" y="44" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-0R-E07" userLabel="Lyrics Header View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a very long song title" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
+                                                <rect key="frame" x="20" y="25" width="560" height="24"/>
+                                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
+                                                <color key="textColor" red="0.80784313730000001" green="0.26274509800000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="M7g-Kc-apS" secondAttribute="bottom" constant="5" id="6ve-wd-HWP"/>
+                                            <constraint firstItem="M7g-Kc-apS" firstAttribute="leading" secondItem="aV6-0R-E07" secondAttribute="leading" constant="20" symbolic="YES" id="VOp-o8-la2"/>
+                                            <constraint firstItem="M7g-Kc-apS" firstAttribute="top" secondItem="aV6-0R-E07" secondAttribute="top" constant="25" id="fra-E3-gzc"/>
+                                            <constraint firstAttribute="trailing" secondItem="M7g-Kc-apS" secondAttribute="trailing" constant="20" symbolic="YES" id="hMp-vX-SZ6"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="aV6-0R-E07" firstAttribute="top" secondItem="aQy-Nw-0mG" secondAttribute="top" id="Ef2-ZM-NRQ"/>
+                                    <constraint firstItem="aV6-0R-E07" firstAttribute="leading" secondItem="aQy-Nw-0mG" secondAttribute="leading" id="LLI-uB-Ilo"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="headerView" destination="aV6-0R-E07" id="An6-7v-L6v"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="JWF-U9-ZXj" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw">
-                                        <rect key="frame" x="10" y="0.0" width="200" height="60"/>
+                                        <rect key="frame" x="10" y="0.0" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="hQv-s7-dCm"/>
+                                            <constraint firstAttribute="width" constant="60" id="hQv-s7-dCm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                        <state key="normal" title="Lidderbuch" image="BackIcon">
+                                        <state key="normal" image="BackIcon">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -221,6 +271,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aQy-Nw-0mG" secondAttribute="trailing" id="21i-FM-1sj"/>
+                            <constraint firstItem="aV6-0R-E07" firstAttribute="width" secondItem="dQR-of-LTJ" secondAttribute="width" id="8kW-Do-gaO"/>
                             <constraint firstItem="JWF-U9-ZXj" firstAttribute="top" secondItem="kPg-ED-dje" secondAttribute="bottom" id="DsV-eB-E2H"/>
                             <constraint firstAttribute="trailing" secondItem="JWF-U9-ZXj" secondAttribute="trailing" id="FO1-nU-OiK"/>
                             <constraint firstItem="aQy-Nw-0mG" firstAttribute="leading" secondItem="dQR-of-LTJ" secondAttribute="leading" id="IDb-e4-r9q"/>
@@ -233,6 +284,7 @@
                     <connections>
                         <outlet property="headerBar" destination="JWF-U9-ZXj" id="0dG-Nl-NmV"/>
                         <outlet property="lyricsScrollView" destination="aQy-Nw-0mG" id="kxw-w3-OcI"/>
+                        <outlet property="nameLabel" destination="M7g-Kc-apS" id="Usn-Pr-mzd"/>
                         <outlet property="scrollView" destination="aQy-Nw-0mG" id="SJP-px-2Xk"/>
                     </connections>
                 </viewController>

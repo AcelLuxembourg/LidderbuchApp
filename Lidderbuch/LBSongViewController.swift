@@ -13,11 +13,19 @@ class LBSongViewController: LBViewController,
 {
     var song: LBSong!
     
-    @IBOutlet var lyricsScrollView: LBLyricsView!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var lyricsScrollView: LBLyricsView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nameParagraphStyle = NSMutableParagraphStyle()
+        nameParagraphStyle.lineSpacing = 5
+        
+        let nameAttributedString = NSMutableAttributedString(string: song.name)
+        nameAttributedString.addAttribute(NSParagraphStyleAttributeName, value: nameParagraphStyle, range: NSMakeRange(0, nameAttributedString.length))
+        
+        nameLabel.attributedText = nameAttributedString
         
         lyricsScrollView.paragraphs = song.paragraphs
         lyricsScrollView.lyricsViewDelegate = self

@@ -14,12 +14,13 @@ class LBSong: Printable
     var name: String!
     var language: String!
     var url: NSURL!
+    var category: String!
+    var position: Int!
     var updateTime: NSDate!
     var paragraphs: [LBParagraph]!
     
     var number: Int?
     var way: String?
-    var category: String?
     var year: Int?
     var lyricsAuthor: String?
     var melodyAuthor: String?
@@ -52,6 +53,8 @@ class LBSong: Printable
                 id = songJson["id"] as? Int,
                 name = songJson["name"] as? String,
                 language = songJson["language"] as? String,
+                category = songJson["category"] as? String,
+                position = songJson["position"] as? Int,
                 paragraphsJson = songJson["paragraphs"] as? [AnyObject],
             
                 urlString = songJson["url"] as? String,
@@ -65,6 +68,8 @@ class LBSong: Printable
                 self.name = name
                 self.language = language
                 self.url = url
+                self.category = category
+                self.position = position
                 self.updateTime = updateTime
                 
                 // paragraphs
@@ -78,7 +83,6 @@ class LBSong: Printable
                 // optional attributes
                 self.number = songJson["number"] as? Int
                 self.way = songJson["way"] as? String
-                self.category = songJson["category"] as? String
                 self.year = songJson["year"] as? Int
                 self.lyricsAuthor = songJson["lyrics_author"] as? String
                 self.melodyAuthor = songJson["melody_author"] as? String
@@ -105,13 +109,14 @@ class LBSong: Printable
             "name": name,
             "language": language,
             "url": url.absoluteString!,
+            "category": category,
+            "position": position,
             "update_time": LBSongbook.dateFormatter.stringFromDate(updateTime),
             "paragraphs": paragraphsJsonObject,
             
             // replace nil values by NSNull values
             "number": (number != nil ? number! : NSNull()),
             "way": (way != nil ? way! : NSNull()),
-            "category": (category != nil ? category! : NSNull()),
             "year": (year != nil ? year! : NSNull()),
             "lyrics_author": (lyricsAuthor != nil ? lyricsAuthor! : NSNull()),
             "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull())
