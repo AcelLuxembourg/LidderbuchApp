@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Songbook View Controller-->
+        <!--Lidderbuch-->
         <scene sceneID="Bfr-K5-waV">
             <objects>
-                <viewController id="pX0-Er-gsZ" customClass="LBSongbookViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Lidderbuch" id="pX0-Er-gsZ" customClass="LBSongbookViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qcp-2q-A1B"/>
                         <viewControllerLayoutGuide type="bottom" id="VqZ-4g-yAW"/>
@@ -240,6 +240,9 @@
                                         <state key="normal" image="BookmarkIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="bookmark:" destination="vQV-v3-ytI" eventType="touchUpInside" id="syb-XJ-Bl9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b">
                                         <rect key="frame" x="508" y="0.0" width="40" height="60"/>
@@ -282,6 +285,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="bookmarkButton" destination="cYG-GA-l6b" id="RQY-vd-H4v"/>
                         <outlet property="headerBar" destination="JWF-U9-ZXj" id="0dG-Nl-NmV"/>
                         <outlet property="lyricsScrollView" destination="aQy-Nw-0mG" id="kxw-w3-OcI"/>
                         <outlet property="nameLabel" destination="M7g-Kc-apS" id="Usn-Pr-mzd"/>

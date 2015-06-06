@@ -18,6 +18,7 @@ class LBSong: Printable
     var position: Int!
     var updateTime: NSDate!
     var paragraphs: [LBParagraph]!
+    var bookmarked: Bool = false
     
     var number: Int?
     var way: String?
@@ -87,6 +88,10 @@ class LBSong: Printable
                 self.lyricsAuthor = songJson["lyrics_author"] as? String
                 self.melodyAuthor = songJson["melody_author"] as? String
                 
+                if songJson["bookmarked"] as? Bool == true {
+                    self.bookmarked = true
+                }
+                
                 return
             }
         }
@@ -112,6 +117,7 @@ class LBSong: Printable
             "category": category,
             "position": position,
             "update_time": LBSongbook.dateFormatter.stringFromDate(updateTime),
+            "bookmarked": bookmarked,
             "paragraphs": paragraphsJsonObject,
             
             // replace nil values by NSNull values

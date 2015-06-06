@@ -29,7 +29,8 @@ class LBSongbook
     }
     
     private var songsFileURL: NSURL {
-        let documentDirectoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as! NSURL
+        let fileManager = NSFileManager.defaultManager()
+        let documentDirectoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as! NSURL
         return documentDirectoryURL.URLByAppendingPathComponent("songs.json")
     }
     
@@ -42,8 +43,12 @@ class LBSongbook
     
     init()
     {
+        // load songs
         songs = load()
-        mapCategories()
+        reloadCategories()
+        
+        // react on application entering background
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidEnterBackground:"), name: "UIApplicationDidEnterBackgroundNotification", object: nil)
     }
     
     private func load() -> [LBSong]
@@ -69,13 +74,25 @@ class LBSongbook
         return [LBSong]()
     }
     
-    private func mapCategories()
+    private func reloadCategories()
     {
         // collect songs for each category
         categories = [String]()
         categorySongs = [String: [LBSong]]()
         
-        for song in songs {
+        // create bookmark category
+        let bookmarkCategory = "Markéiert"
+        categories.append(bookmarkCategory)
+        categorySongs[bookmarkCategory] = [LBSong]()
+        
+        for song in songs
+        {
+            // add song to bookmarks
+            if song.bookmarked {
+                categorySongs[bookmarkCategory]!.append(song)
+            }
+            
+            // add song to it's category
             if find(categories, song.category) == nil {
                 categories.append(song.category)
                 categorySongs[song.category] = [song]
@@ -83,6 +100,11 @@ class LBSongbook
                 categorySongs[song.category]!.append(song)
             }
         }
+    }
+    
+    @IBAction func applicationDidEnterBackground(notification: NSNotification)
+    {
+        save()
     }
     
     private func save()
@@ -112,11 +134,11 @@ class LBSongbook
                 {
                     // integrate each song
                     for song in songs {
-                        self.integrateSong(song)
+                        self.integrateSong(song, preserveMeta: true, propagate: false)
                     }
                     
                     // reload categories
-                    self.mapCategories()
+                    self.reloadCategories()
                     
                     // call delegate in the main queue, it could cause ui changes
                     if let delegate = self.delegate {
@@ -124,9 +146,6 @@ class LBSongbook
                             delegate.songbookDidUpdate(self)
                         }
                     }
-                    
-                    // save changes
-                    self.save()
                 }
             }
         })
@@ -165,11 +184,18 @@ class LBSongbook
         return NSJSONSerialization.dataWithJSONObject(jsonObject, options: nil, error: nil)
     }
     
-    private func integrateSong(song: LBSong)
+    func integrateSong(song: LBSong, preserveMeta: Bool, propagate: Bool = true)
     {
         // find existing song
         if let index = find(songs, song) {
-            if song.updateTime > songs[index].updateTime {
+            let oldSong = songs[index]
+            if song.updateTime > oldSong.updateTime
+            {
+                // preserve meta
+                if preserveMeta {
+                    song.bookmarked = oldSong.bookmarked
+                }
+                
                 // replace song
                 songs.removeAtIndex(index)
                 songs.insert(song, atIndex: index)
@@ -177,6 +203,11 @@ class LBSongbook
         } else {
             // add song
             songs.append(song)
+        }
+        
+        if propagate {
+            reloadCategories()
+            delegate?.songbookDidUpdate(self)
         }
     }
     

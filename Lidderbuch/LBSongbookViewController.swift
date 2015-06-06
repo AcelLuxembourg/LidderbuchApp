@@ -10,61 +10,76 @@ import UIKit
 
 class LBSongbookViewController: LBViewController,
     LBSongbookDelegate,
+    LBSongViewControllerDelegate,
     UINavigationControllerDelegate,
     UITableViewDataSource,
     UITableViewDelegate,
     UITextFieldDelegate
 {
     var songbook: LBSongbook!
-    var songs = [LBSong]() {
+    
+    var searchingInBackground = false
+    var searchSongs: [LBSong]? {
         didSet {
+            headerBar.disableVerticalTranslation = (searchSongs != nil)
             tableView.reloadData()
         }
     }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
-    
-    var searchingInBackground = false
-    var searchActive = false {
-        didSet {
-            headerBar.disableVerticalTranslation = searchActive
-            
-            if !searchActive {
-                songs = songbook.songs
-            } else {
-                search()
-            }
-        }
-    }
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        title = "Lidderbuch"
-        
         songbook = LBSongbook()
         songbook.delegate = self
-        songs = songbook.songs
         
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        let selectedRowIndexPath = tableView.indexPathForSelectedRow()
+        
+        UIView.setAnimationsEnabled(false)
+        
+        tableView.reloadData()
+        
+        // preserve selected row
+        tableView.selectRowAtIndexPath(selectedRowIndexPath, animated: false, scrollPosition: .None)
+        
+        UIView.setAnimationsEnabled(true)
+    }
+    
     func songbookDidUpdate(songbook: LBSongbook)
     {
-        if !searchActive {
-            songs = songbook.songs
-        } else {
-            tableView.reloadData()
+        if searchSongs != nil {
+            search()
         }
+    
+        let selectedRowIndexPath = tableView.indexPathForSelectedRow()
+        tableView.reloadData()
+        
+        // preserve selected row (if not in bookmark category)
+        if selectedRowIndexPath?.section != 0 {
+            tableView.selectRowAtIndexPath(selectedRowIndexPath, animated: false, scrollPosition: .None)
+        }
+    }
+    
+    func songViewController(songViewController: LBSongViewController, songDidChange song: LBSong)
+    {
+        songbook.integrateSong(song, preserveMeta: false, propagate: true)
     }
     
     func songForRowAtIndexPath(indexPath: NSIndexPath) -> LBSong?
     {
-        if searchActive {
-            return songs[indexPath.row]
+        if searchSongs != nil {
+            return searchSongs![indexPath.row]
         } else if indexPath.row > 0 {
             let category = songbook.categories[indexPath.section]
             return songbook.categorySongs[category]![indexPath.row - 1]
@@ -73,20 +88,29 @@ class LBSongbookViewController: LBViewController,
         return nil
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if !searchActive {
-            return songbook.categories.count
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        if searchSongs != nil {
+            return 1
         }
         
-        return 1
+        return songbook.categories.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !searchActive {
-            return songbook.categorySongs[songbook.categories[section]]!.count + 1
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if searchSongs != nil {
+            return searchSongs!.count
         }
         
-        return songs.count
+        let category = songbook.categories[section]
+        let count = songbook.categorySongs[category]!.count
+        
+        if count == 0 {
+            return 0
+        }
+        
+        return count + 1
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -96,7 +120,7 @@ class LBSongbookViewController: LBViewController,
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        if !searchActive && indexPath.row == 0
+        if searchSongs == nil && indexPath.row == 0
         {
             // category cell
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! LBCategoryTableViewCell
@@ -132,6 +156,7 @@ class LBSongbookViewController: LBViewController,
             // inject selected song into song view controller
             if let songViewController = segue.destinationViewController as? LBSongViewController {
                 if let selectedIndexPath = tableView.indexPathForSelectedRow() {
+                    songViewController.delegate = self
                     songViewController.song = songForRowAtIndexPath(selectedIndexPath)!
                 }
             }
@@ -160,10 +185,10 @@ class LBSongbookViewController: LBViewController,
                 
                 self.searchingInBackground = false
                 
-                if (self.searchActive)
+                if (self.searchSongs != nil)
                 {
                     // show search results
-                    self.songs = songs
+                    self.searchSongs = songs
                     
                     // scroll to top
                     self.scrollView.contentOffset = CGPoint(x: 0.0, y: -self.scrollView.contentInset.top)
@@ -178,12 +203,12 @@ class LBSongbookViewController: LBViewController,
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        searchActive = true
+        searchSongs = [LBSong]()
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         if searchTextField.text == "" {
-            searchActive = false
+            searchSongs = nil
         }
     }
     

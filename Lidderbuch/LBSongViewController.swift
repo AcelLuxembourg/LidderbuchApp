@@ -16,6 +16,10 @@ class LBSongViewController: LBViewController,
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var lyricsScrollView: LBLyricsView!
     
+    @IBOutlet weak var bookmarkButton: UIButton!
+    
+    var delegate: LBSongViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +33,14 @@ class LBSongViewController: LBViewController,
         
         lyricsScrollView.paragraphs = song.paragraphs
         lyricsScrollView.lyricsViewDelegate = self
+        
+        setBookmarked(song.bookmarked)
+    }
+    
+    func setBookmarked(bookmarked: Bool)
+    {
+        let bookmarkIconName = song.bookmarked ? "BookmarkedIcon" : "BookmarkIcon"
+        bookmarkButton.setImage(UIImage(named: bookmarkIconName), forState: .Normal)
     }
     
     override func scrollViewWillBeginDragging(scrollView: UIScrollView)
@@ -54,6 +66,16 @@ class LBSongViewController: LBViewController,
         navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func bookmark(sender: UIButton)
+    {
+        // toggle song bookmark
+        song.bookmarked = !song.bookmarked
+        delegate?.songViewController(self, songDidChange: song)
+        
+        // update ui
+        setBookmarked(song.bookmarked)
+    }
+    
     @IBAction func share(sender: UIButton)
     {
         let activityViewController = UIActivityViewController(
@@ -62,4 +84,9 @@ class LBSongViewController: LBViewController,
         activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop]
         presentViewController(activityViewController, animated: true, completion: nil)
     }
+}
+
+protocol LBSongViewControllerDelegate
+{
+    func songViewController(songViewController: LBSongViewController, songDidChange song: LBSong)
 }
