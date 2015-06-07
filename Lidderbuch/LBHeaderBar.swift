@@ -28,7 +28,7 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
     
     var disableVerticalTranslation = false {
         didSet {
-            if disableVerticalTranslation {
+            if disableVerticalTranslation && disableVerticalTranslation != oldValue {
                 UIView.animateWithDuration(0.1) {
                     self.verticalTranslation = 0
                 }

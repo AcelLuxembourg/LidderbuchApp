@@ -201,7 +201,7 @@ class LBLyricsView: UIScrollView
                         // at first iteration store line origin
                         lineOrigins.append(CGPoint(x: x, y: y))
                     }
-                    else
+                    else if fragmentViews.count == 1
                     {
                         // create line break view
                         let lineBreakView = UIImageView()

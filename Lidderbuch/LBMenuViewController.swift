@@ -54,7 +54,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         // screen width break points to make the text look good
         let screenWidth = UIScreen.mainScreen().bounds.size.width
         
-        var fontSize: CGFloat = 17.0
+        var fontSize: CGFloat = 15.5
         if screenWidth >= 375.0 {
             fontSize = 17.5
         } else if screenWidth >= 414.0 {

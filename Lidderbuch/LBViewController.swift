@@ -82,19 +82,20 @@ class LBViewController: UIViewController,
         // calculate scroll difference since last call
         var delta = scrollView.contentOffset.y - scrollViewVerticalOffset
         scrollViewVerticalOffset = scrollView.contentOffset.y
+        let contentLargerThanScrollView = (scrollView.contentSize.height > scrollView.bounds.size.height)
         
         if !(
-            // disable sliding feature if content size is too small
-            (scrollView.contentSize.height < scrollView.bounds.size.height + headerBar.bounds.size.height)
+            // prevent sliding up when content size is too small
+            (!contentLargerThanScrollView && delta > 0)
             
             // prevent sliding up at upper bounce
             || (scrollViewVerticalOffset <= -scrollView.contentInset.top && delta > 0)
             
             // prevent sliding down at lower bounce
-            || (scrollViewVerticalOffset >= scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.size.height && delta < 0)
+            || (scrollViewVerticalOffset >= scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.size.height && contentLargerThanScrollView && delta < 0)
             
             // prevent sliding down when not decelerating and not reached the top
-            || (!scrollViewDecelerating && scrollViewVerticalOffset > 0 && delta < 0)
+            || (!scrollViewDecelerating && scrollViewVerticalOffset > 0 && contentLargerThanScrollView && delta < 0)
         ) {
             headerBar.translateVertically(delta)
         }
