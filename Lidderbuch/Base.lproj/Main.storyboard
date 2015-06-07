@@ -229,6 +229,42 @@ Hello World</string>
             </objects>
             <point key="canvasLocation" x="1014" y="232"/>
         </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="nVI-Op-HqH">
+            <objects>
+                <viewController id="bRr-t2-hNk" customClass="LBIntroViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5wP-4f-jKV"/>
+                        <viewControllerLayoutGuide type="bottom" id="cpn-mU-Bzj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IeP-0B-d89">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AcelLogoAnimation" translatesAutoresizingMaskIntoConstraints="NO" id="l1i-ZE-nFn" userLabel="Logo Image View">
+                                <rect key="frame" x="238" y="170" width="125" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Kky-xP-dxm"/>
+                                    <constraint firstAttribute="width" constant="125" id="S7D-MT-jVE"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="l1i-ZE-nFn" secondAttribute="centerX" id="dRP-p3-Snw"/>
+                            <constraint firstAttribute="centerY" secondItem="l1i-ZE-nFn" secondAttribute="centerY" constant="30" id="v43-xv-l5s"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="laq-Zv-a7T"/>
+                    <connections>
+                        <outlet property="imageView" destination="l1i-ZE-nFn" id="PQV-Vm-uTj"/>
+                        <segue destination="pX0-Er-gsZ" kind="custom" identifier="ShowSongbook" customClass="LBReplaceSegue" customModule="Lidderbuch" customModuleProvider="target" id="0Nh-wp-Y16"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hWA-BI-1I6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="280" y="232"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="RtL-Ib-Cai">
             <objects>
@@ -243,12 +279,12 @@ Hello World</string>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="pX0-Er-gsZ" kind="relationship" relationship="rootViewController" id="4kA-94-r53"/>
+                        <segue destination="bRr-t2-hNk" kind="relationship" relationship="rootViewController" id="gGK-Sg-A1z"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgf-Zv-Cb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="272" y="232"/>
+            <point key="canvasLocation" x="-464" y="232"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="ZV0-oI-cPk">
@@ -374,6 +410,7 @@ Hello World</string>
         </scene>
     </scenes>
     <resources>
+        <image name="AcelLogoAnimation" width="125" height="5000"/>
         <image name="BackIcon" width="35" height="50"/>
         <image name="BookmarkIcon" width="40" height="50"/>
         <image name="CloseIcon" width="40" height="50"/>
