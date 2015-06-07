@@ -21,6 +21,12 @@ class LBIntroViewController: UIViewController
         
         imageView.clipsToBounds = true
         
+        // wait to prevent frame skip
+        NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: Selector("startAnimation:"), userInfo: nil, repeats: false)
+    }
+    
+    @IBAction func startAnimation(timer: NSTimer)
+    {
         // start animation at 25 fps
         NSTimer.scheduledTimerWithTimeInterval(0.04, target: self, selector: Selector("animationTick:"), userInfo: nil, repeats: true)
     }

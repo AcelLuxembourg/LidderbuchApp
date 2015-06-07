@@ -20,7 +20,8 @@ class LBSongViewController: LBViewController,
     
     var delegate: LBSongViewControllerDelegate?
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         let nameParagraphStyle = NSMutableParagraphStyle()
