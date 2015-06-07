@@ -11,7 +11,7 @@ import UIKit
 class LBSongbookViewController: LBViewController,
     LBSongbookDelegate,
     LBSongViewControllerDelegate,
-    UINavigationControllerDelegate,
+    UIViewControllerTransitioningDelegate,
     UITableViewDataSource,
     UITableViewDelegate,
     UITextFieldDelegate
@@ -21,13 +21,20 @@ class LBSongbookViewController: LBViewController,
     var searchingInBackground = false
     var searchSongs: [LBSong]? {
         didSet {
-            headerBar.disableVerticalTranslation = (searchSongs != nil)
+            let searchActive = (searchSongs != nil)
+            
+            headerBar.disableVerticalTranslation = searchActive
             tableView.reloadData()
+            
+            UIView.animateWithDuration(0.15) {
+                self.cancelSearchButton.alpha = searchActive ? 1.0 : 0.0
+            }
         }
     }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var cancelSearchButton: UIButton!
 
     override func viewDidLoad()
     {
@@ -38,6 +45,8 @@ class LBSongbookViewController: LBViewController,
         
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        cancelSearchButton.alpha = 0.0
     }
     
     override func viewWillAppear(animated: Bool)
@@ -142,7 +151,6 @@ class LBSongbookViewController: LBViewController,
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if songForRowAtIndexPath(indexPath) != nil {
-            searchTextField.resignFirstResponder()
             performSegueWithIdentifier("ShowSong", sender: self)
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -151,7 +159,9 @@ class LBSongbookViewController: LBViewController,
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if (segue.identifier == "ShowSong")
+        searchTextField.resignFirstResponder()
+        
+        if segue.identifier == "ShowSong"
         {
             // inject selected song into song view controller
             if let songViewController = segue.destinationViewController as? LBSongViewController {
@@ -161,6 +171,21 @@ class LBSongbookViewController: LBViewController,
                 }
             }
         }
+        else if segue.identifier == "ShowMenu"
+        {
+            if let detailViewController = segue.destinationViewController as? UIViewController {
+                detailViewController.transitioningDelegate = self
+                detailViewController.modalPresentationStyle = .Custom
+            }
+        }
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return LBModalTransitionAnimator(presenting: true)
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return LBModalTransitionAnimator(presenting: false)
     }
     
     func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
@@ -202,26 +227,52 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        searchSongs = [LBSong]()
+    func textFieldDidBeginEditing(textField: UITextField)
+    {
+        if searchSongs == nil {
+            searchSongs = [LBSong]()
+        }
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(textField: UITextField)
+    {
         if searchTextField.text == "" {
             searchSongs = nil
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
         searchTextField.resignFirstResponder()
         return true
     }
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView)
+    {
+        // remove keyboard when user starts scrolling
         searchTextField.resignFirstResponder()
     }
     
-    @IBAction func handleSearchTextFieldChange(textField: UITextField) {
+    @IBAction func handleSearchTextFieldChange(textField: UITextField)
+    {
         search()
+    }
+    
+    @IBAction func handleMenuButtonTap(sender: UIButton)
+    {
+        performSegueWithIdentifier("ShowMenu", sender: self)
+    }
+    
+    @IBAction func handleSearchButtonTap(sender: UIButton)
+    {
+        searchTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func handleCancelSearchButtonTap(sender: UIButton)
+    {
+        // clear search and remove keyboard
+        searchTextField.resignFirstResponder()
+        searchSongs = nil
+        searchTextField.text = ""
     }
 }

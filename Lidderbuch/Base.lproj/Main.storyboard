@@ -5,10 +5,49 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="6qG-v3-eF0">
+            <objects>
+                <viewController id="s17-fh-2RG" customClass="LBMenuViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="57P-oa-mPE"/>
+                        <viewControllerLayoutGuide type="bottom" id="hkR-AT-acb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n7V-Qa-1mu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypD-2d-dEc">
+                                <rect key="frame" x="16" y="30" width="568" height="530"/>
+                                <string key="text">Credits
+Hello World</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ypD-2d-dEc" firstAttribute="trailing" secondItem="n7V-Qa-1mu" secondAttribute="trailingMargin" id="EPK-8Q-3MQ"/>
+                            <constraint firstItem="ypD-2d-dEc" firstAttribute="leading" secondItem="n7V-Qa-1mu" secondAttribute="leadingMargin" id="RIG-qy-uSb"/>
+                            <constraint firstItem="ypD-2d-dEc" firstAttribute="top" secondItem="57P-oa-mPE" secondAttribute="bottom" constant="30" id="VQx-x4-f21"/>
+                            <constraint firstItem="hkR-AT-acb" firstAttribute="top" secondItem="ypD-2d-dEc" secondAttribute="bottom" constant="40" id="fnY-PP-CLB"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="600" height="250"/>
+                    <connections>
+                        <outlet property="creditsTextView" destination="ypD-2d-dEc" id="nkr-Iz-rh6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfr-Qt-Fjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="982"/>
+        </scene>
         <!--Lidderbuch-->
         <scene sceneID="Bfr-K5-waV">
             <objects>
-                <viewController title="Lidderbuch" id="pX0-Er-gsZ" customClass="LBSongbookViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Lidderbuch" automaticallyAdjustsScrollViewInsets="NO" id="pX0-Er-gsZ" customClass="LBSongbookViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qcp-2q-A1B"/>
                         <viewControllerLayoutGuide type="bottom" id="VqZ-4g-yAW"/>
@@ -26,12 +65,12 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fg9-jO-P8m" id="Vqo-bM-UJQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
                                                     <rect key="frame" x="33" y="33" width="226" height="49"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRADITIONELL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TRADITIONELL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
                                                             <rect key="frame" x="0.0" y="0.0" width="226" height="49"/>
-                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="30"/>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="27"/>
                                                             <color key="textColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -56,7 +95,7 @@
                                             <outlet property="titleLabel" destination="L0l-RE-MCF" id="99i-qr-rnW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="90" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="00j-W9-pWp" customClass="LBSongTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="90" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="105" id="00j-W9-pWp" customClass="LBSongTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00j-W9-pWp" id="Nqh-W2-vQj">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -76,12 +115,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="LjK-JV-RJ0" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="5" id="GdB-uO-Ttu"/>
-                                                <constraint firstItem="gF0-Ya-O6Z" firstAttribute="top" secondItem="Nqh-W2-vQj" secondAttribute="top" constant="13" id="O3R-fi-QWS"/>
+                                                <constraint firstItem="gF0-Ya-O6Z" firstAttribute="top" secondItem="Nqh-W2-vQj" secondAttribute="top" constant="11" id="O3R-fi-QWS"/>
                                                 <constraint firstItem="LjK-JV-RJ0" firstAttribute="trailing" secondItem="Nqh-W2-vQj" secondAttribute="trailingMargin" id="UV0-h3-cgg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="gF0-Ya-O6Z" secondAttribute="trailing" constant="30" id="Xjb-6I-FnU"/>
                                                 <constraint firstItem="LjK-JV-RJ0" firstAttribute="top" secondItem="gF0-Ya-O6Z" secondAttribute="bottom" constant="3" id="Ycd-8S-ZlL"/>
                                                 <constraint firstItem="gF0-Ya-O6Z" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="5" id="eDX-GU-P0i"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="LjK-JV-RJ0" secondAttribute="bottom" constant="7" id="eds-PJ-9Om"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LjK-JV-RJ0" secondAttribute="bottom" constant="6" id="eds-PJ-9Om"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -99,17 +138,8 @@
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al">
-                                        <rect key="frame" x="10" y="0.0" width="40" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="qLT-1X-lV0"/>
-                                        </constraints>
-                                        <state key="normal" image="SearchIcon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sich" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR">
-                                        <rect key="frame" x="50" y="0.0" width="530" height="60"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sich" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
+                                        <rect key="frame" x="91" y="0.0" width="452" height="60"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                         <connections>
@@ -117,16 +147,58 @@
                                             <outlet property="delegate" destination="pX0-Er-gsZ" id="ebK-3V-3EQ"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
+                                        <rect key="frame" x="551" y="0.0" width="40" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Elk-pL-dQP"/>
+                                        </constraints>
+                                        <state key="normal" image="CloseIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleCancelSearchButtonTap:" destination="pX0-Er-gsZ" eventType="touchUpInside" id="aUC-jv-b9o"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
+                                        <rect key="frame" x="9" y="0.0" width="40" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="hlU-dS-pDT"/>
+                                        </constraints>
+                                        <state key="normal" image="MenuIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleMenuButtonTap:" destination="pX0-Er-gsZ" eventType="touchUpInside" id="rZ3-HD-1We"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
+                                        <rect key="frame" x="49" y="0.0" width="40" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="qLT-1X-lV0"/>
+                                        </constraints>
+                                        <state key="normal" image="SearchIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleSearchButtonTap:" destination="pX0-Er-gsZ" eventType="touchUpInside" id="UgQ-Jy-fMa"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="yeb-vw-0al" firstAttribute="leading" secondItem="vLa-Hd-fXP" secondAttribute="trailing" id="76e-we-Qht"/>
                                     <constraint firstAttribute="bottom" secondItem="SgQ-br-pXR" secondAttribute="bottom" id="ADO-YE-u0k"/>
                                     <constraint firstItem="yeb-vw-0al" firstAttribute="top" secondItem="rCO-Qz-oTi" secondAttribute="top" id="GLw-eI-Q4S"/>
+                                    <constraint firstItem="egV-G9-Wnr" firstAttribute="leading" secondItem="SgQ-br-pXR" secondAttribute="trailing" constant="8" symbolic="YES" id="IZ2-eI-bJb"/>
                                     <constraint firstItem="SgQ-br-pXR" firstAttribute="top" secondItem="rCO-Qz-oTi" secondAttribute="top" id="NAY-qJ-1F5"/>
                                     <constraint firstAttribute="bottom" secondItem="yeb-vw-0al" secondAttribute="bottom" id="T2r-Ds-Bci"/>
-                                    <constraint firstAttribute="trailing" secondItem="SgQ-br-pXR" secondAttribute="trailing" constant="20" symbolic="YES" id="YAK-T5-UJz"/>
-                                    <constraint firstItem="yeb-vw-0al" firstAttribute="leading" secondItem="rCO-Qz-oTi" secondAttribute="leading" constant="10" id="p8G-xg-Ib7"/>
-                                    <constraint firstItem="SgQ-br-pXR" firstAttribute="leading" secondItem="yeb-vw-0al" secondAttribute="trailing" id="xzo-Fb-SBj"/>
+                                    <constraint firstAttribute="bottom" secondItem="vLa-Hd-fXP" secondAttribute="bottom" id="YjL-3Q-RRW"/>
+                                    <constraint firstItem="egV-G9-Wnr" firstAttribute="top" secondItem="rCO-Qz-oTi" secondAttribute="top" id="aD7-iy-lg4"/>
+                                    <constraint firstAttribute="bottom" secondItem="egV-G9-Wnr" secondAttribute="bottom" id="m79-4O-Iv8"/>
+                                    <constraint firstAttribute="trailing" secondItem="egV-G9-Wnr" secondAttribute="trailing" constant="9" id="qYY-KD-Gkf"/>
+                                    <constraint firstItem="vLa-Hd-fXP" firstAttribute="top" secondItem="rCO-Qz-oTi" secondAttribute="top" id="smv-MT-nPH"/>
+                                    <constraint firstItem="vLa-Hd-fXP" firstAttribute="leading" secondItem="rCO-Qz-oTi" secondAttribute="leading" constant="9" id="vvl-FE-hug"/>
+                                    <constraint firstItem="SgQ-br-pXR" firstAttribute="leading" secondItem="yeb-vw-0al" secondAttribute="trailing" constant="2" id="xzo-Fb-SBj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -141,13 +213,16 @@
                             <constraint firstItem="Dmz-Bh-x2H" firstAttribute="top" secondItem="qcp-2q-A1B" secondAttribute="bottom" id="naj-PN-Pt4"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="sLE-RP-yjm"/>
                     <connections>
+                        <outlet property="cancelSearchButton" destination="egV-G9-Wnr" id="RTa-dz-paQ"/>
                         <outlet property="headerBar" destination="rCO-Qz-oTi" id="hYI-tp-jbH"/>
                         <outlet property="scrollView" destination="Dmz-Bh-x2H" id="yCQ-MI-IAa"/>
                         <outlet property="searchTextField" destination="SgQ-br-pXR" id="SNy-qB-Qjh"/>
                         <outlet property="tableView" destination="Dmz-Bh-x2H" id="fiC-wm-Hgm"/>
                         <segue destination="vQV-v3-ytI" kind="show" identifier="ShowSong" id="VEY-qG-YDL"/>
+                        <segue destination="s17-fh-2RG" kind="presentation" identifier="ShowMenu" id="rkW-gH-Aem"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrM-TR-ukj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,7 +232,8 @@
         <!--Navigation Controller-->
         <scene sceneID="RtL-Ib-Cai">
             <objects>
-                <navigationController navigationBarHidden="YES" id="CY6-wC-iji" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CY6-wC-iji" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GET-DW-BxC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -172,7 +248,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgf-Zv-Cb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="174" y="232"/>
+            <point key="canvasLocation" x="272" y="232"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="ZV0-oI-cPk">
@@ -218,7 +294,7 @@
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="JWF-U9-ZXj" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw" userLabel="Back Button">
                                         <rect key="frame" x="10" y="0.0" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="hQv-s7-dCm"/>
@@ -229,10 +305,10 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="back" destination="vQV-v3-ytI" eventType="touchUpInside" id="NRM-bJ-o1k"/>
+                                            <action selector="handleBackButtonTap:" destination="vQV-v3-ytI" eventType="touchUpInside" id="7Lc-2I-NKe"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b" userLabel="Bookmark Button">
                                         <rect key="frame" x="548" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="sYb-aR-xjz"/>
@@ -241,10 +317,10 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="bookmark:" destination="vQV-v3-ytI" eventType="touchUpInside" id="syb-XJ-Bl9"/>
+                                            <action selector="handleBookmarkButtonTap:" destination="vQV-v3-ytI" eventType="touchUpInside" id="qCl-tL-RaR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b" userLabel="Share Button">
                                         <rect key="frame" x="508" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="CHo-7P-aOz"/>
@@ -253,7 +329,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="share:" destination="vQV-v3-ytI" eventType="touchUpInside" id="NK4-Nh-mIC"/>
+                                            <action selector="handleShareButtonTap:" destination="vQV-v3-ytI" eventType="touchUpInside" id="Pli-D2-cYE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -294,12 +370,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kE9-Ej-tKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="232"/>
+            <point key="canvasLocation" x="1747" y="232"/>
         </scene>
     </scenes>
     <resources>
         <image name="BackIcon" width="35" height="50"/>
         <image name="BookmarkIcon" width="40" height="50"/>
+        <image name="CloseIcon" width="40" height="50"/>
+        <image name="MenuIcon" width="40" height="50"/>
         <image name="SearchIcon" width="40" height="50"/>
         <image name="ShareIcon" width="40" height="50"/>
     </resources>

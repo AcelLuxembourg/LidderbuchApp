@@ -64,7 +64,7 @@ class LBLyricsView: UIScrollView
         }
     }
     
-    private let lineWrapInset: CGFloat = 27
+    private let lineWrapInset: CGFloat = 24
     
     var refrainParagraphInset: CGFloat = 0 {
         didSet {

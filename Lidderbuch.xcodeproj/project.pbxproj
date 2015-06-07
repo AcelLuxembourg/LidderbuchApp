@@ -14,9 +14,12 @@
 		A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */ = {isa = PBXBuildFile; fileRef = A521D1091B1DBB0E002ADE4E /* songs.json */; };
 		A521D10D1B1DF287002ADE4E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D10C1B1DF287002ADE4E /* NSDate.swift */; };
 		A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */; };
+		A57F2AAC1B237B33006EE0A8 /* LBModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F2AAB1B237B33006EE0A8 /* LBModalTransitionAnimator.swift */; };
+		A57F2AAE1B2386A2006EE0A8 /* LBMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F2AAD1B2386A2006EE0A8 /* LBMenuViewController.swift */; };
 		A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */; };
-		A5BA0E9D1B056BAB0049967B /* LBAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */; };
+		A5BA0E9D1B056BAB0049967B /* LBPushTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9C1B056BAB0049967B /* LBPushTransitionAnimator.swift */; };
 		A5BA0E9F1B064C390049967B /* LBSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9E1B064C390049967B /* LBSongViewController.swift */; };
+		A5D944EC1B246437008CAF2F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D944EB1B246437008CAF2F /* Localizable.strings */; };
 		A5DEC22E1AF7F577009F41D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC22D1AF7F577009F41D9 /* AppDelegate.swift */; };
 		A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DEC2311AF7F577009F41D9 /* Main.storyboard */; };
 		A5DEC2351AF7F577009F41D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5DEC2341AF7F577009F41D9 /* Images.xcassets */; };
@@ -46,9 +49,12 @@
 		A521D1091B1DBB0E002ADE4E /* songs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs.json; sourceTree = "<group>"; };
 		A521D10C1B1DF287002ADE4E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		A57F2AAB1B237B33006EE0A8 /* LBModalTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBModalTransitionAnimator.swift; sourceTree = "<group>"; };
+		A57F2AAD1B2386A2006EE0A8 /* LBMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBMenuViewController.swift; sourceTree = "<group>"; };
 		A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBHeaderBar.swift; sourceTree = "<group>"; };
-		A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		A5BA0E9C1B056BAB0049967B /* LBPushTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBPushTransitionAnimator.swift; sourceTree = "<group>"; };
 		A5BA0E9E1B064C390049967B /* LBSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongViewController.swift; sourceTree = "<group>"; };
+		A5D944EB1B246437008CAF2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A5DEC2281AF7F577009F41D9 /* Lidderbuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lidderbuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DEC22C1AF7F577009F41D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5DEC22D1AF7F577009F41D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 				A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */,
 				A5BA0E9E1B064C390049967B /* LBSongViewController.swift */,
 				A5EE72921B065094007F8EA9 /* LBViewController.swift */,
+				A57F2AAD1B2386A2006EE0A8 /* LBMenuViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -111,7 +118,8 @@
 				A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */,
 				A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */,
 				A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */,
-				A5BA0E9C1B056BAB0049967B /* LBAnimatedTransitioning.swift */,
+				A5BA0E9C1B056BAB0049967B /* LBPushTransitionAnimator.swift */,
+				A57F2AAB1B237B33006EE0A8 /* LBModalTransitionAnimator.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 				A51E1C961B036E81004B64AA /* View */,
 				A51E1C901B035486004B64AA /* Model */,
 				A521D10B1B1DBB13002ADE4E /* Data */,
+				A5D944EB1B246437008CAF2F /* Localizable.strings */,
 				A5DEC2311AF7F577009F41D9 /* Main.storyboard */,
 				A5DEC2361AF7F577009F41D9 /* LaunchScreen.xib */,
 				A5DEC2341AF7F577009F41D9 /* Images.xcassets */,
@@ -269,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D944EC1B246437008CAF2F /* Localizable.strings in Resources */,
 				A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */,
 				A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */,
 				A5DEC2381AF7F577009F41D9 /* LaunchScreen.xib in Resources */,
@@ -297,10 +307,12 @@
 				A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */,
 				A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */,
 				A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */,
+				A57F2AAE1B2386A2006EE0A8 /* LBMenuViewController.swift in Sources */,
 				A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */,
 				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,
 				A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */,
-				A5BA0E9D1B056BAB0049967B /* LBAnimatedTransitioning.swift in Sources */,
+				A57F2AAC1B237B33006EE0A8 /* LBModalTransitionAnimator.swift in Sources */,
+				A5BA0E9D1B056BAB0049967B /* LBPushTransitionAnimator.swift in Sources */,
 				A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */,
 				A521D10D1B1DF287002ADE4E /* NSDate.swift in Sources */,
 				A5DEC22E1AF7F577009F41D9 /* AppDelegate.swift in Sources */,

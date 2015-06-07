@@ -8,7 +8,10 @@
 
 import UIKit
 
-class LBViewController: UIViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate
+class LBViewController: UIViewController,
+    UINavigationControllerDelegate,
+    UIGestureRecognizerDelegate,
+    UIScrollViewDelegate
 {
     @IBOutlet var headerBar: LBHeaderBar!
     @IBOutlet var scrollView: UIScrollView!
@@ -99,12 +102,12 @@ class LBViewController: UIViewController, UINavigationControllerDelegate, UIGest
     
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        return LBAnimatedTransitioning(reverse: operation == .Pop)
+        return LBPushTransitionAnimator(presenting: operation == .Push)
     }
     
     func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?
     {
-        if animationController is LBAnimatedTransitioning && interactivePopTransition != nil {
+        if animationController is LBPushTransitionAnimator && interactivePopTransition != nil {
             return interactivePopTransition
         }
         return nil

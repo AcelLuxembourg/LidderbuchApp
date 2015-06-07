@@ -13,8 +13,8 @@ class LBSongViewController: LBViewController,
 {
     var song: LBSong!
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var lyricsScrollView: LBLyricsView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var lyricsScrollView: LBLyricsView!
     
     @IBOutlet weak var bookmarkButton: UIButton!
     
@@ -24,7 +24,7 @@ class LBSongViewController: LBViewController,
         super.viewDidLoad()
         
         let nameParagraphStyle = NSMutableParagraphStyle()
-        nameParagraphStyle.lineSpacing = 5
+        nameParagraphStyle.lineHeightMultiple = 1.25
         
         let nameAttributedString = NSMutableAttributedString(string: song.name)
         nameAttributedString.addAttribute(NSParagraphStyleAttributeName, value: nameParagraphStyle, range: NSMakeRange(0, nameAttributedString.length))
@@ -61,12 +61,12 @@ class LBSongViewController: LBViewController,
         }
     }
     
-    @IBAction func back()
+    @IBAction func handleBackButtonTap(sender: UIButton)
     {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func bookmark(sender: UIButton)
+    @IBAction func handleBookmarkButtonTap(sender: UIButton)
     {
         // toggle song bookmark
         song.bookmarked = !song.bookmarked
@@ -76,7 +76,7 @@ class LBSongViewController: LBViewController,
         setBookmarked(song.bookmarked)
     }
     
-    @IBAction func share(sender: UIButton)
+    @IBAction func handleShareButtonTap(sender: UIButton)
     {
         let activityViewController = UIActivityViewController(
             activityItems: [song.name, song.url], applicationActivities: nil)

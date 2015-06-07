@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "TRADITIONELL"; ObjectID = "L0l-RE-MCF"; */
+"L0l-RE-MCF.text" = "TRADITIONELL";
+
+/* Class = "UILabel"; text = "Preview 1 Preview 2"; ObjectID = "LjK-JV-RJ0"; */
+"LjK-JV-RJ0.text" = "Preview 1 Preview 2";
+
+/* Class = "UILabel"; text = "This is a very long song title"; ObjectID = "M7g-Kc-apS"; */
+"M7g-Kc-apS.text" = "This is a very long song title";
+
+/* Class = "UITextField"; placeholder = "Sich"; ObjectID = "SgQ-br-pXR"; */
+"SgQ-br-pXR.placeholder" = "Sich";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "gF0-Ya-O6Z"; */
+"gF0-Ya-O6Z.text" = "Name";
+
+/* Class = "UIViewController"; title = "Lidderbuch"; ObjectID = "pX0-Er-gsZ"; */
+"pX0-Er-gsZ.title" = "Lidderbuch";
+
+/* Class = "UITextView"; text = "Credits\nHello World"; ObjectID = "ypD-2d-dEc"; */
+"ypD-2d-dEc.text" = "Credits\nHello World";
