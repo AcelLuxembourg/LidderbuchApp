@@ -1,7 +1,9 @@
 Lidderbuch App
 ==============
 
-These are the sources for the Lidderbuch app for iOS 8+ written in Swift.
+These are the sources for the [Lidderbuch app](https://itunes.apple.com/app/lidderbuch/id997143407?mt=8) for iOS 8+ written in Swift.
+
+It implements the [AcelApi](https://github.com/AcelLuxembourg/AcelApi).
 
 ## License
 The MIT License (MIT)
