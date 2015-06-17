@@ -21,8 +21,7 @@ class LBReplaceSegue: UIStoryboardSegue
             transition.subtype = kCATransitionFromTop
             
             navigationController.view.layer.addAnimation(transition, forKey: kCATransition)
-            navigationController.popToRootViewControllerAnimated(false)
-            navigationController.pushViewController(destinationViewController, animated: false)
+            navigationController.viewControllers = [destinationViewController]
         }
     }
 }
