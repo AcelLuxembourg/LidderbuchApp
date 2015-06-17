@@ -49,16 +49,16 @@ class LBSongbook
         
         // react on application entering background
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidEnterBackground:"), name: "UIApplicationDidEnterBackgroundNotification", object: nil)
-    }
-    
-    private func load() -> [LBSong]
-    {
+        
         // schedule songs update at low QOS in 2 seconds
         let utilityQueue = dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC))), utilityQueue) {
             self.update()
         }
-        
+    }
+    
+    private func load() -> [LBSong]
+    {
         // try loading from local songs file
         if let data = NSData(contentsOfURL: songsFileURL) {
             return songsWithData(data)
