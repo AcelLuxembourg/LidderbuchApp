@@ -16,7 +16,6 @@ class LBSong: Printable
     var url: NSURL!
     var category: String!
     var position: Int!
-    var updateTime: NSDate!
     var paragraphs: [LBParagraph]!
     var bookmarked: Bool = false
     
@@ -25,6 +24,7 @@ class LBSong: Printable
     var year: Int?
     var lyricsAuthor: String?
     var melodyAuthor: String?
+    var updateTime: NSDate?
     
     var description: String {
         return "\(id): \(name)"
@@ -59,10 +59,7 @@ class LBSong: Printable
                 paragraphsJson = songJson["paragraphs"] as? [AnyObject],
             
                 urlString = songJson["url"] as? String,
-                url = NSURL(string: urlString),
-                
-                updateTimeString = songJson["update_time"] as? String,
-                updateTime = LBSongbook.dateFormatter.dateFromString(updateTimeString)
+                url = NSURL(string: urlString)
             {
                 // basic attributes
                 self.id = id
@@ -71,7 +68,6 @@ class LBSong: Printable
                 self.url = url
                 self.category = category
                 self.position = position
-                self.updateTime = updateTime
                 
                 // paragraphs
                 self.paragraphs = [LBParagraph]()
@@ -87,6 +83,10 @@ class LBSong: Printable
                 self.year = songJson["year"] as? Int
                 self.lyricsAuthor = songJson["lyrics_author"] as? String
                 self.melodyAuthor = songJson["melody_author"] as? String
+                
+                if let timestamp = songJson["update_time"] as? Int {
+                    updateTime = NSDate(timeIntervalSince1970: Double(timestamp))
+                }
                 
                 if songJson["bookmarked"] as? Bool == true {
                     self.bookmarked = true
@@ -116,7 +116,6 @@ class LBSong: Printable
             "url": url.absoluteString!,
             "category": category,
             "position": position,
-            "update_time": LBSongbook.dateFormatter.stringFromDate(updateTime),
             "bookmarked": bookmarked,
             "paragraphs": paragraphsJsonObject,
             
@@ -125,7 +124,8 @@ class LBSong: Printable
             "way": (way != nil ? way! : NSNull()),
             "year": (year != nil ? year! : NSNull()),
             "lyrics_author": (lyricsAuthor != nil ? lyricsAuthor! : NSNull()),
-            "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull())
+            "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull()),
+            "update_time": (updateTime != nil ? Int(updateTime!.timeIntervalSince1970) : NSNull()),
         ]
         
         return jsonObject

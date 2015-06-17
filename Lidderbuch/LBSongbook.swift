@@ -19,13 +19,17 @@ class LBSongbook
     
     var updateTime: NSDate? {
         // determin songbook update time by last updated song time
-        var lastUpdatedSong: LBSong? = songs.first
+        var updateTime: NSDate? = nil
         for var i = 1; i < songs.count; ++i {
-            if songs[i].updateTime > lastUpdatedSong!.updateTime {
-                lastUpdatedSong = songs[i]
+            if let songUpdateTime = songs[i].updateTime {
+                if updateTime == nil {
+                    updateTime = songUpdateTime
+                } else if songUpdateTime > updateTime! {
+                    updateTime = songUpdateTime
+                }
             }
         }
-        return lastUpdatedSong?.updateTime
+        return updateTime
     }
     
     private var songsFileURL: NSURL {
@@ -33,13 +37,6 @@ class LBSongbook
         let documentDirectoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as! NSURL
         return documentDirectoryURL.URLByAppendingPathComponent("songs.json")
     }
-    
-    static var dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        return dateFormatter
-    }()
     
     init()
     {
@@ -88,12 +85,11 @@ class LBSongbook
     
     private func update()
     {
-        var webServiceUrl = NSURL(string: "https://dev.acel.lu/api/v1/songs")!
+        var webServiceUrl: NSURL = NSURL(string: "https://dev.acel.lu/api/v1/songs")!
         
         // include songbook version in request
         if let updateTime = updateTime {
-            let sinceParameterString = LBSongbook.dateFormatter.stringFromDate(updateTime).stringByAddingPercentEncodingForURLQueryValue()!
-            webServiceUrl = NSURL(string: "https://dev.acel.lu/api/v1/songs?since=\(sinceParameterString)")!
+            webServiceUrl = NSURL(string: "https://dev.acel.lu/api/v1/songs?since=\(Int(updateTime.timeIntervalSince1970))")!
         }
         
         // retrieve song updates from web service
@@ -161,7 +157,8 @@ class LBSongbook
         // find existing song
         if let index = find(songs, song) {
             let oldSong = songs[index]
-            if song.updateTime > oldSong.updateTime
+            if (song.updateTime == nil || oldSong.updateTime == nil)
+                || (song.updateTime! > oldSong.updateTime!)
             {
                 // preserve meta
                 if preserveMeta {
