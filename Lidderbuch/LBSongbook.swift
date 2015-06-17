@@ -45,7 +45,7 @@ class LBSongbook
     {
         // load songs
         songs = load()
-        reloadCategories()
+        reloadMeta()
         
         // react on application entering background
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidEnterBackground:"), name: "UIApplicationDidEnterBackgroundNotification", object: nil)
@@ -72,34 +72,6 @@ class LBSongbook
         }
         
         return [LBSong]()
-    }
-    
-    private func reloadCategories()
-    {
-        // collect songs for each category
-        categories = [String]()
-        categorySongs = [String: [LBSong]]()
-        
-        // create bookmark category
-        let bookmarkCategory = "Markéiert"
-        categories.append(bookmarkCategory)
-        categorySongs[bookmarkCategory] = [LBSong]()
-        
-        for song in songs
-        {
-            // add song to bookmarks
-            if song.bookmarked {
-                categorySongs[bookmarkCategory]!.append(song)
-            }
-            
-            // add song to it's category
-            if find(categories, song.category) == nil {
-                categories.append(song.category)
-                categorySongs[song.category] = [song]
-            } else {
-                categorySongs[song.category]!.append(song)
-            }
-        }
     }
     
     @IBAction func applicationDidEnterBackground(notification: NSNotification)
@@ -138,7 +110,7 @@ class LBSongbook
                     }
                     
                     // reload categories
-                    self.reloadCategories()
+                    self.reloadMeta()
                     
                     // call delegate in the main queue, it could cause ui changes
                     if let delegate = self.delegate {
@@ -206,8 +178,39 @@ class LBSongbook
         }
         
         if propagate {
-            reloadCategories()
+            reloadMeta()
             delegate?.songbookDidUpdate(self)
+        }
+    }
+    
+    private func reloadMeta()
+    {
+        // sort songs by position
+        songs.sort { $1.position > $0.position }
+        
+        // collect songs for each category
+        categories = [String]()
+        categorySongs = [String: [LBSong]]()
+        
+        // create bookmark category
+        let bookmarkCategory = "Markéiert"
+        categories.append(bookmarkCategory)
+        categorySongs[bookmarkCategory] = [LBSong]()
+        
+        for song in songs
+        {
+            // add song to bookmarks
+            if song.bookmarked {
+                categorySongs[bookmarkCategory]!.append(song)
+            }
+            
+            // add song to it's category
+            if find(categories, song.category) == nil {
+                categories.append(song.category)
+                categorySongs[song.category] = [song]
+            } else {
+                categorySongs[song.category]!.append(song)
+            }
         }
     }
     
