@@ -110,7 +110,7 @@ class LBLyricsView: UIScrollView
         }
     }
     
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
         
@@ -171,9 +171,9 @@ class LBLyricsView: UIScrollView
         
         for paragraph: LBParagraph in paragraphs
         {
-            var paragraphFont: UIFont = (paragraph.refrain ? refrainFont : font)
+            let paragraphFont: UIFont = (paragraph.refrain ? refrainFont : font)
             
-            var lines = paragraph.content.componentsSeparatedByString("\n")
+            let lines = paragraph.content.componentsSeparatedByString("\n")
             for line: String in lines
             {
                 // determin line alpha according to highlighted line
@@ -191,7 +191,7 @@ class LBLyricsView: UIScrollView
                 while (remainder != nil)
                 {
                     // calculate line offset
-                    var x: CGFloat = 0
+                    let x: CGFloat = 0
                         + lyricsInset.left
                         + (paragraph.refrain ? refrainParagraphInset : 0)
                         + (fragmentViews.count > 0 ? lineWrapInset : 0)
@@ -250,7 +250,7 @@ class LBLyricsView: UIScrollView
         -> (fragment: String, remainder: String?)
     {
         // compose attributed string with given font
-        var attributedString = NSMutableAttributedString(string: text)
+        let attributedString = NSMutableAttributedString(string: text)
         attributedString.addAttribute(NSFontAttributeName, value: font,
             range: NSMakeRange(0, attributedString.length))
         
@@ -276,9 +276,9 @@ class LBLyricsView: UIScrollView
                 
                 // substring wrapped line and remainder
                 let fragment = NSString(string: text).substringWithRange(range)
-                var remainder: String = NSString(string: text).substringFromIndex(range.length)
+                let remainder: String = NSString(string: text).substringFromIndex(range.length)
                 
-                result = (fragment: fragment, remainder: (count(remainder) > 0 ? remainder : nil))
+                result = (fragment: fragment, remainder: (remainder.characters.count > 0 ? remainder : nil))
             }
         })
         

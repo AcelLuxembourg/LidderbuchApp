@@ -13,7 +13,7 @@ class LBCategoryTableViewCell: UITableViewCell
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         selectionStyle = .None
     }

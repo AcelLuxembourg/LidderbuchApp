@@ -34,7 +34,7 @@ class LBSongbook
     
     private var songsFileURL: NSURL {
         let fileManager = NSFileManager.defaultManager()
-        let documentDirectoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as! NSURL
+        let documentDirectoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! 
         return documentDirectoryURL.URLByAppendingPathComponent("songs.json")
     }
     
@@ -98,7 +98,7 @@ class LBSongbook
             {
                 // interpret songs from data
                 let songs = self.songsWithData(data)
-                if count(songs) > 0
+                if songs.count > 0
                 {
                     // integrate each song
                     for song in songs {
@@ -127,7 +127,7 @@ class LBSongbook
         var jsonError: NSError?
         
         // interpret json
-        if let songsJson = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError) as? [AnyObject] {
+        if let songsJson = NSJSONSerialization.JSONObjectWithData(data, options: []) as? [AnyObject] {
             for songJson in songsJson
             {
                 // integrate song if initialisation succeeds
@@ -149,13 +149,13 @@ class LBSongbook
         }
         
         // serialize to NSData
-        return NSJSONSerialization.dataWithJSONObject(jsonObject, options: nil, error: nil)
+        return try? NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
     }
     
     func integrateSong(song: LBSong, preserveMeta: Bool, propagate: Bool = true)
     {
         // find existing song
-        if let index = find(songs, song) {
+        if let index = songs.indexOf(song) {
             let oldSong = songs[index]
             if (song.updateTime == nil || oldSong.updateTime == nil)
                 || (song.updateTime! > oldSong.updateTime!)
@@ -183,7 +183,7 @@ class LBSongbook
     private func reloadMeta()
     {
         // sort songs by position
-        songs.sort { $1.position > $0.position }
+        songs.sortInPlace { $1.position > $0.position }
         
         // collect songs for each category
         categories = [String]()
@@ -202,7 +202,7 @@ class LBSongbook
             }
             
             // add song to it's category
-            if find(categories, song.category) == nil {
+            if categories.indexOf(song.category) == nil {
                 categories.append(song.category)
                 categorySongs[song.category] = [song]
             } else {
@@ -213,7 +213,7 @@ class LBSongbook
     
     func search(keywords: String, callback: (([LBSong], String) -> Void))
     {
-        if count(keywords) < 3 {
+        if keywords.characters.count < 3 {
             callback([LBSong](), keywords)
             return
         }
@@ -228,7 +228,7 @@ class LBSongbook
             }
             
             // use cached scores to sort by relevance
-            songs.sort { (a, b) -> Bool in
+            songs.sortInPlace { (a, b) -> Bool in
                 return a.search(keywords) > b.search(keywords)
             }
             

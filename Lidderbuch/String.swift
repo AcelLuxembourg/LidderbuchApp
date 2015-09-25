@@ -13,7 +13,7 @@ extension String
     
     func countOccurencesOfString(
         string: String,
-        compareOptions: NSStringCompareOptions = .DiacriticInsensitiveSearch | .CaseInsensitiveSearch) -> Int
+        compareOptions: NSStringCompareOptions = NSStringCompareOptions.DiacriticInsensitiveSearch.union(.CaseInsensitiveSearch)) -> Int
     {
         var count = 0
         

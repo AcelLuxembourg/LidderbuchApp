@@ -80,7 +80,7 @@ class LBViewController: UIViewController,
     func scrollViewDidScroll(scrollView: UIScrollView)
     {
         // calculate scroll difference since last call
-        var delta = scrollView.contentOffset.y - scrollViewVerticalOffset
+        let delta = scrollView.contentOffset.y - scrollViewVerticalOffset
         scrollViewVerticalOffset = scrollView.contentOffset.y
         let contentLargerThanScrollView = (scrollView.contentSize.height > scrollView.bounds.size.height)
         

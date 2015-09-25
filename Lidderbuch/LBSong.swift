@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LBSong: Printable
+class LBSong: CustomStringConvertible
 {
     var id: Int!
     var name: String!
@@ -113,7 +113,7 @@ class LBSong: Printable
             "id": id,
             "name": name,
             "language": language,
-            "url": url.absoluteString!,
+            "url": url.absoluteString,
             "category": category,
             "position": position,
             "bookmarked": bookmarked,

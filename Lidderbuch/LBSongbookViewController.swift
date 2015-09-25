@@ -53,7 +53,7 @@ class LBSongbookViewController: LBViewController,
     {
         super.viewWillAppear(animated)
         
-        let selectedRowIndexPath = tableView.indexPathForSelectedRow()
+        let selectedRowIndexPath = tableView.indexPathForSelectedRow
         
         UIView.setAnimationsEnabled(false)
         
@@ -71,7 +71,7 @@ class LBSongbookViewController: LBViewController,
             search()
         }
     
-        let selectedRowIndexPath = tableView.indexPathForSelectedRow()
+        let selectedRowIndexPath = tableView.indexPathForSelectedRow
         tableView.reloadData()
         
         // preserve selected row (if not in bookmark category)
@@ -165,7 +165,7 @@ class LBSongbookViewController: LBViewController,
         {
             // inject selected song into song view controller
             if let songViewController = segue.destinationViewController as? LBSongViewController {
-                if let selectedIndexPath = tableView.indexPathForSelectedRow() {
+                if let selectedIndexPath = tableView.indexPathForSelectedRow {
                     songViewController.delegate = self
                     songViewController.song = songForRowAtIndexPath(selectedIndexPath)!
                 }
@@ -190,7 +190,7 @@ class LBSongbookViewController: LBViewController,
     
     func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
         if viewController === self {
-            if let selectedRowIndexPath = tableView.indexPathForSelectedRow() {
+            if let selectedRowIndexPath = tableView.indexPathForSelectedRow {
                 tableView.deselectRowAtIndexPath(selectedRowIndexPath, animated: animated)
             }
         }
