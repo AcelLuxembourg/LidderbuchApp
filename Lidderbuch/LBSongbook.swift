@@ -2,8 +2,8 @@
 //  LBSongMapper.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 13/05/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import Foundation
@@ -85,19 +85,19 @@ class LBSongbook
     
     private func update()
     {
-        var webServiceUrl: NSURL = NSURL(string: "https://dev.acel.lu/api/v1/songs")!
+        var webServiceUrl: NSURL = NSURL(string: LBVariables.songbookApiEndpoint)!
         
         // include songbook version in request
         if let updateTime = updateTime {
-            webServiceUrl = NSURL(string: "https://dev.acel.lu/api/v1/songs?since=\(Int(updateTime.timeIntervalSince1970))")!
+            webServiceUrl = NSURL(string: "\(LBVariables.songbookApiEndpoint)?since=\(Int(updateTime.timeIntervalSince1970))")!
         }
         
         // retrieve song updates from web service
         let task = NSURLSession.sharedSession().dataTaskWithURL(webServiceUrl, completionHandler: { (data, response, error) in
-            if (error == nil)
+            if (data != nil && error == nil)
             {
                 // interpret songs from data
-                let songs = self.songsWithData(data)
+                let songs = self.songsWithData(data!)
                 if songs.count > 0
                 {
                     // integrate each song
@@ -124,10 +124,10 @@ class LBSongbook
     private func songsWithData(data: NSData) -> [LBSong]
     {
         var songs = [LBSong]()
-        var jsonError: NSError?
         
         // interpret json
-        if let songsJson = NSJSONSerialization.JSONObjectWithData(data, options: []) as? [AnyObject] {
+        if let songsJson = (try? NSJSONSerialization.JSONObjectWithData(data, options: [])) as? [AnyObject]
+        {
             for songJson in songsJson
             {
                 // integrate song if initialisation succeeds
@@ -237,6 +237,42 @@ class LBSongbook
                 callback(songs, keywords)
             })
         })
+    }
+    
+    func songWithId(id: Int) -> LBSong?
+    {
+        var song: LBSong? = nil
+        var i = 0
+        
+        while (i < songs.count && song == nil) {
+            if songs[i].id == id {
+                song = songs[i]
+            }
+            ++i
+        }
+        
+        return song
+    }
+    
+    func songWithURL(url: NSURL) -> LBSong?
+    {
+        var song: LBSong? = nil
+        var i = 0
+        
+        while (i < songs.count && song == nil)
+        {
+            let a = url
+            let b = songs[i].url
+            
+            // only compare path part of url
+            if a.path == b.path {
+                song = songs[i]
+            }
+            
+            ++i
+        }
+        
+        return song
     }
 }
 

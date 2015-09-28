@@ -2,13 +2,15 @@
 //  LBSong.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 04/05/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import Foundation
+import CoreSpotlight
+import MobileCoreServices
 
-class LBSong: CustomStringConvertible
+class LBSong: NSObject, NSUserActivityDelegate
 {
     var id: Int!
     var name: String!
@@ -26,7 +28,7 @@ class LBSong: CustomStringConvertible
     var melodyAuthor: String?
     var updateTime: NSDate?
     
-    var description: String {
+    override var description: String {
         return "\(id): \(name)"
     }
     
@@ -45,8 +47,45 @@ class LBSong: CustomStringConvertible
         return preview
     }
     
+    var detail: String
+    {
+        // glue together detail parts if available
+        var parts = [String]()
+        
+        if let number = self.number {
+            parts.append("No \(number)")
+        }
+        
+        if let way = self.way {
+            parts.append("Weis: \(way)")
+        }
+        
+        if self.lyricsAuthor != nil && self.lyricsAuthor == self.melodyAuthor
+        {
+            parts.append("Text a Melodie: \(self.lyricsAuthor!)")
+        }
+        else
+        {
+            if let lyricsAuthor = self.lyricsAuthor {
+                parts.append("Text: \(lyricsAuthor)")
+            }
+            
+            if let melodyAuthor = self.melodyAuthor {
+                parts.append("Melodie: \(melodyAuthor)")
+            }
+        }
+        
+        if let year = self.year {
+            parts.append(String(year))
+        }
+        
+        return parts.joinWithSeparator(" · ")
+    }
+    
     init?(json: AnyObject)
     {
+        super.init()
+        
         if let songJson = json as? [String: AnyObject]
         {
             // retrieve required attributes
@@ -109,7 +148,7 @@ class LBSong: CustomStringConvertible
         }
         
         // prepare json object
-        var jsonObject: [String: AnyObject!] = [
+        let jsonObject: [String: AnyObject!] = [
             "id": id,
             "name": name,
             "language": language,
@@ -129,6 +168,14 @@ class LBSong: CustomStringConvertible
         ]
         
         return jsonObject
+    }
+    
+    override func isEqual(object: AnyObject?) -> Bool
+    {
+        if let song = object as? LBSong {
+            return id == song.id
+        }
+        return false
     }
     
     private var lastSearchKeywords: String?
@@ -175,10 +222,49 @@ class LBSong: CustomStringConvertible
         
         return score
     }
-}
-
-extension LBSong: Equatable {}
-
-func ==(lhs: LBSong, rhs: LBSong) -> Bool {
-    return (lhs.id == rhs.id)
+    
+    @available(iOS 9.0, *)
+    func createUserActivity() -> NSUserActivity
+    {
+        // collect text content
+        var text = ""
+        for paragraph: LBParagraph in paragraphs {
+            text += paragraph.content + "\n\n"
+        }
+        
+        // collect meta
+        let contentAttributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        contentAttributeSet.title = name
+        contentAttributeSet.contentDescription = text
+        contentAttributeSet.identifier = String(id)
+        
+        if let lyricsAuthor = lyricsAuthor {
+            contentAttributeSet.lyricist = lyricsAuthor
+        }
+        
+        if let melodyAuthor = melodyAuthor {
+            contentAttributeSet.composer = melodyAuthor
+        }
+        
+        // create activity
+        let activity = NSUserActivity(activityType: LBVariables.viewSongActivityType)
+        
+        activity.title = name
+        activity.webpageURL = url
+        activity.userInfo = ["id": id]
+        activity.delegate = self
+        activity.needsSave = true
+        activity.requiredUserInfoKeys = Set(["id"])
+        activity.contentAttributeSet = contentAttributeSet
+        activity.eligibleForSearch = true
+        activity.eligibleForPublicIndexing = true
+        activity.eligibleForHandoff = true
+        
+        return activity
+    }
+    
+    func userActivityWillSave(userActivity: NSUserActivity)
+    {
+        userActivity.userInfo = ["id": id]
+    }
 }

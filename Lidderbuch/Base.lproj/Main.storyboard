@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CY6-wC-iji">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CY6-wC-iji">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypD-2d-dEc">
-                                <rect key="frame" x="16" y="30" width="568" height="530"/>
+                                <rect key="frame" x="20" y="30" width="560" height="530"/>
+                                <animations/>
                                 <string key="text">Credits
 Hello World</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,6 +29,7 @@ Hello World</string>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="trailing" secondItem="n7V-Qa-1mu" secondAttribute="trailingMargin" id="EPK-8Q-3MQ"/>
@@ -56,25 +59,30 @@ Hello World</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dmz-Bh-x2H">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dmz-Bh-x2H">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="100" id="fg9-jO-P8m" customClass="LBCategoryTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fg9-jO-P8m" id="Vqo-bM-UJQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
-                                                    <rect key="frame" x="33" y="33" width="226" height="49"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
+                                                    <rect key="frame" x="19" y="33" width="110" height="54"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TRADITIONELL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="226" height="49"/>
-                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="27"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditionell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="54"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
                                                             <color key="textColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="L0l-RE-MCF" secondAttribute="trailing" id="B8n-P6-Hdh"/>
@@ -84,45 +92,60 @@ Hello World</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="qp8-V3-I8b" secondAttribute="bottom" constant="10" id="GnW-xV-ScJ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qp8-V3-I8b" secondAttribute="bottom" constant="4" id="GnW-xV-ScJ"/>
                                                 <constraint firstItem="qp8-V3-I8b" firstAttribute="top" secondItem="Vqo-bM-UJQ" secondAttribute="topMargin" constant="25" id="JSo-eU-lLz"/>
-                                                <constraint firstItem="qp8-V3-I8b" firstAttribute="leading" secondItem="Vqo-bM-UJQ" secondAttribute="leadingMargin" constant="25" id="eNR-QB-y2o"/>
+                                                <constraint firstItem="qp8-V3-I8b" firstAttribute="leading" secondItem="Vqo-bM-UJQ" secondAttribute="leadingMargin" constant="11" id="eNR-QB-y2o"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="L0l-RE-MCF" id="99i-qr-rnW"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="90" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="105" id="00j-W9-pWp" customClass="LBSongTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="122" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00j-W9-pWp" id="Nqh-W2-vQj">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-Ya-O6Z">
                                                     <rect key="frame" x="13" y="13" width="549" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Preview 1 Preview 2" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjK-JV-RJ0">
-                                                    <rect key="frame" x="13" y="36" width="579" height="54"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
                                                     <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjK-JV-RJ0">
+                                                    <rect key="frame" x="13" y="36" width="579" height="54"/>
+                                                    <animations/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Preview 1 Preview 2">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="16" name="Georgia"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
-                                                <constraint firstItem="LjK-JV-RJ0" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="5" id="GdB-uO-Ttu"/>
+                                                <constraint firstItem="LjK-JV-RJ0" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="11" id="GdB-uO-Ttu"/>
                                                 <constraint firstItem="gF0-Ya-O6Z" firstAttribute="top" secondItem="Nqh-W2-vQj" secondAttribute="top" constant="11" id="O3R-fi-QWS"/>
                                                 <constraint firstItem="LjK-JV-RJ0" firstAttribute="trailing" secondItem="Nqh-W2-vQj" secondAttribute="trailingMargin" id="UV0-h3-cgg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="gF0-Ya-O6Z" secondAttribute="trailing" constant="30" id="Xjb-6I-FnU"/>
                                                 <constraint firstItem="LjK-JV-RJ0" firstAttribute="top" secondItem="gF0-Ya-O6Z" secondAttribute="bottom" constant="3" id="Ycd-8S-ZlL"/>
-                                                <constraint firstItem="gF0-Ya-O6Z" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="5" id="eDX-GU-P0i"/>
+                                                <constraint firstItem="gF0-Ya-O6Z" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="11" id="eDX-GU-P0i"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="LjK-JV-RJ0" secondAttribute="bottom" constant="6" id="eds-PJ-9Om"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="gF0-Ya-O6Z" id="qoP-rc-U1m"/>
@@ -138,9 +161,10 @@ Hello World</string>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sich" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
                                         <rect key="frame" x="91" y="0.0" width="452" height="60"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                         <connections>
                                             <action selector="handleSearchTextFieldChange:" destination="pX0-Er-gsZ" eventType="editingChanged" id="KgG-SD-elc"/>
@@ -149,6 +173,7 @@ Hello World</string>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
                                         <rect key="frame" x="551" y="0.0" width="40" height="60"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Elk-pL-dQP"/>
                                         </constraints>
@@ -161,6 +186,7 @@ Hello World</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
                                         <rect key="frame" x="9" y="0.0" width="40" height="60"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="hlU-dS-pDT"/>
                                         </constraints>
@@ -173,6 +199,7 @@ Hello World</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
                                         <rect key="frame" x="49" y="0.0" width="40" height="60"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="qLT-1X-lV0"/>
                                         </constraints>
@@ -184,6 +211,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="yeb-vw-0al" firstAttribute="leading" secondItem="vLa-Hd-fXP" secondAttribute="trailing" id="76e-we-Qht"/>
@@ -202,6 +230,7 @@ Hello World</string>
                                 </constraints>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Dmz-Bh-x2H" firstAttribute="leading" secondItem="A8m-DT-f63" secondAttribute="leading" id="7NV-yw-tqX"/>
@@ -243,12 +272,14 @@ Hello World</string>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AcelLogoAnimation" translatesAutoresizingMaskIntoConstraints="NO" id="l1i-ZE-nFn" userLabel="Logo Image View">
                                 <rect key="frame" x="238" y="170" width="125" height="200"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Kky-xP-dxm"/>
                                     <constraint firstAttribute="width" constant="125" id="S7D-MT-jVE"/>
                                 </constraints>
                             </imageView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="l1i-ZE-nFn" secondAttribute="centerX" id="dRP-p3-Snw"/>
@@ -258,12 +289,11 @@ Hello World</string>
                     <navigationItem key="navigationItem" id="laq-Zv-a7T"/>
                     <connections>
                         <outlet property="imageView" destination="l1i-ZE-nFn" id="PQV-Vm-uTj"/>
-                        <segue destination="pX0-Er-gsZ" kind="custom" identifier="ShowSongbook" customClass="LBReplaceSegue" customModule="Lidderbuch" customModuleProvider="target" id="0Nh-wp-Y16"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hWA-BI-1I6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="280" y="232"/>
+            <point key="canvasLocation" x="1753" y="-196"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RtL-Ib-Cai">
@@ -274,17 +304,19 @@ Hello World</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GET-DW-BxC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Urk-EX-55x">
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </toolbar>
                     <connections>
-                        <segue destination="bRr-t2-hNk" kind="relationship" relationship="rootViewController" id="gGK-Sg-A1z"/>
+                        <segue destination="pX0-Er-gsZ" kind="relationship" relationship="rootViewController" id="Q7e-9h-RRI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgf-Zv-Cb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-464" y="232"/>
+            <point key="canvasLocation" x="284" y="232"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="ZV0-oI-cPk">
@@ -295,30 +327,57 @@ Hello World</string>
                         <viewControllerLayoutGuide type="bottom" id="xxH-Kf-x1s"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dQR-of-LTJ">
-                        <rect key="frame" x="0.0" y="44" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-0R-E07" userLabel="Lyrics Header View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a very long song title" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
-                                                <rect key="frame" x="20" y="25" width="560" height="24"/>
-                                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
-                                                <color key="textColor" red="0.80784313730000001" green="0.26274509800000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
+                                                <rect key="frame" x="20" y="25" width="560" height="30"/>
+                                                <animations/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="This is a very long song title">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.80784313730000001" green="0.26274509800000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="21" name="Georgia"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtK-q0-8Hg" userLabel="Song Detail">
+                                                <rect key="frame" x="20" y="58" width="560" height="49"/>
+                                                <animations/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Weis: On the Atchison, Topeka and the Santa Fe, Text: Fernand Wark, Jeff Bësch">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="17" name="Georgia"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="M7g-Kc-apS" secondAttribute="bottom" constant="5" id="6ve-wd-HWP"/>
+                                            <constraint firstItem="OtK-q0-8Hg" firstAttribute="leading" secondItem="aV6-0R-E07" secondAttribute="leading" constant="20" symbolic="YES" id="Iqi-DZ-aav"/>
+                                            <constraint firstItem="OtK-q0-8Hg" firstAttribute="top" secondItem="M7g-Kc-apS" secondAttribute="bottom" constant="3" id="Ly2-Ge-bdE"/>
                                             <constraint firstItem="M7g-Kc-apS" firstAttribute="leading" secondItem="aV6-0R-E07" secondAttribute="leading" constant="20" symbolic="YES" id="VOp-o8-la2"/>
                                             <constraint firstItem="M7g-Kc-apS" firstAttribute="top" secondItem="aV6-0R-E07" secondAttribute="top" constant="25" id="fra-E3-gzc"/>
+                                            <constraint firstAttribute="bottom" secondItem="OtK-q0-8Hg" secondAttribute="bottom" constant="10" id="hEC-gg-nLp"/>
                                             <constraint firstAttribute="trailing" secondItem="M7g-Kc-apS" secondAttribute="trailing" constant="20" symbolic="YES" id="hMp-vX-SZ6"/>
+                                            <constraint firstAttribute="trailing" secondItem="OtK-q0-8Hg" secondAttribute="trailing" constant="20" symbolic="YES" id="riv-nz-eKq"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <animations/>
                                 <constraints>
                                     <constraint firstItem="aV6-0R-E07" firstAttribute="top" secondItem="aQy-Nw-0mG" secondAttribute="top" id="Ef2-ZM-NRQ"/>
                                     <constraint firstItem="aV6-0R-E07" firstAttribute="leading" secondItem="aQy-Nw-0mG" secondAttribute="leading" id="LLI-uB-Ilo"/>
@@ -332,6 +391,7 @@ Hello World</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw" userLabel="Back Button">
                                         <rect key="frame" x="10" y="0.0" width="60" height="60"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="hQv-s7-dCm"/>
                                         </constraints>
@@ -346,6 +406,7 @@ Hello World</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b" userLabel="Bookmark Button">
                                         <rect key="frame" x="548" y="0.0" width="40" height="60"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="sYb-aR-xjz"/>
                                         </constraints>
@@ -358,6 +419,7 @@ Hello World</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b" userLabel="Share Button">
                                         <rect key="frame" x="508" y="0.0" width="40" height="60"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="CHo-7P-aOz"/>
                                         </constraints>
@@ -369,6 +431,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Bgz-Zv-Emw" secondAttribute="bottom" id="51G-g2-shb"/>
@@ -383,6 +446,7 @@ Hello World</string>
                                 </constraints>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aQy-Nw-0mG" secondAttribute="trailing" id="21i-FM-1sj"/>
@@ -398,6 +462,7 @@ Hello World</string>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="bookmarkButton" destination="cYG-GA-l6b" id="RQY-vd-H4v"/>
+                        <outlet property="detailLabel" destination="OtK-q0-8Hg" id="9oX-6o-O5g"/>
                         <outlet property="headerBar" destination="JWF-U9-ZXj" id="0dG-Nl-NmV"/>
                         <outlet property="lyricsScrollView" destination="aQy-Nw-0mG" id="kxw-w3-OcI"/>
                         <outlet property="nameLabel" destination="M7g-Kc-apS" id="Usn-Pr-mzd"/>
@@ -406,7 +471,7 @@ Hello World</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kE9-Ej-tKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1747" y="232"/>
+            <point key="canvasLocation" x="1753" y="536"/>
         </scene>
     </scenes>
     <resources>

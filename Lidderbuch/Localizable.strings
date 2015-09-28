@@ -2,8 +2,8 @@
   Localizable.strings
   Lidderbuch
 
-  Created by Fränz Friederes on 07/06/15.
-  Copyright (c) 2015 ACEL. All rights reserved.
+  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+  Licensed under the MIT license.
 */
 
 "credits text" = "Lidderbuch ass eng App vun der ACEL, dem Daachverband vun iwwer 40 lëtzebuergesch Studentencercelen.\nDe Projet gouf vum Fränz Friederes entwéckelt an ass op GitHub ze fannen.\nSchreif eis, wann däi Lidd feelt.";

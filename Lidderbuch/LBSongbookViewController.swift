@@ -2,8 +2,8 @@
 //  LBSongbookViewController.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 13/05/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -16,7 +16,10 @@ class LBSongbookViewController: LBViewController,
     UITableViewDelegate,
     UITextFieldDelegate
 {
-    var songbook: LBSongbook!
+    lazy var songbook: LBSongbook = {
+        let songbook = LBSongbook()
+        return songbook
+    }()
     
     var searchingInBackground = false
     var searchSongs: [LBSong]? {
@@ -32,6 +35,9 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
+    var viewDidAppearOnce = false
+    var songToShowWhenViewAppears: LBSong?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cancelSearchButton: UIButton!
@@ -40,7 +46,6 @@ class LBSongbookViewController: LBViewController,
     {
         super.viewDidLoad()
         
-        songbook = LBSongbook()
         songbook.delegate = self
         
         tableView.estimatedRowHeight = 100.0
@@ -65,6 +70,18 @@ class LBSongbookViewController: LBViewController,
         UIView.setAnimationsEnabled(true)
     }
     
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        viewDidAppearOnce = true
+        
+        if let song = self.songToShowWhenViewAppears {
+            self.songToShowWhenViewAppears = nil
+            showSong(song)
+        }
+    }
+    
     func songbookDidUpdate(songbook: LBSongbook)
     {
         if searchSongs != nil {
@@ -85,13 +102,30 @@ class LBSongbookViewController: LBViewController,
         songbook.integrateSong(song, preserveMeta: false, propagate: true)
     }
     
-    func songForRowAtIndexPath(indexPath: NSIndexPath) -> LBSong?
+    private func songForRowAtIndexPath(indexPath: NSIndexPath) -> LBSong?
     {
         if searchSongs != nil {
             return searchSongs![indexPath.row]
         } else if indexPath.row > 0 {
             let category = songbook.categories[indexPath.section]
             return songbook.categorySongs[category]![indexPath.row - 1]
+        }
+        
+        return nil
+    }
+    
+    private func rowIndexPathForSong(song: LBSong) -> NSIndexPath?
+    {
+        // find index of category and song if it exists
+        if let
+            categorySongs = songbook.categorySongs[song.category],
+            categoryIndex = songbook.categories.indexOf(song.category),
+            songIndexInCategory = categorySongs.indexOf(song)
+        {
+            // convert index to row index path
+            let section = songbook.categories.startIndex.distanceTo(categoryIndex)
+            let row = categorySongs.startIndex.distanceTo(songIndexInCategory) + 1
+            return NSIndexPath(forRow: row, inSection: section)
         }
         
         return nil
@@ -135,6 +169,7 @@ class LBSongbookViewController: LBViewController,
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! LBCategoryTableViewCell
         
             cell.category = songbook.categories[indexPath.section]
+            cell.separatorInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
             
             return cell
         }
@@ -144,6 +179,7 @@ class LBSongbookViewController: LBViewController,
             let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as! LBSongTableViewCell
             
             cell.song = songForRowAtIndexPath(indexPath)
+            cell.separatorInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
             
             return cell
         }
@@ -154,6 +190,51 @@ class LBSongbookViewController: LBViewController,
             performSegueWithIdentifier("ShowSong", sender: self)
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
+    }
+    
+    func showSongWithId(id: Int) -> Bool
+    {
+        if let song = songbook.songWithId(id)
+        {
+            showSong(song)
+            return true
+        }
+        
+        return false
+    }
+    
+    func showSongWithURL(url: NSURL) -> Bool
+    {
+        if let song = songbook.songWithURL(url)
+        {
+            showSong(song)
+            return true
+        }
+        
+        return false
+    }
+    
+    func showSong(song: LBSong)
+    {
+        if !viewDidAppearOnce
+        {
+            // postpone request to show song
+            songToShowWhenViewAppears = song
+        }
+        else
+        {
+            if let indexPath = rowIndexPathForSong(song)
+            {
+                // pop to this view controller
+                navigationController?.popToViewController(self, animated: false)
+                
+                // select song row
+                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Middle)
+                
+                // perform segue to song
+                performSegueWithIdentifier("ShowSong", sender: self)
+            }
         }
     }
     
@@ -173,10 +254,8 @@ class LBSongbookViewController: LBViewController,
         }
         else if segue.identifier == "ShowMenu"
         {
-            if let detailViewController = segue.destinationViewController as? UIViewController {
-                detailViewController.transitioningDelegate = self
-                detailViewController.modalPresentationStyle = .Custom
-            }
+            segue.destinationViewController.transitioningDelegate = self
+            segue.destinationViewController.modalPresentationStyle = .Custom
         }
     }
     
@@ -199,9 +278,9 @@ class LBSongbookViewController: LBViewController,
     func search()
     {
         // cancel if already searching in background
-        if !searchingInBackground
+        if !searchingInBackground && searchTextField.text != nil
         {
-            let keywords = searchTextField.text
+            let keywords = searchTextField.text!
             
             searchingInBackground = true
             

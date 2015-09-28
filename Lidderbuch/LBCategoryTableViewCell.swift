@@ -2,8 +2,8 @@
 //  LBSectionTableViewCell.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 04/06/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class LBCategoryTableViewCell: UITableViewCell
     var category: String? {
         didSet {
             if let category = self.category {
-                titleLabel.text = category.uppercaseString
+                titleLabel.text = category
             }
         }
     }

@@ -2,8 +2,8 @@
 //  LBViewController.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 15/05/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import UIKit

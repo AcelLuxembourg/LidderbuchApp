@@ -2,8 +2,8 @@
 //  LBModalTransitionAnimator.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 06/06/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -29,14 +29,14 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         
-        let containerView = transitionContext.containerView()
+        let containerView = transitionContext.containerView()!
         let finalFrame = transitionContext.finalFrameForViewController(toViewController)
         
         // prepare arrow view
-        let arrowView: UIView
+        var arrowView: UIView
         
-        if let topContainerView = containerView.subviews.last as? UIView {
-            arrowView = topContainerView
+        if containerView.subviews.last != nil {
+            arrowView = containerView.subviews.last!
         } else {
             arrowView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: arrowSize, height: arrowSize))
             arrowView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 0.25))

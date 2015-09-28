@@ -2,8 +2,8 @@
 //  LBSongViewController.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 15/05/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -14,6 +14,8 @@ class LBSongViewController: LBViewController,
     var song: LBSong!
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    
     @IBOutlet weak var lyricsScrollView: LBLyricsView!
     
     @IBOutlet weak var bookmarkButton: UIButton!
@@ -24,21 +26,31 @@ class LBSongViewController: LBViewController,
     {
         super.viewDidLoad()
         
-        let nameParagraphStyle = NSMutableParagraphStyle()
-        nameParagraphStyle.lineHeightMultiple = 1.25
+        let lineHeightMultipleStyle = NSMutableParagraphStyle()
+        lineHeightMultipleStyle.lineHeightMultiple = 1.25
         
         let nameAttributedString = NSMutableAttributedString(string: song.name)
-        nameAttributedString.addAttribute(NSParagraphStyleAttributeName, value: nameParagraphStyle, range: NSMakeRange(0, nameAttributedString.length))
+        nameAttributedString.addAttribute(NSParagraphStyleAttributeName, value: lineHeightMultipleStyle, range: NSMakeRange(0, nameAttributedString.length))
         
         nameLabel.attributedText = nameAttributedString
+        
+        let detailAttributedString = NSMutableAttributedString(string: song.detail)
+        detailAttributedString.addAttribute(NSParagraphStyleAttributeName, value: lineHeightMultipleStyle, range: NSMakeRange(0, detailAttributedString.length))
+        
+        detailLabel.attributedText = detailAttributedString
         
         lyricsScrollView.paragraphs = song.paragraphs
         lyricsScrollView.lyricsViewDelegate = self
         
         setBookmarked(song.bookmarked)
+        
+        if #available(iOS 9.0, *) {
+            self.userActivity = song.createUserActivity()
+            self.userActivity!.becomeCurrent()
+        }
     }
     
-    func setBookmarked(bookmarked: Bool)
+    private func setBookmarked(bookmarked: Bool)
     {
         let bookmarkIconName = song.bookmarked ? "BookmarkedIcon" : "BookmarkIcon"
         bookmarkButton.setImage(UIImage(named: bookmarkIconName), forState: .Normal)

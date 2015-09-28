@@ -2,8 +2,8 @@
 //  LBSongTableViewCell.swift
 //  Lidderbuch
 //
-//  Created by Fränz Friederes on 13/05/15.
-//  Copyright (c) 2015 ACEL. All rights reserved.
+//  Copyright (c) 2015 Fränz Friederes <fraenz@frieder.es>
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -17,15 +17,27 @@ class LBSongTableViewCell: UITableViewCell
         didSet {
             if let song = self.song
             {
-                nameLabel.text = song.name
+                // name attributed string
+                let nameAttributedString = NSMutableAttributedString()
                 
+                if let number = song.number {
+                    let numberAttributedString = NSMutableAttributedString(string: "\(number) ")
+                    numberAttributedString.addAttribute(NSForegroundColorAttributeName, value: LBVariables.redColor, range: NSMakeRange(0, numberAttributedString.length))
+                    nameAttributedString.appendAttributedString(numberAttributedString)
+                }
+                
+                nameAttributedString.appendAttributedString(NSMutableAttributedString(string: song.name))
+                
+                nameLabel.attributedText = nameAttributedString
+                
+                // preview attributed string
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.lineSpacing = 4
                 
-                let attributedString = NSMutableAttributedString(string: song.preview)
-                attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+                let previewAttributedString = NSMutableAttributedString(string: song.preview)
+                previewAttributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, previewAttributedString.length))
                 
-                previewLabel.attributedText = attributedString
+                previewLabel.attributedText = previewAttributedString
             }
         }
     }
