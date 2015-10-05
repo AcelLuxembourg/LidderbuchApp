@@ -13,7 +13,7 @@ class LBLyricsView: UIScrollView
     private var lineOrigins: [CGPoint]!
     private var lineViews: [[UIView]]!
     
-    var lyricsViewDelegate: LBLyricsViewDelegate?
+    weak var lyricsViewDelegate: LBLyricsViewDelegate?
     @IBOutlet var headerView: UIView? {
         didSet {
             if headerView != nil {
@@ -345,7 +345,7 @@ class LBLyricsView: UIScrollView
     }
 }
 
-protocol LBLyricsViewDelegate
+protocol LBLyricsViewDelegate: class
 {
     func lyricsView(lyricsView: LBLyricsView, didHighlightLine line: Int?)
 }

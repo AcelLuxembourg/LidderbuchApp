@@ -13,8 +13,8 @@ class LBViewController: UIViewController,
     UIGestureRecognizerDelegate,
     UIScrollViewDelegate
 {
-    @IBOutlet var headerBar: LBHeaderBar!
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var headerBar: LBHeaderBar!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var swipeToPopGestureRecognizer: UIPanGestureRecognizer!
     
