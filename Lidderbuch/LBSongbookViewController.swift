@@ -27,10 +27,15 @@ class LBSongbookViewController: LBViewController,
             let searchActive = (searchResultSongs != nil)
             
             // fix search field
+            if searchActive {
+                headerBar.verticalTranslation = 0
+            }
+            
             headerBar.disableVerticalTranslation = searchActive
             
-            // reload table view
             tableView.reloadData()
+            
+            updateFooter()
             
             // update cancel button visibility
             UIView.animateWithDuration(0.15) {
@@ -45,12 +50,15 @@ class LBSongbookViewController: LBViewController,
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cancelSearchButton: UIButton!
+    @IBOutlet weak var footerLabel: UILabel!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         songbook.delegate = self
+    
+        updateFooter()
         
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -86,6 +94,43 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
+    func updateFooter()
+    {
+        footerLabel.alpha = 1.0
+        
+        if searchResultSongs != nil
+        {
+            // show number of search results
+            if searchResultSongs!.count == 0
+            {
+                footerLabel.alpha = 0.0
+            }
+            else if searchResultSongs!.count == 1
+            {
+                footerLabel.text =
+                    NSLocalizedString("Ee Lidd fonnt", comment: "Songbook footer")
+            }
+            else
+            {
+                footerLabel.text = "\(searchResultSongs!.count) " +
+                    NSLocalizedString("Lidder fonnt", comment: "Songbook footer")
+            }
+        }
+        else
+        {
+            // show songbook last update date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            
+            var dateString = "/"
+            if let updateTime = songbook.updateTime {
+                dateString = dateFormatter.stringFromDate(updateTime)
+            }
+            
+            footerLabel.text = NSLocalizedString("Leschten Update", comment: "Songbook footer") + ": \(dateString)"
+        }
+    }
+    
     // MARK: Delegates
     
     func songbookDidUpdate(songbook: LBSongbook)
@@ -96,6 +141,8 @@ class LBSongbookViewController: LBViewController,
         
         let selectedRowIndexPath = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        
+        updateFooter()
         
         // preserve selected row (if not in bookmark category)
         if selectedRowIndexPath?.section != 0 {

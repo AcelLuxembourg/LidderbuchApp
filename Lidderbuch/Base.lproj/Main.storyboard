@@ -63,6 +63,34 @@ Hello World</string>
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="MhZ-1g-Oe6">
+                                    <rect key="frame" x="0.0" y="227" width="600" height="67"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWX-X1-7vq">
+                                            <rect key="frame" x="19" y="20" width="561" height="27"/>
+                                            <animations/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Leschten Update: 22.10.2015">
+                                                    <attributes>
+                                                        <color key="NSColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <font key="NSFont" size="16" name="Georgia"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="aWX-X1-7vq" firstAttribute="leading" secondItem="MhZ-1g-Oe6" secondAttribute="leading" constant="19" id="LnG-gs-GbU"/>
+                                        <constraint firstItem="aWX-X1-7vq" firstAttribute="top" secondItem="MhZ-1g-Oe6" secondAttribute="top" constant="20" symbolic="YES" id="W1w-Vs-HM2"/>
+                                        <constraint firstAttribute="bottom" secondItem="aWX-X1-7vq" secondAttribute="bottom" constant="20" symbolic="YES" id="sOL-ih-gwb"/>
+                                        <constraint firstAttribute="trailing" secondItem="aWX-X1-7vq" secondAttribute="trailing" constant="20" symbolic="YES" id="vSM-N9-vRt"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="100" id="fg9-jO-P8m" customClass="LBCategoryTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="600" height="100"/>
@@ -158,10 +186,10 @@ Hello World</string>
                                     <outlet property="delegate" destination="pX0-Er-gsZ" id="SUR-Pp-Ivx"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
                                         <rect key="frame" x="91" y="0.0" width="452" height="60"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
@@ -171,7 +199,7 @@ Hello World</string>
                                             <outlet property="delegate" destination="pX0-Er-gsZ" id="ebK-3V-3EQ"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
                                         <rect key="frame" x="551" y="0.0" width="40" height="60"/>
                                         <animations/>
                                         <constraints>
@@ -184,7 +212,7 @@ Hello World</string>
                                             <action selector="handleCancelSearchButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="hul-az-R4j"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
                                         <rect key="frame" x="9" y="0.0" width="40" height="60"/>
                                         <animations/>
                                         <constraints>
@@ -197,7 +225,7 @@ Hello World</string>
                                             <action selector="handleMenuButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="LDT-TJ-Dob"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
                                         <rect key="frame" x="49" y="0.0" width="40" height="60"/>
                                         <animations/>
                                         <constraints>
@@ -246,6 +274,7 @@ Hello World</string>
                     <navigationItem key="navigationItem" id="sLE-RP-yjm"/>
                     <connections>
                         <outlet property="cancelSearchButton" destination="egV-G9-Wnr" id="RTa-dz-paQ"/>
+                        <outlet property="footerLabel" destination="aWX-X1-7vq" id="5Td-w7-Qyn"/>
                         <outlet property="headerBar" destination="rCO-Qz-oTi" id="hYI-tp-jbH"/>
                         <outlet property="scrollView" destination="Dmz-Bh-x2H" id="yCQ-MI-IAa"/>
                         <outlet property="searchTextField" destination="SgQ-br-pXR" id="SNy-qB-Qjh"/>
