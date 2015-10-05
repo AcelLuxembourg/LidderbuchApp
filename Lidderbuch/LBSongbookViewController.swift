@@ -99,7 +99,7 @@ class LBSongbookViewController: LBViewController,
     
     func songViewController(songViewController: LBSongViewController, songDidChange song: LBSong)
     {
-        songbook.integrateSong(song, preserveMeta: false, propagate: true)
+        songbook.integrateSong(song, replaceMeta: true)
     }
     
     private func songForRowAtIndexPath(indexPath: NSIndexPath) -> LBSong?

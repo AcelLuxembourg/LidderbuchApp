@@ -11,6 +11,9 @@ import UIKit
 class LBSongViewController: LBViewController,
     LBLyricsViewDelegate
 {
+    private var viewTimer: NSTimer?
+    private var viewTracked = false
+    
     var song: LBSong!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -42,31 +45,51 @@ class LBSongViewController: LBViewController,
         lyricsScrollView.paragraphs = song.paragraphs
         lyricsScrollView.lyricsViewDelegate = self
         
-        setBookmarked(song.bookmarked)
+        updateView()
         
+        // observe application active state
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationWillResignActiveNotification:"), name: UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidBecomeActiveNotification:"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
+        // report user activity
         if #available(iOS 9.0, *) {
             self.userActivity = song.createUserActivity()
             self.userActivity!.becomeCurrent()
         }
     }
     
-    private func setBookmarked(bookmarked: Bool)
+    override func viewDidAppear(animated: Bool)
     {
+        super.viewDidAppear(animated)
+        startTrackingView()
+    }
+    
+    override func viewDidDisappear(animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        stopTrackingView()
+    }
+    
+    func updateView()
+    {
+        // update bookmark button icon
         let bookmarkIconName = song.bookmarked ? "BookmarkedIcon" : "BookmarkIcon"
         bookmarkButton.setImage(UIImage(named: bookmarkIconName), forState: .Normal)
     }
     
     override func scrollViewWillBeginDragging(scrollView: UIScrollView)
     {
-        // clear highlighted line
-        UIView.animateWithDuration(0.2) {
-            self.lyricsScrollView.highlightedLine = nil
+        // clear highlighted line when scrolling
+        if lyricsScrollView.highlightedLine != nil {
+            UIView.animateWithDuration(0.2) {
+                self.lyricsScrollView.highlightedLine = nil
+            }
         }
     }
     
     func lyricsView(lyricsView: LBLyricsView, didHighlightLine line: Int?)
     {
-        // hide header bar
+        // hide header bar when a line gets highlighted
         UIView.animateWithDuration(0.1) {
             if line != nil {
                 self.headerBar.verticalTranslation = self.headerBar.bounds.height
@@ -74,25 +97,67 @@ class LBSongViewController: LBViewController,
         }
     }
     
-    @IBAction func handleBackButtonTap(sender: UIButton)
+    // MARK: View Tracking
+    
+    func startTrackingView()
+    {
+        if viewTimer == nil && !viewTracked {
+            viewTimer = NSTimer.scheduledTimerWithTimeInterval(
+                LBVariables.songViewDuration, target: self, selector: Selector("viewTimerDidFire:"),
+                userInfo: nil, repeats: false)
+        }
+    }
+    
+    func stopTrackingView()
+    {
+        if viewTimer != nil {
+            viewTimer?.invalidate()
+            viewTimer = nil;
+        }
+    }
+    
+    func viewTimerDidFire(timer: NSTimer)
+    {
+        // track view
+        song.views++
+        song.viewTime = NSDate()
+        
+        delegate?.songViewController(self, songDidChange: song)
+        
+        viewTracked = true
+        stopTrackingView()
+    }
+    
+    func applicationDidBecomeActiveNotification(notification: NSNotification)
+    {
+        startTrackingView()
+    }
+    
+    func applicationWillResignActiveNotification(notification: NSNotification)
+    {
+        stopTrackingView()
+    }
+    
+    // MARK: Header Buttons
+    
+    @IBAction func handleBackButton(sender: UIButton)
     {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func handleBookmarkButtonTap(sender: UIButton)
+    @IBAction func handleBookmarkButton(sender: UIButton)
     {
         // toggle song bookmark
         song.bookmarked = !song.bookmarked
         delegate?.songViewController(self, songDidChange: song)
         
-        // update ui
-        setBookmarked(song.bookmarked)
+        updateView()
     }
     
-    @IBAction func handleShareButtonTap(sender: UIButton)
+    @IBAction func handleShareButton(sender: UIButton)
     {
         let activityViewController = UIActivityViewController(
-            activityItems: [song.name, song.url], applicationActivities: nil)
+            activityItems: [song.url], applicationActivities: nil)
         
         activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop]
         presentViewController(activityViewController, animated: true, completion: nil)

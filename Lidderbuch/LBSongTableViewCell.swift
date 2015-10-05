@@ -22,7 +22,7 @@ class LBSongTableViewCell: UITableViewCell
                 
                 if let number = song.number {
                     let numberAttributedString = NSMutableAttributedString(string: "\(number) ")
-                    numberAttributedString.addAttribute(NSForegroundColorAttributeName, value: LBVariables.redColor, range: NSMakeRange(0, numberAttributedString.length))
+                    numberAttributedString.addAttribute(NSForegroundColorAttributeName, value: LBVariables.tintColor, range: NSMakeRange(0, numberAttributedString.length))
                     nameAttributedString.appendAttributedString(numberAttributedString)
                 }
                 

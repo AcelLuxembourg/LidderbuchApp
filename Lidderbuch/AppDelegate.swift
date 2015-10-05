@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         return nil
     }
     
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
+    {
+        window?.tintColor = LBVariables.tintColor
+        return true
+    }
+    
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool
     {
         guard let songbookViewController = self.songbookViewController else {
@@ -63,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         }
         
         switch userActivity.activityType {
-        case LBVariables.viewSongActivityType:
+        case LBVariables.viewSongUserActivityType:
             
             if let
                 userInfo = userActivity.userInfo,

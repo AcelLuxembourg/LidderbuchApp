@@ -6,10 +6,12 @@
 //  Licensed under the MIT license.
 //
 
-import Foundation
+import UIKit
 
 class LBSongbook
 {
+    private var hasChangesToSave = false
+    
     var songs: [LBSong]!
     
     var categories: [String]!
@@ -17,22 +19,20 @@ class LBSongbook
     
     var delegate: LBSongbookDelegate?
     
-    var updateTime: NSDate? {
-        // determin songbook update time by last updated song time
-        var updateTime: NSDate? = nil
-        for var i = 1; i < songs.count; ++i {
-            if let songUpdateTime = songs[i].updateTime {
-                if updateTime == nil {
-                    updateTime = songUpdateTime
-                } else if songUpdateTime > updateTime! {
-                    updateTime = songUpdateTime
-                }
+    var updateTime: NSDate?
+    {
+        // determin songbook version by latest song update time
+        var updateTime: NSDate?
+        for var i = 0; i < songs.count; ++i {
+            if updateTime == nil || songs[i].updateTime > updateTime! {
+                updateTime = songs[i].updateTime
             }
         }
+        
         return updateTime
     }
     
-    private var songsFileURL: NSURL {
+    private var localSongsFileURL: NSURL {
         let fileManager = NSFileManager.defaultManager()
         let documentDirectoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! 
         return documentDirectoryURL.URLByAppendingPathComponent("songs.json")
@@ -45,7 +45,7 @@ class LBSongbook
         reloadMeta()
         
         // react on application entering background
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidEnterBackground:"), name: "UIApplicationDidEnterBackgroundNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationDidEnterBackground:"), name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
         // schedule songs update at low QOS in 2 seconds
         let utilityQueue = dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)
@@ -54,32 +54,42 @@ class LBSongbook
         }
     }
     
+    @IBAction func applicationDidEnterBackground(notification: NSNotification)
+    {
+        // save songs when entering background
+        if hasChangesToSave {
+            save()
+        }
+    }
+    
     private func load() -> [LBSong]
     {
+        var songs = [LBSong]()
+        
         // try loading from local songs file
-        if let data = NSData(contentsOfURL: songsFileURL) {
-            return songsWithData(data)
+        if let data = NSData(contentsOfURL: localSongsFileURL) {
+            songs = songsWithData(data)
         }
         
-        // try loading from songs delivered with the bundle
-        if let bundleSongsFilePath = NSBundle.mainBundle().pathForResource("songs", ofType: "json") {
-            if let data = NSData(contentsOfFile: bundleSongsFilePath) {
-                return songsWithData(data)
+        if songs.isEmpty
+        {
+            // try loading songs delivered with bundle
+            if let
+                bundleSongsFilePath = NSBundle.mainBundle().pathForResource("songs", ofType: "json") ,
+                data = NSData(contentsOfFile: bundleSongsFilePath)
+            {
+                songs = songsWithData(data)
             }
         }
         
-        return [LBSong]()
-    }
-    
-    @IBAction func applicationDidEnterBackground(notification: NSNotification)
-    {
-        save()
+        return songs
     }
     
     private func save()
     {
         if let data = dataWithSongs(songs) {
-            data.writeToURL(songsFileURL, atomically: true)
+            data.writeToURL(localSongsFileURL, atomically: true)
+            hasChangesToSave = false
         }
     }
     
@@ -93,28 +103,14 @@ class LBSongbook
         }
         
         // retrieve song updates from web service
-        let task = NSURLSession.sharedSession().dataTaskWithURL(webServiceUrl, completionHandler: { (data, response, error) in
-            if (data != nil && error == nil)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(
+            webServiceUrl, completionHandler: { (data, response, error) in
+            
+            if data != nil && error == nil
             {
-                // interpret songs from data
+                // integrate songs from data and preserve meta
                 let songs = self.songsWithData(data!)
-                if songs.count > 0
-                {
-                    // integrate each song
-                    for song in songs {
-                        self.integrateSong(song, preserveMeta: true, propagate: false)
-                    }
-                    
-                    // reload categories
-                    self.reloadMeta()
-                    
-                    // call delegate in the main queue, it could cause ui changes
-                    if let delegate = self.delegate {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            delegate.songbookDidUpdate(self)
-                        }
-                    }
-                }
+                self.integrateSongs(songs, replaceMeta: false)
             }
         })
         
@@ -125,12 +121,12 @@ class LBSongbook
     {
         var songs = [LBSong]()
         
-        // interpret json
+        // try to read json data
         if let songsJson = (try? NSJSONSerialization.JSONObjectWithData(data, options: [])) as? [AnyObject]
         {
             for songJson in songsJson
             {
-                // integrate song if initialisation succeeds
+                // add song if initialisation succeeds
                 if let song = LBSong(json: songJson) {
                     songs.append(song)
                 }
@@ -152,31 +148,51 @@ class LBSongbook
         return try? NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
     }
     
-    func integrateSong(song: LBSong, preserveMeta: Bool, propagate: Bool = true)
+    func integrateSongs(songs: [LBSong], replaceMeta: Bool)
     {
-        // find existing song
-        if let index = songs.indexOf(song) {
+        // integrate each song and ask last one to propagate changes
+        for (var i = 0; i < songs.count; i++) {
+            integrateSong(songs[i], replaceMeta: false, propagate: (i != songs.count - 1))
+        }
+    }
+    
+    func integrateSong(song: LBSong, replaceMeta: Bool, propagate: Bool = true)
+    {
+        // is the song already included
+        if let index = songs.indexOf(song)
+        {
             let oldSong = songs[index]
-            if (song.updateTime == nil || oldSong.updateTime == nil)
-                || (song.updateTime! > oldSong.updateTime!)
+            if song.updateTime > oldSong.updateTime ||
+                (replaceMeta && song.updateTime == oldSong.updateTime)
             {
-                // preserve meta
-                if preserveMeta {
+                if !replaceMeta {
                     song.bookmarked = oldSong.bookmarked
+                    song.views = oldSong.views
+                    song.viewTime = oldSong.viewTime
                 }
                 
                 // replace song
                 songs.removeAtIndex(index)
                 songs.insert(song, atIndex: index)
             }
-        } else {
-            // add song
+        }
+        else
+        {
+            // add song to library
             songs.append(song)
         }
         
-        if propagate {
+        if propagate
+        {
             reloadMeta()
-            delegate?.songbookDidUpdate(self)
+            
+            hasChangesToSave = true
+            
+            if let delegate = self.delegate {
+                dispatch_async(dispatch_get_main_queue()) {
+                    delegate.songbookDidUpdate(self)
+                }
+            }
         }
     }
     
@@ -190,7 +206,7 @@ class LBSongbook
         categorySongs = [String: [LBSong]]()
         
         // create bookmark category
-        let bookmarkCategory = "Markéiert"
+        let bookmarkCategory = NSLocalizedString("Markéiert", comment: "Bookmark category title")
         categories.append(bookmarkCategory)
         categorySongs[bookmarkCategory] = [LBSong]()
         
@@ -213,12 +229,24 @@ class LBSongbook
     
     func search(keywords: String, callback: (([LBSong], String) -> Void))
     {
-        if keywords.characters.count < 3 {
+        // handle song number
+        if let number = Int(keywords) {
+            if let song = songWithNumber(number) {
+                callback([song], keywords)
+            } else {
+                callback([LBSong](), keywords)
+            }
+            
+            return
+        }
+        
+        // return no results when query too short
+        if keywords.characters.count < 2 {
             callback([LBSong](), keywords)
             return
         }
         
-        // run search in background
+        // run search in background to prevent UI lag
         let backgroundQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
         dispatch_async(backgroundQueue, {
             
@@ -232,7 +260,7 @@ class LBSongbook
                 return a.search(keywords) > b.search(keywords)
             }
             
-            // propagate results in main queue, they may cause ui changes
+            // propagate results in main queue, they may cause UI changes
             dispatch_async(dispatch_get_main_queue(), {
                 callback(songs, keywords)
             })
@@ -241,38 +269,33 @@ class LBSongbook
     
     func songWithId(id: Int) -> LBSong?
     {
-        var song: LBSong? = nil
-        var i = 0
+        let index = songs.indexOf({ (song: LBSong) -> Bool in
+            return song.id == id
+        })
         
-        while (i < songs.count && song == nil) {
-            if songs[i].id == id {
-                song = songs[i]
-            }
-            ++i
-        }
+        return (index != nil ? songs[index!] : nil)
+    }
+    
+    func songWithNumber(number: Int) -> LBSong?
+    {
+        let index = songs.indexOf({ (song: LBSong) -> Bool in
+            return song.number == number
+        })
         
-        return song
+        return (index != nil ? songs[index!] : nil)
     }
     
     func songWithURL(url: NSURL) -> LBSong?
     {
-        var song: LBSong? = nil
-        var i = 0
-        
-        while (i < songs.count && song == nil)
-        {
-            let a = url
-            let b = songs[i].url
+        let index = songs.indexOf { (song: LBSong) -> Bool in
             
-            // only compare path part of url
-            if a.path == b.path {
-                song = songs[i]
-            }
-            
-            ++i
+            // only compare the path part of each url
+            // allow different hosts (e.g. with / without www)
+            // allow different schemes (e.g. http, https)
+            return url.path == song.url.path
         }
         
-        return song
+        return (index != nil ? songs[index!] : nil)
     }
 }
 

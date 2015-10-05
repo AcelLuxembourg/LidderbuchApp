@@ -190,7 +190,7 @@ Hello World</string>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="hlU-dS-pDT"/>
                                         </constraints>
-                                        <state key="normal" image="MenuIcon">
+                                        <state key="normal" image="AboutIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -401,7 +401,7 @@ Hello World</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="handleBackButtonTap:" destination="vQV-v3-ytI" eventType="touchUpInside" id="7Lc-2I-NKe"/>
+                                            <action selector="handleBackButton:" destination="vQV-v3-ytI" eventType="primaryActionTriggered" id="s5j-e3-Xtu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b" userLabel="Bookmark Button">
@@ -414,7 +414,7 @@ Hello World</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="handleBookmarkButtonTap:" destination="vQV-v3-ytI" eventType="touchUpInside" id="qCl-tL-RaR"/>
+                                            <action selector="handleBookmarkButton:" destination="vQV-v3-ytI" eventType="primaryActionTriggered" id="hYL-wU-eVv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b" userLabel="Share Button">
@@ -427,7 +427,7 @@ Hello World</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="handleShareButtonTap:" destination="vQV-v3-ytI" eventType="touchUpInside" id="Pli-D2-cYE"/>
+                                            <action selector="handleShareButton:" destination="vQV-v3-ytI" eventType="primaryActionTriggered" id="qEd-fN-H4x"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -475,11 +475,11 @@ Hello World</string>
         </scene>
     </scenes>
     <resources>
+        <image name="AboutIcon" width="40" height="50"/>
         <image name="AcelLogoAnimation" width="125" height="5000"/>
         <image name="BackIcon" width="35" height="50"/>
         <image name="BookmarkIcon" width="40" height="50"/>
         <image name="CloseIcon" width="40" height="50"/>
-        <image name="MenuIcon" width="40" height="50"/>
         <image name="SearchIcon" width="40" height="50"/>
         <image name="ShareIcon" width="40" height="50"/>
     </resources>

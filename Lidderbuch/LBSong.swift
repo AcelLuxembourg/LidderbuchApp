@@ -19,14 +19,17 @@ class LBSong: NSObject, NSUserActivityDelegate
     var category: String!
     var position: Int!
     var paragraphs: [LBParagraph]!
+    var updateTime: NSDate!
+    
     var bookmarked: Bool = false
+    var views: Int = 0
+    var viewTime: NSDate?
     
     var number: Int?
     var way: String?
     var year: Int?
     var lyricsAuthor: String?
     var melodyAuthor: String?
-    var updateTime: NSDate?
     
     override var description: String {
         return "\(id): \(name)"
@@ -49,29 +52,29 @@ class LBSong: NSObject, NSUserActivityDelegate
     
     var detail: String
     {
-        // glue together detail parts if available
+        // glue together song details if available
         var parts = [String]()
         
         if let number = self.number {
-            parts.append("No \(number)")
+            parts.append(NSLocalizedString("No", comment: "Song detail") + " \(number)")
         }
         
         if let way = self.way {
-            parts.append("Weis: \(way)")
+            parts.append(NSLocalizedString("Weis", comment: "Song detail") + ": \(way)")
         }
         
         if self.lyricsAuthor != nil && self.lyricsAuthor == self.melodyAuthor
         {
-            parts.append("Text a Melodie: \(self.lyricsAuthor!)")
+            parts.append(NSLocalizedString("Text a Melodie", comment: "Song detail") + ": \(self.lyricsAuthor!)")
         }
         else
         {
             if let lyricsAuthor = self.lyricsAuthor {
-                parts.append("Text: \(lyricsAuthor)")
+                parts.append(NSLocalizedString("Text", comment: "Song detail") + ": \(lyricsAuthor)")
             }
             
             if let melodyAuthor = self.melodyAuthor {
-                parts.append("Melodie: \(melodyAuthor)")
+                parts.append(NSLocalizedString("Melodie", comment: "Song detail") + ": \(melodyAuthor)")
             }
         }
         
@@ -95,6 +98,7 @@ class LBSong: NSObject, NSUserActivityDelegate
                 language = songJson["language"] as? String,
                 category = songJson["category"] as? String,
                 position = songJson["position"] as? Int,
+                updateTimestamp = songJson["update_time"] as? Int,
                 paragraphsJson = songJson["paragraphs"] as? [AnyObject],
             
                 urlString = songJson["url"] as? String,
@@ -107,6 +111,7 @@ class LBSong: NSObject, NSUserActivityDelegate
                 self.url = url
                 self.category = category
                 self.position = position
+                self.updateTime = NSDate(timeIntervalSince1970: Double(updateTimestamp))
                 
                 // paragraphs
                 self.paragraphs = [LBParagraph]()
@@ -123,12 +128,16 @@ class LBSong: NSObject, NSUserActivityDelegate
                 self.lyricsAuthor = songJson["lyrics_author"] as? String
                 self.melodyAuthor = songJson["melody_author"] as? String
                 
-                if let timestamp = songJson["update_time"] as? Int {
-                    updateTime = NSDate(timeIntervalSince1970: Double(timestamp))
-                }
-                
                 if songJson["bookmarked"] as? Bool == true {
                     self.bookmarked = true
+                }
+                
+                if let views = songJson["views"] as? Int {
+                    self.views = views
+                }
+                
+                if let viewTimestamp = songJson["viewTime"] as? Int {
+                    self.viewTime = NSDate(timeIntervalSince1970: Double(viewTimestamp))
                 }
                 
                 return
@@ -155,16 +164,21 @@ class LBSong: NSObject, NSUserActivityDelegate
             "url": url.absoluteString,
             "category": category,
             "position": position,
-            "bookmarked": bookmarked,
+            "update_time": Int(updateTime!.timeIntervalSince1970),
+            
             "paragraphs": paragraphsJsonObject,
             
-            // replace nil values by NSNull values
+            // meta
+            "bookmarked": bookmarked,
+            "views": views,
+            "viewTime": (viewTime != nil ? Int(viewTime!.timeIntervalSince1970) : NSNull()),
+            
+            // optional details
             "number": (number != nil ? number! : NSNull()),
             "way": (way != nil ? way! : NSNull()),
             "year": (year != nil ? year! : NSNull()),
             "lyrics_author": (lyricsAuthor != nil ? lyricsAuthor! : NSNull()),
             "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull()),
-            "update_time": (updateTime != nil ? Int(updateTime!.timeIntervalSince1970) : NSNull()),
         ]
         
         return jsonObject
@@ -247,7 +261,7 @@ class LBSong: NSObject, NSUserActivityDelegate
         }
         
         // create activity
-        let activity = NSUserActivity(activityType: LBVariables.viewSongActivityType)
+        let activity = NSUserActivity(activityType: LBVariables.viewSongUserActivityType)
         
         activity.title = name
         activity.webpageURL = url
