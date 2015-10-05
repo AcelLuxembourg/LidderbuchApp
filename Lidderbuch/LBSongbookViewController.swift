@@ -170,6 +170,11 @@ class LBSongbookViewController: LBViewController,
         let category = songbook.categories[section]
         let count = songbook.categorySongs[category]!.count
         
+        // ignore empty categories (e.g. bookmarked)
+        if count == 0 {
+            return 0
+        }
+        
         return count + 1
     }
     

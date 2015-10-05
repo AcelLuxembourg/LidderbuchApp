@@ -158,10 +158,10 @@ Hello World</string>
                                     <outlet property="delegate" destination="pX0-Er-gsZ" id="SUR-Pp-Ivx"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
                                         <rect key="frame" x="91" y="0.0" width="452" height="60"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
@@ -171,7 +171,7 @@ Hello World</string>
                                             <outlet property="delegate" destination="pX0-Er-gsZ" id="ebK-3V-3EQ"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
                                         <rect key="frame" x="551" y="0.0" width="40" height="60"/>
                                         <animations/>
                                         <constraints>
@@ -184,7 +184,7 @@ Hello World</string>
                                             <action selector="handleCancelSearchButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="hul-az-R4j"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
                                         <rect key="frame" x="9" y="0.0" width="40" height="60"/>
                                         <animations/>
                                         <constraints>
@@ -197,7 +197,7 @@ Hello World</string>
                                             <action selector="handleMenuButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="LDT-TJ-Dob"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
                                         <rect key="frame" x="49" y="0.0" width="40" height="60"/>
                                         <animations/>
                                         <constraints>
@@ -257,43 +257,6 @@ Hello World</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrM-TR-ukj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1014" y="232"/>
-        </scene>
-        <!--Intro View Controller-->
-        <scene sceneID="nVI-Op-HqH">
-            <objects>
-                <viewController id="bRr-t2-hNk" customClass="LBIntroViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5wP-4f-jKV"/>
-                        <viewControllerLayoutGuide type="bottom" id="cpn-mU-Bzj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IeP-0B-d89">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AcelLogoAnimation" translatesAutoresizingMaskIntoConstraints="NO" id="l1i-ZE-nFn" userLabel="Logo Image View">
-                                <rect key="frame" x="238" y="170" width="125" height="200"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Kky-xP-dxm"/>
-                                    <constraint firstAttribute="width" constant="125" id="S7D-MT-jVE"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="l1i-ZE-nFn" secondAttribute="centerX" id="dRP-p3-Snw"/>
-                            <constraint firstAttribute="centerY" secondItem="l1i-ZE-nFn" secondAttribute="centerY" constant="30" id="v43-xv-l5s"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="laq-Zv-a7T"/>
-                    <connections>
-                        <outlet property="imageView" destination="l1i-ZE-nFn" id="PQV-Vm-uTj"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hWA-BI-1I6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1753" y="-196"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RtL-Ib-Cai">
@@ -471,12 +434,11 @@ Hello World</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kE9-Ej-tKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1753" y="536"/>
+            <point key="canvasLocation" x="1752" y="232"/>
         </scene>
     </scenes>
     <resources>
         <image name="AboutIcon" width="40" height="50"/>
-        <image name="AcelLogoAnimation" width="125" height="5000"/>
         <image name="BackIcon" width="35" height="50"/>
         <image name="BookmarkIcon" width="40" height="50"/>
         <image name="CloseIcon" width="40" height="50"/>

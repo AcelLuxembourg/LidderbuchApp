@@ -21,7 +21,6 @@
 		A5BA0E9D1B056BAB0049967B /* LBPushTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9C1B056BAB0049967B /* LBPushTransitionAnimator.swift */; };
 		A5BA0E9F1B064C390049967B /* LBSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9E1B064C390049967B /* LBSongViewController.swift */; };
 		A5D944EC1B246437008CAF2F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D944EB1B246437008CAF2F /* Localizable.strings */; };
-		A5D944EE1B24E9CE008CAF2F /* LBIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D944ED1B24E9CE008CAF2F /* LBIntroViewController.swift */; };
 		A5D944F01B24EF6B008CAF2F /* LBReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D944EF1B24EF6B008CAF2F /* LBReplaceSegue.swift */; };
 		A5DEC22E1AF7F577009F41D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC22D1AF7F577009F41D9 /* AppDelegate.swift */; };
 		A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DEC2311AF7F577009F41D9 /* Main.storyboard */; };
@@ -60,7 +59,6 @@
 		A5BA0E9C1B056BAB0049967B /* LBPushTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBPushTransitionAnimator.swift; sourceTree = "<group>"; };
 		A5BA0E9E1B064C390049967B /* LBSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongViewController.swift; sourceTree = "<group>"; };
 		A5D944EB1B246437008CAF2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		A5D944ED1B24E9CE008CAF2F /* LBIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBIntroViewController.swift; sourceTree = "<group>"; };
 		A5D944EF1B24EF6B008CAF2F /* LBReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBReplaceSegue.swift; sourceTree = "<group>"; };
 		A5DEC2281AF7F577009F41D9 /* Lidderbuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lidderbuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DEC22C1AF7F577009F41D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				A5BA0E9E1B064C390049967B /* LBSongViewController.swift */,
 				A5EE72921B065094007F8EA9 /* LBViewController.swift */,
 				A57F2AAD1B2386A2006EE0A8 /* LBMenuViewController.swift */,
-				A5D944ED1B24E9CE008CAF2F /* LBIntroViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -327,7 +324,6 @@
 				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,
 				A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */,
 				A57F2AAC1B237B33006EE0A8 /* LBModalTransitionAnimator.swift in Sources */,
-				A5D944EE1B24E9CE008CAF2F /* LBIntroViewController.swift in Sources */,
 				A5BA0E9D1B056BAB0049967B /* LBPushTransitionAnimator.swift in Sources */,
 				A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */,
 				A521D10D1B1DF287002ADE4E /* NSDate.swift in Sources */,
