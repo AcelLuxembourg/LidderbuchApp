@@ -17,18 +17,22 @@ class LBSongbookViewController: LBViewController,
     UITextFieldDelegate
 {
     lazy var songbook: LBSongbook = {
-        let songbook = LBSongbook()
-        return songbook
+        return LBSongbook()
     }()
     
     var searchingInBackground = false
-    var searchSongs: [LBSong]? {
-        didSet {
-            let searchActive = (searchSongs != nil)
+    var searchResultSongs: [LBSong]? {
+        didSet
+        {
+            let searchActive = (searchResultSongs != nil)
             
+            // fix search field
             headerBar.disableVerticalTranslation = searchActive
+            
+            // reload table view
             tableView.reloadData()
             
+            // update cancel button visibility
             UIView.animateWithDuration(0.15) {
                 self.cancelSearchButton.alpha = searchActive ? 1.0 : 0.0
             }
@@ -82,12 +86,14 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
+    // MARK: Delegates
+    
     func songbookDidUpdate(songbook: LBSongbook)
     {
-        if searchSongs != nil {
+        if searchResultSongs != nil {
             search()
         }
-    
+        
         let selectedRowIndexPath = tableView.indexPathForSelectedRow
         tableView.reloadData()
         
@@ -102,10 +108,12 @@ class LBSongbookViewController: LBViewController,
         songbook.integrateSong(song, replaceMeta: true)
     }
     
+    // MARK: Song Row Management
+    
     private func songForRowAtIndexPath(indexPath: NSIndexPath) -> LBSong?
     {
-        if searchSongs != nil {
-            return searchSongs![indexPath.row]
+        if searchResultSongs != nil {
+            return searchResultSongs![indexPath.row]
         } else if indexPath.row > 0 {
             let category = songbook.categories[indexPath.section]
             return songbook.categorySongs[category]![indexPath.row - 1]
@@ -116,6 +124,17 @@ class LBSongbookViewController: LBViewController,
     
     private func rowIndexPathForSong(song: LBSong) -> NSIndexPath?
     {
+        // are search results displayed
+        if searchResultSongs != nil
+        {
+            // find index of song in search results
+            if let row = searchResultSongs!.indexOf(song) {
+                return NSIndexPath(forRow: row, inSection: 0)
+            } else {
+                return nil
+            }
+        }
+        
         // find index of category and song if it exists
         if let
             categorySongs = songbook.categorySongs[song.category],
@@ -131,9 +150,11 @@ class LBSongbookViewController: LBViewController,
         return nil
     }
     
+    // MARK: Table View Data Source
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        if searchSongs != nil {
+        if searchResultSongs != nil {
             return 1
         }
         
@@ -142,16 +163,12 @@ class LBSongbookViewController: LBViewController,
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if searchSongs != nil {
-            return searchSongs!.count
+        if searchResultSongs != nil {
+            return searchResultSongs!.count
         }
         
         let category = songbook.categories[section]
         let count = songbook.categorySongs[category]!.count
-        
-        if count == 0 {
-            return 0
-        }
         
         return count + 1
     }
@@ -163,7 +180,7 @@ class LBSongbookViewController: LBViewController,
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        if searchSongs == nil && indexPath.row == 0
+        if searchResultSongs == nil && indexPath.row == 0
         {
             // category cell
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! LBCategoryTableViewCell
@@ -192,6 +209,8 @@ class LBSongbookViewController: LBViewController,
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
+    
+    // MARK: Show Song
     
     func showSongWithId(id: Int) -> Bool
     {
@@ -224,7 +243,19 @@ class LBSongbookViewController: LBViewController,
         }
         else
         {
-            if let indexPath = rowIndexPathForSong(song)
+            var indexPath: NSIndexPath? = rowIndexPathForSong(song)
+            
+            if indexPath == nil && searchResultSongs != nil
+            {
+                // song could not be found in search results
+                // clear search
+                clearSearch()
+                
+                // try again
+                indexPath = rowIndexPathForSong(song)
+            }
+            
+            if indexPath != nil
             {
                 // pop to this view controller
                 navigationController?.popToViewController(self, animated: false)
@@ -275,6 +306,8 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
+    // MARK: Search Management
+    
     func search()
     {
         // cancel if already searching in background
@@ -289,10 +322,10 @@ class LBSongbookViewController: LBViewController,
                 
                 self.searchingInBackground = false
                 
-                if (self.searchSongs != nil)
+                if self.searchResultSongs != nil
                 {
                     // show search results
-                    self.searchSongs = songs
+                    self.searchResultSongs = songs
                     
                     // scroll to top
                     self.scrollView.contentOffset = CGPoint(x: 0.0, y: -self.scrollView.contentInset.top)
@@ -306,17 +339,27 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
+    func clearSearch()
+    {
+        // remove keyboard
+        searchTextField.resignFirstResponder()
+        
+        // clear search
+        searchResultSongs = nil
+        searchTextField.text = ""
+    }
+    
     func textFieldDidBeginEditing(textField: UITextField)
     {
-        if searchSongs == nil {
-            searchSongs = [LBSong]()
+        if searchResultSongs == nil {
+            searchResultSongs = [LBSong]()
         }
     }
     
     func textFieldDidEndEditing(textField: UITextField)
     {
         if searchTextField.text == "" {
-            searchSongs = nil
+            searchResultSongs = nil
         }
     }
     
@@ -326,32 +369,31 @@ class LBSongbookViewController: LBViewController,
         return true
     }
     
+    @IBAction func handleSearchTextFieldChange(textField: UITextField)
+    {
+        search()
+    }
+    
     override func scrollViewWillBeginDragging(scrollView: UIScrollView)
     {
         // remove keyboard when user starts scrolling
         searchTextField.resignFirstResponder()
     }
     
-    @IBAction func handleSearchTextFieldChange(textField: UITextField)
-    {
-        search()
-    }
+    // MARK: Header Buttons
     
-    @IBAction func handleMenuButtonTap(sender: UIButton)
+    @IBAction func handleMenuButton(sender: UIButton)
     {
         performSegueWithIdentifier("ShowMenu", sender: self)
     }
     
-    @IBAction func handleSearchButtonTap(sender: UIButton)
+    @IBAction func handleSearchButton(sender: UIButton)
     {
         searchTextField.becomeFirstResponder()
     }
     
-    @IBAction func handleCancelSearchButtonTap(sender: UIButton)
+    @IBAction func handleCancelSearchButton(sender: UIButton)
     {
-        // clear search and remove keyboard
-        searchTextField.resignFirstResponder()
-        searchSongs = nil
-        searchTextField.text = ""
+        clearSearch()
     }
 }

@@ -181,7 +181,7 @@ Hello World</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="handleCancelSearchButtonTap:" destination="pX0-Er-gsZ" eventType="touchUpInside" id="aUC-jv-b9o"/>
+                                            <action selector="handleCancelSearchButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="hul-az-R4j"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
@@ -194,7 +194,7 @@ Hello World</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="handleMenuButtonTap:" destination="pX0-Er-gsZ" eventType="touchUpInside" id="rZ3-HD-1We"/>
+                                            <action selector="handleMenuButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="LDT-TJ-Dob"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
@@ -207,7 +207,7 @@ Hello World</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="handleSearchButtonTap:" destination="pX0-Er-gsZ" eventType="touchUpInside" id="UgQ-Jy-fMa"/>
+                                            <action selector="handleSearchButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="5cv-Xl-5b7"/>
                                         </connections>
                                     </button>
                                 </subviews>
