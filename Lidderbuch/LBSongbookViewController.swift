@@ -35,7 +35,8 @@ class LBSongbookViewController: LBViewController,
             
             tableView.reloadData()
             
-            updateFooter()
+            // hide footer when search active
+            footerLabel.alpha = searchActive ? 0.0 : 1.0
             
             // update cancel button visibility
             UIView.animateWithDuration(0.15) {
@@ -96,39 +97,16 @@ class LBSongbookViewController: LBViewController,
     
     func updateFooter()
     {
-        footerLabel.alpha = 1.0
+        // show songbook last update date
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         
-        if searchResultSongs != nil
-        {
-            // show number of search results
-            if searchResultSongs!.count == 0
-            {
-                footerLabel.alpha = 0.0
-            }
-            else if searchResultSongs!.count == 1
-            {
-                footerLabel.text =
-                    NSLocalizedString("Ee Lidd fonnt", comment: "Songbook footer")
-            }
-            else
-            {
-                footerLabel.text = "\(searchResultSongs!.count) " +
-                    NSLocalizedString("Lidder fonnt", comment: "Songbook footer")
-            }
+        var dateString = "/"
+        if let updateTime = songbook.updateTime {
+            dateString = dateFormatter.stringFromDate(updateTime)
         }
-        else
-        {
-            // show songbook last update date
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            
-            var dateString = "/"
-            if let updateTime = songbook.updateTime {
-                dateString = dateFormatter.stringFromDate(updateTime)
-            }
-            
-            footerLabel.text = NSLocalizedString("Leschten Update", comment: "Songbook footer") + ": \(dateString)"
-        }
+        
+        footerLabel.text = NSLocalizedString("Leschten Update", comment: "Songbook footer") + ": \(dateString)"
     }
     
     // MARK: Delegates
