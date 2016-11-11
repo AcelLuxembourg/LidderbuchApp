@@ -14,7 +14,7 @@
 		A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */ = {isa = PBXBuildFile; fileRef = A521D1091B1DBB0E002ADE4E /* songs.json */; };
 		A521D10D1B1DF287002ADE4E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521D10C1B1DF287002ADE4E /* NSDate.swift */; };
 		A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */; };
-		A56962EC1BB94D1D009167E5 /* LBVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56962EB1BB94D1D009167E5 /* LBVariables.swift */; settings = {ASSET_TAGS = (); }; };
+		A56962EC1BB94D1D009167E5 /* LBVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56962EB1BB94D1D009167E5 /* LBVariables.swift */; };
 		A57F2AAC1B237B33006EE0A8 /* LBModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F2AAB1B237B33006EE0A8 /* LBModalTransitionAnimator.swift */; };
 		A57F2AAE1B2386A2006EE0A8 /* LBMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F2AAD1B2386A2006EE0A8 /* LBMenuViewController.swift */; };
 		A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA0E9A1B04EF440049967B /* LBHeaderBar.swift */; };
@@ -252,6 +252,7 @@
 					A5DEC2271AF7F577009F41D9 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = PP4747DU3M;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -260,6 +261,7 @@
 					};
 					A5DEC23C1AF7F577009F41D9 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = A5DEC2271AF7F577009F41D9;
 					};
 				};
@@ -464,6 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -480,6 +483,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -499,6 +503,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lidderbuch.app/Lidderbuch";
 			};
 			name = Debug;
@@ -515,6 +520,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lidderbuch.app/Lidderbuch";
 			};
 			name = Release;

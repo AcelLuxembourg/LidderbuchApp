@@ -23,10 +23,10 @@ class LBSongTableViewCell: UITableViewCell
                 if let number = song.number {
                     let numberAttributedString = NSMutableAttributedString(string: "\(number) ")
                     numberAttributedString.addAttribute(NSForegroundColorAttributeName, value: LBVariables.tintColor, range: NSMakeRange(0, numberAttributedString.length))
-                    nameAttributedString.appendAttributedString(numberAttributedString)
+                    nameAttributedString.append(numberAttributedString)
                 }
                 
-                nameAttributedString.appendAttributedString(NSMutableAttributedString(string: song.name))
+                nameAttributedString.append(NSMutableAttributedString(string: song.name))
                 
                 nameLabel.attributedText = nameAttributedString
                 

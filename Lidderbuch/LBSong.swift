@@ -15,15 +15,15 @@ class LBSong: NSObject, NSUserActivityDelegate
     var id: Int!
     var name: String!
     var language: String!
-    var url: NSURL!
+    var url: URL!
     var category: String!
     var position: Int!
     var paragraphs: [LBParagraph]!
-    var updateTime: NSDate!
+    var updateTime: Date!
     
     var bookmarked: Bool = false
     var views: Int = 0
-    var viewTime: NSDate?
+    var viewTime: Date?
     
     var number: Int?
     var way: String?
@@ -40,11 +40,11 @@ class LBSong: NSObject, NSUserActivityDelegate
         // if a paragraph has only one line, the next one will be included too
         var preview = "", lines = 0, i = -1
         while (++i < paragraphs.count && lines < 2) {
-            let paragraphLines = paragraphs[i].content.componentsSeparatedByString("\n")
+            let paragraphLines = paragraphs[i].content.components(separatedBy: "\n")
             var j = -1
             while (++j < paragraphLines.count && lines < 2) {
                 preview += (lines > 0 ? "\n" : "") + paragraphLines[j]
-                lines++
+                lines += 1
             }
         }
         return preview
@@ -82,7 +82,7 @@ class LBSong: NSObject, NSUserActivityDelegate
             parts.append(String(year))
         }
         
-        return parts.joinWithSeparator(" · ")
+        return parts.joined(separator: " · ")
     }
     
     init?(json: AnyObject)
@@ -94,15 +94,15 @@ class LBSong: NSObject, NSUserActivityDelegate
             // retrieve required attributes
             if let
                 id = songJson["id"] as? Int,
-                name = songJson["name"] as? String,
-                language = songJson["language"] as? String,
-                category = songJson["category"] as? String,
-                position = songJson["position"] as? Int,
-                updateTimestamp = songJson["update_time"] as? Int,
-                paragraphsJson = songJson["paragraphs"] as? [AnyObject],
+                let name = songJson["name"] as? String,
+                let language = songJson["language"] as? String,
+                let category = songJson["category"] as? String,
+                let position = songJson["position"] as? Int,
+                let updateTimestamp = songJson["update_time"] as? Int,
+                let paragraphsJson = songJson["paragraphs"] as? [AnyObject],
             
-                urlString = songJson["url"] as? String,
-                url = NSURL(string: urlString)
+                let urlString = songJson["url"] as? String,
+                let url = URL(string: urlString)
             {
                 // basic attributes
                 self.id = id
@@ -111,7 +111,7 @@ class LBSong: NSObject, NSUserActivityDelegate
                 self.url = url
                 self.category = category
                 self.position = position
-                self.updateTime = NSDate(timeIntervalSince1970: Double(updateTimestamp))
+                self.updateTime = Date(timeIntervalSince1970: Double(updateTimestamp))
                 
                 // paragraphs
                 self.paragraphs = [LBParagraph]()
@@ -137,7 +137,7 @@ class LBSong: NSObject, NSUserActivityDelegate
                 }
                 
                 if let viewTimestamp = songJson["viewTime"] as? Int {
-                    self.viewTime = NSDate(timeIntervalSince1970: Double(viewTimestamp))
+                    self.viewTime = Date(timeIntervalSince1970: Double(viewTimestamp))
                 }
                 
                 return
@@ -153,18 +153,18 @@ class LBSong: NSObject, NSUserActivityDelegate
         var paragraphsJsonObject = [AnyObject]()
         
         for paragraph in paragraphs {
-            paragraphsJsonObject.append(paragraph.json())
+            paragraphsJsonObject.append(paragraph.json() as AnyObject)
         }
         
         // prepare json object
-        let jsonObject: [String: AnyObject!] = [
-            "id": id,
-            "name": name,
-            "language": language,
-            "url": url.absoluteString,
-            "category": category,
-            "position": position,
-            "update_time": Int(updateTime!.timeIntervalSince1970),
+        let jsonObject: [String: AnyObject?] = [
+            "id": id as ImplicitlyUnwrappedOptional<AnyObject>,
+            "name": name as Optional<AnyObject>,
+            "language": language as Optional<AnyObject>,
+            "url": url.absoluteString as Optional<AnyObject>,
+            "category": category as Optional<AnyObject>,
+            "position": position as Optional<AnyObject>,
+            "update_time": Int(updateTime!.timeIntervalSince1970) as Optional<AnyObject>,
             
             "paragraphs": paragraphsJsonObject,
             
@@ -181,10 +181,10 @@ class LBSong: NSObject, NSUserActivityDelegate
             "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull()),
         ]
         
-        return jsonObject
+        return jsonObject as [String : AnyObject]
     }
     
-    override func isEqual(object: AnyObject?) -> Bool
+    override func isEqual(_ object: Any?) -> Bool
     {
         if let song = object as? LBSong {
             return id == song.id
@@ -192,10 +192,10 @@ class LBSong: NSObject, NSUserActivityDelegate
         return false
     }
     
-    private var lastSearchKeywords: String?
-    private var lastSearchScore: Int?
+    fileprivate var lastSearchKeywords: String?
+    fileprivate var lastSearchScore: Int?
     
-    func search(keywords: String) -> Int
+    func search(_ keywords: String) -> Int
     {
         // retrieve cached result
         if lastSearchKeywords == keywords {
@@ -270,14 +270,14 @@ class LBSong: NSObject, NSUserActivityDelegate
         activity.needsSave = true
         activity.requiredUserInfoKeys = Set(["id"])
         activity.contentAttributeSet = contentAttributeSet
-        activity.eligibleForSearch = true
-        activity.eligibleForPublicIndexing = true
-        activity.eligibleForHandoff = true
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForHandoff = true
         
         return activity
     }
     
-    func userActivityWillSave(userActivity: NSUserActivity)
+    func userActivityWillSave(_ userActivity: NSUserActivity)
     {
         userActivity.userInfo = ["id": id]
     }

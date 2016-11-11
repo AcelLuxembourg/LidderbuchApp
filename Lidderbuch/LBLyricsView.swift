@@ -7,11 +7,35 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class LBLyricsView: UIScrollView
 {
-    private var lineOrigins: [CGPoint]!
-    private var lineViews: [[UIView]]!
+    fileprivate var lineOrigins: [CGPoint]!
+    fileprivate var lineViews: [[UIView]]!
     
     weak var lyricsViewDelegate: LBLyricsViewDelegate?
     @IBOutlet var headerView: UIView? {
@@ -64,7 +88,7 @@ class LBLyricsView: UIScrollView
         }
     }
     
-    private let lineWrapInset: CGFloat = 24
+    fileprivate let lineWrapInset: CGFloat = 24
     
     var refrainParagraphInset: CGFloat = 0 {
         didSet {
@@ -115,11 +139,11 @@ class LBLyricsView: UIScrollView
         super.init(coder: aDecoder)
         
         // redraw content if bounds change
-        contentMode = .Redraw
-        backgroundColor = UIColor.whiteColor()
+        contentMode = .redraw
+        backgroundColor = UIColor.white
         
         // configure tab gesture recognizer
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTapGesture:"))
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LBLyricsView.handleTapGesture(_:)))
         addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -129,14 +153,14 @@ class LBLyricsView: UIScrollView
         layoutLyrics()
     }
     
-    private func invalidateLyricsLayout()
+    fileprivate func invalidateLyricsLayout()
     {
         // reset layout
         lineOrigins = nil
         lineViews = nil
     }
     
-    private func layoutLyrics()
+    fileprivate func layoutLyrics()
     {
         let width = bounds.size.width
         
@@ -173,7 +197,7 @@ class LBLyricsView: UIScrollView
         {
             let paragraphFont: UIFont = (paragraph.refrain ? refrainFont : font)
             
-            let lines = paragraph.content.componentsSeparatedByString("\n")
+            let lines = paragraph.content.components(separatedBy: "\n")
             for line: String in lines
             {
                 // determin line alpha according to highlighted line
@@ -207,7 +231,7 @@ class LBLyricsView: UIScrollView
                         let lineBreakView = UIImageView()
                         lineBreakView.image = lineBreakImage
                         lineBreakView.alpha = lineAlpha
-                        lineBreakView.frame = CGRectMake(x - 22.0, y, 0.0, 0.0)
+                        lineBreakView.frame = CGRect(x: x - 22.0, y: y, width: 0.0, height: 0.0)
                         lineBreakView.sizeToFit()
                         
                         fragmentViews.append(lineBreakView)
@@ -224,7 +248,7 @@ class LBLyricsView: UIScrollView
                     fragmentView.textColor = textColor
                     fragmentView.font = paragraphFont
                     fragmentView.alpha = lineAlpha
-                    fragmentView.frame = CGRectMake(x, y, 0.0, 0.0)
+                    fragmentView.frame = CGRect(x: x, y: y, width: 0.0, height: 0.0)
                     fragmentView.sizeToFit()
                     
                     fragmentViews.append(fragmentView)
@@ -246,7 +270,7 @@ class LBLyricsView: UIScrollView
         contentSize = CGSize(width: width, height: y)
     }
     
-    private func wrapText(text: String, font: UIFont, containerWidth: CGFloat)
+    fileprivate func wrapText(_ text: String, font: UIFont, containerWidth: CGFloat)
         -> (fragment: String, remainder: String?)
     {
         // compose attributed string with given font
@@ -257,7 +281,7 @@ class LBLyricsView: UIScrollView
         // compose layout manager
         let layoutManager = NSLayoutManager()
         
-        let textContainer = NSTextContainer(size: CGSize(width: containerWidth, height: CGFloat.max));
+        let textContainer = NSTextContainer(size: CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude));
         layoutManager.addTextContainer(textContainer)
         
         let textStorage = NSTextStorage(attributedString: attributedString)
@@ -266,17 +290,17 @@ class LBLyricsView: UIScrollView
         var result: (fragment: String, remainder: String?)?
         
         // go through each line fragment
-        layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, layoutManager.numberOfGlyphs), usingBlock: {
+        layoutManager.enumerateLineFragments(forGlyphRange: NSMakeRange(0, layoutManager.numberOfGlyphs), using: {
             (rect, usedRect, textContainer, glyphRange, stop) in
             
             // we are only interested in the first fragment
             if (result == nil)
             {
-                let range = layoutManager.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
+                let range = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
                 
                 // substring wrapped line and remainder
-                let fragment = NSString(string: text).substringWithRange(range)
-                let remainder: String = NSString(string: text).substringFromIndex(range.length)
+                let fragment = NSString(string: text).substring(with: range)
+                let remainder: String = NSString(string: text).substring(from: range.length)
                 
                 result = (fragment: fragment, remainder: (remainder.characters.count > 0 ? remainder : nil))
             }
@@ -285,7 +309,7 @@ class LBLyricsView: UIScrollView
         return result!
     }
     
-    func lineNextToTopOffset(topOffset: CGFloat) -> Int
+    func lineNextToTopOffset(_ topOffset: CGFloat) -> Int
     {
         layoutLyrics()
         
@@ -305,14 +329,14 @@ class LBLyricsView: UIScrollView
         return (topOffset < middleBetweenLinesTopOffset ? line - 1 : line)
     }
     
-    func scrollToLine(line: Int)
+    func scrollToLine(_ line: Int)
     {
         let offsetTop = max(lineOrigins[line].y - contentInset.top - bounds.size.height * 0.15, 0.0)
         
         self.contentOffset = CGPoint(x: self.contentOffset.x, y: offsetTop)
     }
     
-    @IBAction func handleTapGesture(gestureRecognizer: UITapGestureRecognizer)
+    @IBAction func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer)
     {
         var line: Int?
         
@@ -333,19 +357,19 @@ class LBLyricsView: UIScrollView
             line = nil
             
             // scroll to top
-            UIView.animateWithDuration(0.3) {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.contentOffset = CGPoint(x: self.contentOffset.x, y: -self.contentInset.top)
-            }
+            }) 
         }
         
         // highlight line
-        UIView.animateWithDuration(0.2) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.highlightedLine = line
-        }
+        }) 
     }
 }
 
 protocol LBLyricsViewDelegate: class
 {
-    func lyricsView(lyricsView: LBLyricsView, didHighlightLine line: Int?)
+    func lyricsView(_ lyricsView: LBLyricsView, didHighlightLine line: Int?)
 }

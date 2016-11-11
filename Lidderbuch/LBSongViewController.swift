@@ -11,8 +11,8 @@ import UIKit
 class LBSongViewController: LBViewController,
     LBLyricsViewDelegate
 {
-    private var viewTimer: NSTimer?
-    private var viewTracked = false
+    fileprivate var viewTimer: Timer?
+    fileprivate var viewTracked = false
     
     var song: LBSong!
     
@@ -48,9 +48,9 @@ class LBSongViewController: LBViewController,
         updateView()
         
         // observe application active state
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: Selector("applicationWillResignActiveNotification:"), name: UIApplicationWillResignActiveNotification, object: nil)
-        notificationCenter.addObserver(self, selector: Selector("applicationDidBecomeActiveNotification:"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(LBSongViewController.applicationWillResignActiveNotification(_:)), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(LBSongViewController.applicationDidBecomeActiveNotification(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         // report user activity
         if #available(iOS 9.0, *) {
@@ -59,13 +59,13 @@ class LBSongViewController: LBViewController,
         }
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
         startTrackingView()
     }
     
-    override func viewDidDisappear(animated: Bool)
+    override func viewDidDisappear(_ animated: Bool)
     {
         super.viewDidDisappear(animated)
         stopTrackingView()
@@ -75,27 +75,27 @@ class LBSongViewController: LBViewController,
     {
         // update bookmark button icon
         let bookmarkIconName = song.bookmarked ? "BookmarkedIcon" : "BookmarkIcon"
-        bookmarkButton.setImage(UIImage(named: bookmarkIconName), forState: .Normal)
+        bookmarkButton.setImage(UIImage(named: bookmarkIconName), for: UIControlState())
     }
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView)
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
         // clear highlighted line when scrolling
         if lyricsScrollView.highlightedLine != nil {
-            UIView.animateWithDuration(0.2) {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.lyricsScrollView.highlightedLine = nil
-            }
+            }) 
         }
     }
     
-    func lyricsView(lyricsView: LBLyricsView, didHighlightLine line: Int?)
+    func lyricsView(_ lyricsView: LBLyricsView, didHighlightLine line: Int?)
     {
         // hide header bar when a line gets highlighted
-        UIView.animateWithDuration(0.1) {
+        UIView.animate(withDuration: 0.1, animations: {
             if line != nil {
                 self.headerBar.verticalTranslation = self.headerBar.bounds.height
             }
-        }
+        }) 
     }
     
     // MARK: View Tracking
@@ -103,8 +103,8 @@ class LBSongViewController: LBViewController,
     func startTrackingView()
     {
         if viewTimer == nil && !viewTracked {
-            viewTimer = NSTimer.scheduledTimerWithTimeInterval(
-                LBVariables.songViewDuration, target: self, selector: Selector("viewTimerDidFire:"),
+            viewTimer = Timer.scheduledTimer(
+                timeInterval: LBVariables.songViewDuration, target: self, selector: #selector(LBSongViewController.viewTimerDidFire(_:)),
                 userInfo: nil, repeats: false)
         }
     }
@@ -117,11 +117,11 @@ class LBSongViewController: LBViewController,
         }
     }
     
-    func viewTimerDidFire(timer: NSTimer)
+    func viewTimerDidFire(_ timer: Timer)
     {
         // track view
-        song.views++
-        song.viewTime = NSDate()
+        song.views += 1
+        song.viewTime = Date()
         
         delegate?.songViewController(self, songDidChange: song)
         
@@ -129,24 +129,24 @@ class LBSongViewController: LBViewController,
         stopTrackingView()
     }
     
-    func applicationDidBecomeActiveNotification(notification: NSNotification)
+    func applicationDidBecomeActiveNotification(_ notification: Notification)
     {
         startTrackingView()
     }
     
-    func applicationWillResignActiveNotification(notification: NSNotification)
+    func applicationWillResignActiveNotification(_ notification: Notification)
     {
         stopTrackingView()
     }
     
     // MARK: Header Buttons
     
-    @IBAction func handleBackButton(sender: UIButton)
+    @IBAction func handleBackButton(_ sender: UIButton)
     {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func handleBookmarkButton(sender: UIButton)
+    @IBAction func handleBookmarkButton(_ sender: UIButton)
     {
         // toggle song bookmark
         song.bookmarked = !song.bookmarked
@@ -155,17 +155,17 @@ class LBSongViewController: LBViewController,
         updateView()
     }
     
-    @IBAction func handleShareButton(sender: UIButton)
+    @IBAction func handleShareButton(_ sender: UIButton)
     {
         let activityViewController = UIActivityViewController(
             activityItems: [song.url], applicationActivities: nil)
         
-        activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop]
-        presentViewController(activityViewController, animated: true, completion: nil)
+        activityViewController.excludedActivityTypes = [UIActivityType.airDrop]
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
 protocol LBSongViewControllerDelegate
 {
-    func songViewController(songViewController: LBSongViewController, songDidChange song: LBSong)
+    func songViewController(_ songViewController: LBSongViewController, songDidChange song: LBSong)
 }

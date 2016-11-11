@@ -12,15 +12,15 @@ class LBReplaceSegue: UIStoryboardSegue
 {
     override func perform()
     {
-        if let navigationController = sourceViewController.navigationController
+        if let navigationController = source.navigationController
         {
             let transition = CATransition()
             transition.duration = 0.2
             transition.type = kCATransitionFade
             transition.subtype = kCATransitionFromTop
             
-            navigationController.view.layer.addAnimation(transition, forKey: kCATransition)
-            navigationController.viewControllers = [destinationViewController]
+            navigationController.view.layer.add(transition, forKey: kCATransition)
+            navigationController.viewControllers = [destination]
         }
     }
 }

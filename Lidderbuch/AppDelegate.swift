@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         // retrieve songbook view controller from navigation controller
         if let navigationController = window?.rootViewController as? UINavigationController,
-            songbookViewController = navigationController.viewControllers.first as? LBSongbookViewController
+            let songbookViewController = navigationController.viewControllers.first as? LBSongbookViewController
         {
             return songbookViewController
         }
@@ -25,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         return nil
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         window?.tintColor = LBVariables.tintColor
         return true
     }
     
-    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool
     {
         guard let songbookViewController = self.songbookViewController else {
             return false
@@ -40,14 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // handle scheme url
         if url.scheme == "lidderbuch"
         {
-            let urlComponents = url.absoluteString.componentsSeparatedByString("/")
+            let urlComponents = url.absoluteString.components(separatedBy: "/")
             
             // interpret lidderbuch://songs/1
             if urlComponents.count >= 4 && urlComponents[2] == "songs"
             {
-                let numberFormatter = NSNumberFormatter()
-                numberFormatter.numberStyle = .DecimalStyle
-                if let id = numberFormatter.numberFromString(urlComponents[3])?.integerValue {
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                if let id = numberFormatter.number(from: urlComponents[3])?.intValue {
                     songbookViewController.showSongWithId(id)
                     return true
                 }
@@ -57,12 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         return false
     }
     
-    func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool
     {
         return true
     }
     
-    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool
     {
         guard let songbookViewController = self.songbookViewController else {
             return false
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             
             if let
                 userInfo = userActivity.userInfo,
-                id = userInfo["id"] as? Int
+                let id = userInfo["id"] as? Int
             {
                 songbookViewController.showSongWithId(id)
                 return true

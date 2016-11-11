@@ -15,7 +15,7 @@ class LBCategoryTableViewCell: UITableViewCell
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        selectionStyle = .None
+        selectionStyle = .none
     }
     
     var category: String? {

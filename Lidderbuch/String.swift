@@ -12,16 +12,16 @@ extension String
 {
     
     func countOccurencesOfString(
-        string: String,
-        compareOptions: NSStringCompareOptions = NSStringCompareOptions.DiacriticInsensitiveSearch.union(.CaseInsensitiveSearch)) -> Int
+        _ string: String,
+        compareOptions: NSString.CompareOptions = NSString.CompareOptions.diacriticInsensitive.union(.caseInsensitive)) -> Int
     {
         var count = 0
         
         var index: String.Index? = startIndex
         while (index != nil) {
-            if let occurenceRange = rangeOfString(string, options: compareOptions, range: index!..<endIndex) {
-                count++
-                index = occurenceRange.endIndex
+            if let occurenceRange = range(of: string, options: compareOptions, range: index!..<endIndex) {
+                count += 1
+                index = occurenceRange.upperBound
             } else {
                 index = nil
             }
@@ -32,8 +32,8 @@ extension String
     
     func stringByAddingPercentEncodingForURLQueryValue() -> String?
     {
-        let characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
-        characterSet.addCharactersInString("-._~")
-        return stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+        let characterSet = NSMutableCharacterSet.alphanumeric()
+        characterSet.addCharacters(in: "-._~")
+        return addingPercentEncoding(withAllowedCharacters: characterSet as CharacterSet)
     }
 }

@@ -25,8 +25,8 @@ class LBParagraph
             // retrieve required attributes
             if let
                 id = songJson["id"] as? Int,
-                type = songJson["type"] as? String,
-                content = songJson["content"] as? String
+                let type = songJson["type"] as? String,
+                let content = songJson["content"] as? String
             {
                 // basic attributes
                 self.id = id
@@ -44,13 +44,13 @@ class LBParagraph
     {
         // prepare json object
         return [
-            "id": id,
-            "type": type,
-            "content": content
+            "id": id as AnyObject,
+            "type": type as AnyObject,
+            "content": content as AnyObject
         ]
     }
     
-    func search(keywords: String) -> Int
+    func search(_ keywords: String) -> Int
     {
         // search score is determined by occurence count
         return content.countOccurencesOfString(keywords)

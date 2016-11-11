@@ -19,18 +19,18 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         self.presenting = presenting
     }
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval
     {
         return 0.25
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning)
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning)
     {
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
         
-        let containerView = transitionContext.containerView()!
-        let finalFrame = transitionContext.finalFrameForViewController(toViewController)
+        let containerView = transitionContext.containerView
+        let finalFrame = transitionContext.finalFrame(for: toViewController)
         
         // prepare arrow view
         var arrowView: UIView
@@ -39,13 +39,13 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             arrowView = containerView.subviews.last!
         } else {
             arrowView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: arrowSize, height: arrowSize))
-            arrowView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 0.25))
+            arrowView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI * 0.25))
             arrowView.backgroundColor = toViewController.view.backgroundColor
         }
         
         if (presenting)
         {
-            fromViewController.view.userInteractionEnabled = false
+            fromViewController.view.isUserInteractionEnabled = false
             
             // create view hierarchy
             containerView.addSubview(toViewController.view)
@@ -53,14 +53,14 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             
             // calculate fitting height with horizontal priority UILayoutPriorityDefaultHigh
             //  and vertical priority UILayoutPriorityFittingSizeLevel
-            let modalHeight = toViewController.view.systemLayoutSizeFittingSize(finalFrame.size, withHorizontalFittingPriority: 750, verticalFittingPriority: 50).height
+            let modalHeight = toViewController.view.systemLayoutSizeFitting(finalFrame.size, withHorizontalFittingPriority: 750, verticalFittingPriority: 50).height
             
             // position modal view and arrow
             toViewController.view.frame = CGRect(x: 0.0, y: -modalHeight, width: containerView.bounds.size.width, height: modalHeight)
             
             arrowView.center = CGPoint(x: arrowInset, y: -arrowSize)
             
-            UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, options: .CurveEaseInOut, animations:
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: UIViewAnimationOptions(), animations:
             {
                 // move views
                 var toViewControllerFrame = toViewController.view.frame
@@ -74,14 +74,14 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
                 fromViewController.view.frame = fromViewControllerFrame
                 
             }, completion: { (finished) in
-                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
         }
         else
         {
-            toViewController.view.userInteractionEnabled = true
+            toViewController.view.isUserInteractionEnabled = true
             
-            UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, options: .CurveEaseInOut, animations:
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: UIViewAnimationOptions(), animations:
             {
                 // move views
                 toViewController.view.frame = finalFrame
@@ -93,7 +93,7 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
                 fromViewController.view.frame = fromViewControllerFrame
                 
             }, completion: { (finished) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
         }
     }

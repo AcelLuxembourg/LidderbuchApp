@@ -8,19 +8,19 @@
 
 import Foundation
 
-extension NSDate
+extension Date
 {
     
 }
 
-func <=(lhs: NSDate, rhs: NSDate) -> Bool {
+func <=(lhs: Date, rhs: Date) -> Bool {
     return (lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970)
 }
 
-func >(lhs: NSDate, rhs: NSDate) -> Bool {
+func >(lhs: Date, rhs: Date) -> Bool {
     return (lhs.timeIntervalSince1970 > rhs.timeIntervalSince1970)
 }
 
-func >=(lhs: NSDate, rhs: NSDate) -> Bool {
+func >=(lhs: Date, rhs: Date) -> Bool {
     return (lhs.timeIntervalSince1970 >= rhs.timeIntervalSince1970)
 }

@@ -39,9 +39,9 @@ class LBSongbookViewController: LBViewController,
             footerLabel.alpha = searchActive ? 0.0 : 1.0
             
             // update cancel button visibility
-            UIView.animateWithDuration(0.15) {
+            UIView.animate(withDuration: 0.15, animations: {
                 self.cancelSearchButton.alpha = searchActive ? 1.0 : 0.0
-            }
+            }) 
         }
     }
     
@@ -67,7 +67,7 @@ class LBSongbookViewController: LBViewController,
         cancelSearchButton.alpha = 0.0
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -78,12 +78,12 @@ class LBSongbookViewController: LBViewController,
         tableView.reloadData()
         
         // preserve selected row
-        tableView.selectRowAtIndexPath(selectedRowIndexPath, animated: false, scrollPosition: .None)
+        tableView.selectRow(at: selectedRowIndexPath, animated: false, scrollPosition: .none)
         
         UIView.setAnimationsEnabled(true)
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
         
@@ -98,12 +98,12 @@ class LBSongbookViewController: LBViewController,
     func updateFooter()
     {
         // show songbook last update date
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         
         var dateString = "/"
         if let updateTime = songbook.updateTime {
-            dateString = dateFormatter.stringFromDate(updateTime)
+            dateString = dateFormatter.string(from: updateTime as Date)
         }
         
         footerLabel.text = NSLocalizedString("Leschten Update", comment: "Songbook footer") + ": \(dateString)"
@@ -111,7 +111,7 @@ class LBSongbookViewController: LBViewController,
     
     // MARK: Delegates
     
-    func songbookDidUpdate(songbook: LBSongbook)
+    func songbookDidUpdate(_ songbook: LBSongbook)
     {
         if searchResultSongs != nil {
             search()
@@ -124,18 +124,18 @@ class LBSongbookViewController: LBViewController,
         
         // preserve selected row (if not in bookmark category)
         if selectedRowIndexPath?.section != 0 {
-            tableView.selectRowAtIndexPath(selectedRowIndexPath, animated: false, scrollPosition: .None)
+            tableView.selectRow(at: selectedRowIndexPath, animated: false, scrollPosition: .none)
         }
     }
     
-    func songViewController(songViewController: LBSongViewController, songDidChange song: LBSong)
+    func songViewController(_ songViewController: LBSongViewController, songDidChange song: LBSong)
     {
         songbook.integrateSong(song, replaceMeta: true)
     }
     
     // MARK: Song Row Management
     
-    private func songForRowAtIndexPath(indexPath: NSIndexPath) -> LBSong?
+    fileprivate func songForRowAtIndexPath(_ indexPath: IndexPath) -> LBSong?
     {
         if searchResultSongs != nil {
             return searchResultSongs![indexPath.row]
@@ -147,14 +147,14 @@ class LBSongbookViewController: LBViewController,
         return nil
     }
     
-    private func rowIndexPathForSong(song: LBSong) -> NSIndexPath?
+    fileprivate func rowIndexPathForSong(_ song: LBSong) -> IndexPath?
     {
         // are search results displayed
         if searchResultSongs != nil
         {
             // find index of song in search results
-            if let row = searchResultSongs!.indexOf(song) {
-                return NSIndexPath(forRow: row, inSection: 0)
+            if let row = searchResultSongs!.index(of: song) {
+                return IndexPath(row: row, section: 0)
             } else {
                 return nil
             }
@@ -163,13 +163,13 @@ class LBSongbookViewController: LBViewController,
         // find index of category and song if it exists
         if let
             categorySongs = songbook.categorySongs[song.category],
-            categoryIndex = songbook.categories.indexOf(song.category),
-            songIndexInCategory = categorySongs.indexOf(song)
+            let categoryIndex = songbook.categories.index(of: song.category),
+            let songIndexInCategory = categorySongs.index(of: song)
         {
             // convert index to row index path
-            let section = songbook.categories.startIndex.distanceTo(categoryIndex)
-            let row = categorySongs.startIndex.distanceTo(songIndexInCategory) + 1
-            return NSIndexPath(forRow: row, inSection: section)
+            let section = songbook.categories.startIndex.distance(to: categoryIndex)
+            let row = categorySongs.startIndex.distance(to: songIndexInCategory) + 1
+            return IndexPath(row: row, section: section)
         }
         
         return nil
@@ -177,7 +177,7 @@ class LBSongbookViewController: LBViewController,
     
     // MARK: Table View Data Source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         if searchResultSongs != nil {
             return 1
@@ -186,7 +186,7 @@ class LBSongbookViewController: LBViewController,
         return songbook.categories.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if searchResultSongs != nil {
             return searchResultSongs!.count
@@ -203,17 +203,17 @@ class LBSongbookViewController: LBViewController,
         return count + 1
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         if searchResultSongs == nil && indexPath.row == 0
         {
             // category cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! LBCategoryTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! LBCategoryTableViewCell
         
             cell.category = songbook.categories[indexPath.section]
             cell.separatorInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
@@ -223,7 +223,7 @@ class LBSongbookViewController: LBViewController,
         else
         {
             // song cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as! LBSongTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! LBSongTableViewCell
             
             cell.song = songForRowAtIndexPath(indexPath)
             cell.separatorInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
@@ -232,17 +232,17 @@ class LBSongbookViewController: LBViewController,
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if songForRowAtIndexPath(indexPath) != nil {
-            performSegueWithIdentifier("ShowSong", sender: self)
+            performSegue(withIdentifier: "ShowSong", sender: self)
         } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
     
     // MARK: Show Song
     
-    func showSongWithId(id: Int) -> Bool
+    func showSongWithId(_ id: Int) -> Bool
     {
         if let song = songbook.songWithId(id)
         {
@@ -253,7 +253,7 @@ class LBSongbookViewController: LBViewController,
         return false
     }
     
-    func showSongWithURL(url: NSURL) -> Bool
+    func showSongWithURL(_ url: URL) -> Bool
     {
         if let song = songbook.songWithURL(url)
         {
@@ -264,7 +264,7 @@ class LBSongbookViewController: LBViewController,
         return false
     }
     
-    func showSong(song: LBSong)
+    func showSong(_ song: LBSong)
     {
         if !viewDidAppearOnce
         {
@@ -273,7 +273,7 @@ class LBSongbookViewController: LBViewController,
         }
         else
         {
-            var indexPath: NSIndexPath? = rowIndexPathForSong(song)
+            var indexPath: IndexPath? = rowIndexPathForSong(song)
             
             if indexPath == nil && searchResultSongs != nil
             {
@@ -291,22 +291,22 @@ class LBSongbookViewController: LBViewController,
                 navigationController?.popToViewController(self, animated: false)
                 
                 // select song row
-                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Middle)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
                 
                 // perform segue to song
-                performSegueWithIdentifier("ShowSong", sender: self)
+                performSegue(withIdentifier: "ShowSong", sender: self)
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         searchTextField.resignFirstResponder()
         
         if segue.identifier == "ShowSong"
         {
             // inject selected song into song view controller
-            if let songViewController = segue.destinationViewController as? LBSongViewController {
+            if let songViewController = segue.destination as? LBSongViewController {
                 if let selectedIndexPath = tableView.indexPathForSelectedRow {
                     songViewController.delegate = self
                     songViewController.song = songForRowAtIndexPath(selectedIndexPath)!
@@ -315,23 +315,23 @@ class LBSongbookViewController: LBViewController,
         }
         else if segue.identifier == "ShowMenu"
         {
-            segue.destinationViewController.transitioningDelegate = self
-            segue.destinationViewController.modalPresentationStyle = .Custom
+            segue.destination.transitioningDelegate = self
+            segue.destination.modalPresentationStyle = .custom
         }
     }
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return LBModalTransitionAnimator(presenting: true)
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return LBModalTransitionAnimator(presenting: false)
     }
     
-    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
         if viewController === self {
             if let selectedRowIndexPath = tableView.indexPathForSelectedRow {
-                tableView.deselectRowAtIndexPath(selectedRowIndexPath, animated: animated)
+                tableView.deselectRow(at: selectedRowIndexPath, animated: animated)
             }
         }
     }
@@ -379,32 +379,32 @@ class LBSongbookViewController: LBViewController,
         searchTextField.text = ""
     }
     
-    func textFieldDidBeginEditing(textField: UITextField)
+    func textFieldDidBeginEditing(_ textField: UITextField)
     {
         if searchResultSongs == nil {
             searchResultSongs = [LBSong]()
         }
     }
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         if searchTextField.text == "" {
             searchResultSongs = nil
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         searchTextField.resignFirstResponder()
         return true
     }
     
-    @IBAction func handleSearchTextFieldChange(textField: UITextField)
+    @IBAction func handleSearchTextFieldChange(_ textField: UITextField)
     {
         search()
     }
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView)
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
         // remove keyboard when user starts scrolling
         searchTextField.resignFirstResponder()
@@ -412,17 +412,17 @@ class LBSongbookViewController: LBViewController,
     
     // MARK: Header Buttons
     
-    @IBAction func handleMenuButton(sender: UIButton)
+    @IBAction func handleMenuButton(_ sender: UIButton)
     {
-        performSegueWithIdentifier("ShowMenu", sender: self)
+        performSegue(withIdentifier: "ShowMenu", sender: self)
     }
     
-    @IBAction func handleSearchButton(sender: UIButton)
+    @IBAction func handleSearchButton(_ sender: UIButton)
     {
         searchTextField.becomeFirstResponder()
     }
     
-    @IBAction func handleCancelSearchButton(sender: UIButton)
+    @IBAction func handleCancelSearchButton(_ sender: UIButton)
     {
         clearSearch()
     }

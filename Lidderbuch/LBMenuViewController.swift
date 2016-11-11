@@ -19,31 +19,31 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         super.viewDidLoad()
         
         creditsTextView.linkTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor()]
+            NSForegroundColorAttributeName: UIColor.white]
         
         // make links clickable
-        creditsTextView.editable = false
-        creditsTextView.dataDetectorTypes = .Link
+        creditsTextView.isEditable = false
+        creditsTextView.dataDetectorTypes = .link
         
         // set content
         creditsTextView.attributedText = prepareCreditsAttributedText()
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
         
         if tapBehindGestureRecognizer == nil
         {
             // create tap behind gesture recognizer
-            tapBehindGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTapBehindGesture:"))
+            tapBehindGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LBMenuViewController.handleTapBehindGesture(_:)))
             tapBehindGestureRecognizer.numberOfTapsRequired = 1
             tapBehindGestureRecognizer.delegate = self
             view.window?.addGestureRecognizer(tapBehindGestureRecognizer)
         }
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         view.window?.removeGestureRecognizer(tapBehindGestureRecognizer)
@@ -52,7 +52,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
     func prepareCreditsAttributedText() -> NSAttributedString
     {
         // screen width break points to make the text look good
-        let screenWidth = UIScreen.mainScreen().bounds.size.width
+        let screenWidth = UIScreen.main.bounds.size.width
         
         var fontSize: CGFloat = 15.5
         if screenWidth >= 375.0 {
@@ -91,28 +91,28 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         // set link attribute for each link
         for (name, href) in creditsLinks
         {
-            if let range = creditsText.rangeOfString(name, options: NSStringCompareOptions.DiacriticInsensitiveSearch, range: nil, locale: nil)
+            if let range = creditsText.range(of: name, options: NSString.CompareOptions.diacriticInsensitive, range: nil, locale: nil)
             {
-                let textRange = NSMakeRange(creditsText.startIndex.distanceTo(range.startIndex), range.startIndex.distanceTo(range.endIndex))
-                attributedText.addAttribute(NSLinkAttributeName, value: NSURL(string: href)!, range: textRange)
+                let textRange = NSMakeRange(creditsText.characters.distance(from: creditsText.startIndex, to: range.lowerBound), <#T##String.CharacterView corresponding to your index##String.CharacterView#>.distance(from: range.lowerBound, to: range.upperBound))
+                attributedText.addAttribute(NSLinkAttributeName, value: URL(string: href)!, range: textRange)
             }
         }
         
         return attributedText
     }
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
-        let location = gestureRecognizer.locationInView(view!)
-        if view.pointInside(location, withEvent: nil) {
+        let location = gestureRecognizer.location(in: view!)
+        if view.point(inside: location, with: nil) {
             return false
         }
         
         return true
     }
     
-    @IBAction func handleTapBehindGesture(gestureRecognizer: UITapGestureRecognizer)
+    @IBAction func handleTapBehindGesture(_ gestureRecognizer: UITapGestureRecognizer)
     {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

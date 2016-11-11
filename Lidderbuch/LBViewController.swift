@@ -18,10 +18,10 @@ class LBViewController: UIViewController,
     
     var swipeToPopGestureRecognizer: UIPanGestureRecognizer!
     
-    private var interactivePopTransition: UIPercentDrivenInteractiveTransition!
+    fileprivate var interactivePopTransition: UIPercentDrivenInteractiveTransition!
     
-    private var scrollViewVerticalOffset: CGFloat = 0
-    private var scrollViewDecelerating = false
+    fileprivate var scrollViewVerticalOffset: CGFloat = 0
+    fileprivate var scrollViewDecelerating = false
     
     override func viewDidLoad()
     {
@@ -36,27 +36,27 @@ class LBViewController: UIViewController,
         //  can be popped by the navigation controller
         if (navigationController?.viewControllers.first !== self)
         {
-            swipeToPopGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("handleSwipeGestureRecognizer:"))
+            swipeToPopGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(LBViewController.handleSwipeGestureRecognizer(_:)))
             swipeToPopGestureRecognizer.delegate = self
             view.addGestureRecognizer(swipeToPopGestureRecognizer)
         }
     }
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         // only catch horizontal gesture
-        let velocity = swipeToPopGestureRecognizer.velocityInView(view)
+        let velocity = swipeToPopGestureRecognizer.velocity(in: view)
         return fabs(velocity.x) > fabs(velocity.y)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // attach self as delegate to inject custom view controller transition
         navigationController?.delegate = self
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // detach delegate
@@ -65,19 +65,19 @@ class LBViewController: UIViewController,
         }
     }
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         scrollViewDecelerating = false
     }
     
-    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         scrollViewDecelerating = true
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrollViewDecelerating = false
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView)
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         // calculate scroll difference since last call
         let delta = scrollView.contentOffset.y - scrollViewVerticalOffset
@@ -101,12 +101,12 @@ class LBViewController: UIViewController,
         }
     }
     
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        return LBPushTransitionAnimator(presenting: operation == .Push)
+        return LBPushTransitionAnimator(presenting: operation == .push)
     }
     
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?
     {
         if animationController is LBPushTransitionAnimator && interactivePopTransition != nil {
             return interactivePopTransition
@@ -114,34 +114,34 @@ class LBViewController: UIViewController,
         return nil
     }
     
-    @IBAction func handleSwipeGestureRecognizer(gestureRecognizer: UIPanGestureRecognizer)
+    @IBAction func handleSwipeGestureRecognizer(_ gestureRecognizer: UIPanGestureRecognizer)
     {
         // calculate percent by gesture distance
-        var percent: CGFloat = gestureRecognizer.translationInView(view).x / view.bounds.size.width
+        var percent: CGFloat = gestureRecognizer.translation(in: view).x / view.bounds.size.width
         percent = min(1.0, max(0.0, percent))
         
         switch gestureRecognizer.state {
-        case .Possible: break
-        case .Failed: break
+        case .possible: break
+        case .failed: break
             
-        case .Began:
+        case .began:
             
             // pop view controller and create percent driven interactive transition
             interactivePopTransition = UIPercentDrivenInteractiveTransition()
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
             
-        case .Changed:
+        case .changed:
             
             // update transition progress
-            interactivePopTransition.updateInteractiveTransition(percent)
+            interactivePopTransition.update(percent)
             
-        case .Cancelled: fallthrough
-        case .Ended:
+        case .cancelled: fallthrough
+        case .ended:
             
             if (percent > 0.5) {
-                interactivePopTransition.finishInteractiveTransition()
+                interactivePopTransition.finish()
             } else {
-                interactivePopTransition.cancelInteractiveTransition()
+                interactivePopTransition.cancel()
             }
             
             interactivePopTransition = nil

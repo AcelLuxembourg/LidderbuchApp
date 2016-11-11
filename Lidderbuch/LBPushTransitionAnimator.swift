@@ -21,18 +21,18 @@ class LBPushTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         self.presenting = presenting
     }
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval
     {
         return 0.25
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning)
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning)
     {
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
         
         // calculate frames
-        let finalFrame = transitionContext.finalFrameForViewController(toViewController)
+        let finalFrame = transitionContext.finalFrame(for: toViewController)
         
         var toViewControllerStartFrame = finalFrame
         var fromViewControllerFinalFrame = fromViewController.view.frame
@@ -61,34 +61,34 @@ class LBPushTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         
         // make the top view controller cast shadow
         let topViewLayer = topViewController.view.layer
-        topViewLayer.shadowPath = UIBezierPath(rect: topViewLayer.bounds).CGPath
-        topViewLayer.shadowColor = UIColor.blackColor().CGColor
-        topViewLayer.shadowOffset = CGSizeZero
+        topViewLayer.shadowPath = UIBezierPath(rect: topViewLayer.bounds).cgPath
+        topViewLayer.shadowColor = UIColor.black.cgColor
+        topViewLayer.shadowOffset = CGSize.zero
         topViewLayer.shadowOpacity = shadowOpacity
         topViewLayer.shadowRadius = shadowRadius
         
         // build view hierarchy
         let overlayView = UIView(frame: finalFrame)
-        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.backgroundColor = UIColor.black
         overlayView.alpha = presenting ? 0.0 : overlayAlpha
         
-        let containerView = transitionContext.containerView()!
+        let containerView = transitionContext.containerView
         containerView.addSubview(bottomViewController.view)
         containerView.addSubview(overlayView)
         containerView.addSubview(topViewController.view)
         
         // animate
-        let duration = transitionDuration(transitionContext)
+        let duration = transitionDuration(using: transitionContext)
         
-        UIView.animateWithDuration(duration) {
+        UIView.animate(withDuration: duration, animations: {
             overlayView.alpha = self.presenting ? self.overlayAlpha : 0.0
-        }
+        }) 
         
-        UIView.animateWithDuration(duration, delay: 0.0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(), animations: {
             fromViewController.view.frame = fromViewControllerFinalFrame
             toViewController.view.frame = finalFrame
         }, completion: { (finished) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
 }
