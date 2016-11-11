@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CY6-wC-iji">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CY6-wC-iji">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Menu View Controller-->
@@ -15,22 +19,20 @@
                         <viewControllerLayoutGuide type="bottom" id="hkR-AT-acb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="n7V-Qa-1mu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypD-2d-dEc">
-                                <rect key="frame" x="20" y="30" width="560" height="530"/>
-                                <animations/>
+                                <rect key="frame" x="16" y="30" width="343" height="597"/>
                                 <string key="text">Credits
 Hello World</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="trailing" secondItem="n7V-Qa-1mu" secondAttribute="trailingMargin" id="EPK-8Q-3MQ"/>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="leading" secondItem="n7V-Qa-1mu" secondAttribute="leadingMargin" id="RIG-qy-uSb"/>
@@ -56,24 +58,22 @@ Hello World</string>
                         <viewControllerLayoutGuide type="bottom" id="VqZ-4g-yAW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A8m-DT-f63">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dmz-Bh-x2H">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="MhZ-1g-Oe6">
-                                    <rect key="frame" x="0.0" y="227" width="600" height="67"/>
+                                    <rect key="frame" x="0.0" y="227" width="375" height="67"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWX-X1-7vq">
                                             <rect key="frame" x="19" y="20" width="561" height="27"/>
-                                            <animations/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Leschten Update: 22.10.2015">
                                                     <attributes>
-                                                        <color key="NSColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="NSColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <font key="NSFont" size="16" name="Georgia"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
@@ -82,8 +82,7 @@ Hello World</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="aWX-X1-7vq" firstAttribute="leading" secondItem="MhZ-1g-Oe6" secondAttribute="leading" constant="19" id="LnG-gs-GbU"/>
                                         <constraint firstItem="aWX-X1-7vq" firstAttribute="top" secondItem="MhZ-1g-Oe6" secondAttribute="top" constant="20" symbolic="YES" id="W1w-Vs-HM2"/>
@@ -93,10 +92,10 @@ Hello World</string>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="100" id="fg9-jO-P8m" customClass="LBCategoryTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="22" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fg9-jO-P8m" id="Vqo-bM-UJQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
@@ -104,14 +103,12 @@ Hello World</string>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditionell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="54"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
-                                                            <color key="textColor" red="0.80784313725490198" green="0.2627450980392157" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="L0l-RE-MCF" secondAttribute="trailing" id="B8n-P6-Hdh"/>
                                                         <constraint firstItem="L0l-RE-MCF" firstAttribute="leading" secondItem="qp8-V3-I8b" secondAttribute="leading" id="Hl4-xU-qBY"/>
@@ -120,40 +117,36 @@ Hello World</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="qp8-V3-I8b" secondAttribute="bottom" constant="4" id="GnW-xV-ScJ"/>
                                                 <constraint firstItem="qp8-V3-I8b" firstAttribute="top" secondItem="Vqo-bM-UJQ" secondAttribute="topMargin" constant="25" id="JSo-eU-lLz"/>
                                                 <constraint firstItem="qp8-V3-I8b" firstAttribute="leading" secondItem="Vqo-bM-UJQ" secondAttribute="leadingMargin" constant="11" id="eNR-QB-y2o"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="L0l-RE-MCF" id="99i-qr-rnW"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="90" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="105" id="00j-W9-pWp" customClass="LBSongTableViewCell" customModule="Lidderbuch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="122" width="600" height="105"/>
+                                        <rect key="frame" x="0.0" y="122" width="375" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00j-W9-pWp" id="Nqh-W2-vQj">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-Ya-O6Z">
-                                                    <rect key="frame" x="13" y="13" width="549" height="20"/>
-                                                    <animations/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-Ya-O6Z">
+                                                    <rect key="frame" x="19" y="11" width="318" height="18.5"/>
                                                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
-                                                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjK-JV-RJ0">
-                                                    <rect key="frame" x="13" y="36" width="579" height="54"/>
-                                                    <animations/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjK-JV-RJ0">
+                                                    <rect key="frame" x="19" y="32.5" width="348" height="57.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Preview 1 Preview 2">
                                                             <attributes>
-                                                                <color key="NSColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="NSColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <font key="NSFont" size="16" name="Georgia"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -162,7 +155,6 @@ Hello World</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="LjK-JV-RJ0" firstAttribute="leading" secondItem="Nqh-W2-vQj" secondAttribute="leadingMargin" constant="11" id="GdB-uO-Ttu"/>
                                                 <constraint firstItem="gF0-Ya-O6Z" firstAttribute="top" secondItem="Nqh-W2-vQj" secondAttribute="top" constant="11" id="O3R-fi-QWS"/>
@@ -173,7 +165,6 @@ Hello World</string>
                                                 <constraint firstAttribute="bottomMargin" secondItem="LjK-JV-RJ0" secondAttribute="bottom" constant="6" id="eds-PJ-9Om"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="gF0-Ya-O6Z" id="qoP-rc-U1m"/>
@@ -187,11 +178,10 @@ Hello World</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
-                                        <rect key="frame" x="91" y="0.0" width="452" height="60"/>
-                                        <animations/>
+                                        <rect key="frame" x="91" y="0.0" width="227" height="60"/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                         <connections>
@@ -200,13 +190,12 @@ Hello World</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
-                                        <rect key="frame" x="551" y="0.0" width="40" height="60"/>
-                                        <animations/>
+                                        <rect key="frame" x="326" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Elk-pL-dQP"/>
                                         </constraints>
                                         <state key="normal" image="CloseIcon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="handleCancelSearchButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="hul-az-R4j"/>
@@ -214,12 +203,11 @@ Hello World</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
                                         <rect key="frame" x="9" y="0.0" width="40" height="60"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="hlU-dS-pDT"/>
                                         </constraints>
                                         <state key="normal" image="AboutIcon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="handleMenuButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="LDT-TJ-Dob"/>
@@ -227,20 +215,18 @@ Hello World</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
                                         <rect key="frame" x="49" y="0.0" width="40" height="60"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="qLT-1X-lV0"/>
                                         </constraints>
                                         <state key="normal" image="SearchIcon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="handleSearchButton:" destination="pX0-Er-gsZ" eventType="primaryActionTriggered" id="5cv-Xl-5b7"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="yeb-vw-0al" firstAttribute="leading" secondItem="vLa-Hd-fXP" secondAttribute="trailing" id="76e-we-Qht"/>
                                     <constraint firstAttribute="bottom" secondItem="SgQ-br-pXR" secondAttribute="bottom" id="ADO-YE-u0k"/>
@@ -258,8 +244,7 @@ Hello World</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Dmz-Bh-x2H" firstAttribute="leading" secondItem="A8m-DT-f63" secondAttribute="leading" id="7NV-yw-tqX"/>
                             <constraint firstItem="rCO-Qz-oTi" firstAttribute="leading" secondItem="A8m-DT-f63" secondAttribute="leading" id="9yf-PV-gVC"/>
@@ -296,11 +281,9 @@ Hello World</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GET-DW-BxC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Urk-EX-55x">
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </toolbar>
                     <connections>
                         <segue destination="pX0-Er-gsZ" kind="relationship" relationship="rootViewController" id="Q7e-9h-RRI"/>
@@ -319,22 +302,21 @@ Hello World</string>
                         <viewControllerLayoutGuide type="bottom" id="xxH-Kf-x1s"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dQR-of-LTJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-0R-E07" userLabel="Lyrics Header View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
-                                                <rect key="frame" x="20" y="25" width="560" height="30"/>
-                                                <animations/>
+                                                <rect key="frame" x="20" y="25" width="335" height="30"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="This is a very long song title">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.80784313730000001" green="0.26274509800000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="21" name="Georgia"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -343,8 +325,7 @@ Hello World</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtK-q0-8Hg" userLabel="Song Detail">
-                                                <rect key="frame" x="20" y="58" width="560" height="49"/>
-                                                <animations/>
+                                                <rect key="frame" x="20" y="58" width="335" height="48.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Weis: On the Atchison, Topeka and the Santa Fe, Text: Fernand Wark, Jeff Bësch">
                                                         <attributes>
@@ -357,7 +338,6 @@ Hello World</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstItem="OtK-q0-8Hg" firstAttribute="leading" secondItem="aV6-0R-E07" secondAttribute="leading" constant="20" symbolic="YES" id="Iqi-DZ-aav"/>
                                             <constraint firstItem="OtK-q0-8Hg" firstAttribute="top" secondItem="M7g-Kc-apS" secondAttribute="bottom" constant="3" id="Ly2-Ge-bdE"/>
@@ -369,7 +349,6 @@ Hello World</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstItem="aV6-0R-E07" firstAttribute="top" secondItem="aQy-Nw-0mG" secondAttribute="top" id="Ef2-ZM-NRQ"/>
                                     <constraint firstItem="aV6-0R-E07" firstAttribute="leading" secondItem="aQy-Nw-0mG" secondAttribute="leading" id="LLI-uB-Ilo"/>
@@ -379,52 +358,48 @@ Hello World</string>
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="JWF-U9-ZXj" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw" userLabel="Back Button">
                                         <rect key="frame" x="10" y="0.0" width="60" height="60"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="hQv-s7-dCm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         <state key="normal" image="BackIcon">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="handleBackButton:" destination="vQV-v3-ytI" eventType="primaryActionTriggered" id="s5j-e3-Xtu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b" userLabel="Bookmark Button">
-                                        <rect key="frame" x="548" y="0.0" width="40" height="60"/>
-                                        <animations/>
+                                        <rect key="frame" x="323" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="sYb-aR-xjz"/>
                                         </constraints>
                                         <state key="normal" image="BookmarkIcon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="handleBookmarkButton:" destination="vQV-v3-ytI" eventType="primaryActionTriggered" id="hYL-wU-eVv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b" userLabel="Share Button">
-                                        <rect key="frame" x="508" y="0.0" width="40" height="60"/>
-                                        <animations/>
+                                        <rect key="frame" x="283" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="CHo-7P-aOz"/>
                                         </constraints>
                                         <state key="normal" image="ShareIcon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="handleShareButton:" destination="vQV-v3-ytI" eventType="primaryActionTriggered" id="qEd-fN-H4x"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Bgz-Zv-Emw" secondAttribute="bottom" id="51G-g2-shb"/>
                                     <constraint firstItem="Bgz-Zv-Emw" firstAttribute="top" secondItem="JWF-U9-ZXj" secondAttribute="top" id="7Zb-qb-THU"/>
@@ -438,8 +413,7 @@ Hello World</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aQy-Nw-0mG" secondAttribute="trailing" id="21i-FM-1sj"/>
                             <constraint firstItem="aV6-0R-E07" firstAttribute="width" secondItem="dQR-of-LTJ" secondAttribute="width" id="8kW-Do-gaO"/>

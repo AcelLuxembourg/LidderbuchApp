@@ -143,7 +143,7 @@ class LBSongViewController: LBViewController,
     
     @IBAction func handleBackButton(_ sender: UIButton)
     {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     @IBAction func handleBookmarkButton(_ sender: UIButton)

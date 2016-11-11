@@ -38,14 +38,16 @@ class LBSong: NSObject, NSUserActivityDelegate
     var preview: String {
         // grab the two first lines of a song
         // if a paragraph has only one line, the next one will be included too
-        var preview = "", lines = 0, i = -1
-        while (++i < paragraphs.count && lines < 2) {
+        var preview = "", lines = 0, i = 0
+        while (i < paragraphs.count && lines < 2) {
             let paragraphLines = paragraphs[i].content.components(separatedBy: "\n")
-            var j = -1
-            while (++j < paragraphLines.count && lines < 2) {
+            var j = 0
+            while (j < paragraphLines.count && lines < 2) {
                 preview += (lines > 0 ? "\n" : "") + paragraphLines[j]
                 lines += 1
+                j += 1
             }
+            i += 1
         }
         return preview
     }
@@ -149,39 +151,38 @@ class LBSong: NSObject, NSUserActivityDelegate
     
     func json() -> [String: AnyObject]
     {
-        // prepare paragraphs json object
-        var paragraphsJsonObject = [AnyObject]()
+        var json = [String: AnyObject]()
+        
+        json["id"] = id as AnyObject
+        json["name"] = name as AnyObject
+        json["language"] = language as AnyObject
+        json["url"] = url.absoluteString as AnyObject
+        json["category"] = category as AnyObject
+        json["position"] = position as AnyObject
+        json["update_time"] = Int(updateTime!.timeIntervalSince1970) as AnyObject
+        
+        // prepare paragraphs
+        var paragraphsJson = [AnyObject]()
         
         for paragraph in paragraphs {
-            paragraphsJsonObject.append(paragraph.json() as AnyObject)
+            paragraphsJson.append(paragraph.json() as AnyObject)
         }
         
-        // prepare json object
-        let jsonObject: [String: AnyObject?] = [
-            "id": id as ImplicitlyUnwrappedOptional<AnyObject>,
-            "name": name as Optional<AnyObject>,
-            "language": language as Optional<AnyObject>,
-            "url": url.absoluteString as Optional<AnyObject>,
-            "category": category as Optional<AnyObject>,
-            "position": position as Optional<AnyObject>,
-            "update_time": Int(updateTime!.timeIntervalSince1970) as Optional<AnyObject>,
-            
-            "paragraphs": paragraphsJsonObject,
-            
-            // meta
-            "bookmarked": bookmarked,
-            "views": views,
-            "viewTime": (viewTime != nil ? Int(viewTime!.timeIntervalSince1970) : NSNull()),
-            
-            // optional details
-            "number": (number != nil ? number! : NSNull()),
-            "way": (way != nil ? way! : NSNull()),
-            "year": (year != nil ? year! : NSNull()),
-            "lyrics_author": (lyricsAuthor != nil ? lyricsAuthor! : NSNull()),
-            "melody_author": (melodyAuthor != nil ? melodyAuthor! : NSNull()),
-        ]
+        json["paragraphs"] = paragraphsJson as AnyObject
         
-        return jsonObject as [String : AnyObject]
+        // meta
+        json["bookmarked"] = bookmarked as AnyObject
+        json["views"] = views as AnyObject
+        json["viewTime"] = (viewTime != nil ? Int(viewTime!.timeIntervalSince1970) as AnyObject : NSNull())
+        
+        // optional details
+        json["number"] = (number != nil ? number! as AnyObject : NSNull())
+        json["way"] = (way != nil ? way! as AnyObject : NSNull())
+        json["year"] = (year != nil ? year! as AnyObject : NSNull())
+        json["lyrics_author"] = (lyricsAuthor != nil ? lyricsAuthor! as AnyObject : NSNull())
+        json["melody_author"] = (melodyAuthor != nil ? melodyAuthor! as AnyObject : NSNull())
+        
+        return json
     }
     
     override func isEqual(_ object: Any?) -> Bool

@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
                 if let id = numberFormatter.number(from: urlComponents[3])?.intValue {
-                    songbookViewController.showSongWithId(id)
+                    _ = songbookViewController.showSongWithId(id)
                     return true
                 }
             }
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                 userInfo = userActivity.userInfo,
                 let id = userInfo["id"] as? Int
             {
-                songbookViewController.showSongWithId(id)
+                _ = songbookViewController.showSongWithId(id)
                 return true
             }
             

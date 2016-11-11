@@ -128,7 +128,7 @@ class LBViewController: UIViewController,
             
             // pop view controller and create percent driven interactive transition
             interactivePopTransition = UIPercentDrivenInteractiveTransition()
-            navigationController?.popViewController(animated: true)
+            _ = navigationController?.popViewController(animated: true)
             
         case .changed:
             

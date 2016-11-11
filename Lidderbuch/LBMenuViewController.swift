@@ -68,7 +68,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         let creditsText = NSLocalizedString("credits text", comment: "")
         let creditsLinks = [
             "Lidderbuch": "itms://itunes.apple.com/app/lidderbuch/id997143407?mt=8",
-            "ACEL": "http://acel.lu/",
+            "ACEL": "https://acel.lu/",
             "Fränz Friederes": "http://2f.lt/1GioavM",
             "GitHub": "https://github.com/AcelLuxembourg/LidderbuchApp",
             NSLocalizedString("credits text contact us", comment: "Contact us part which gets transformed to a link."): "http://acel.lu/about/contact"
@@ -93,7 +93,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         {
             if let range = creditsText.range(of: name, options: NSString.CompareOptions.diacriticInsensitive, range: nil, locale: nil)
             {
-                let textRange = NSMakeRange(creditsText.characters.distance(from: creditsText.startIndex, to: range.lowerBound), <#T##String.CharacterView corresponding to your index##String.CharacterView#>.distance(from: range.lowerBound, to: range.upperBound))
+                let textRange = NSMakeRange(creditsText.characters.distance(from: creditsText.startIndex, to: range.lowerBound), creditsText.characters.distance(from: range.lowerBound, to: range.upperBound))
                 attributedText.addAttribute(NSLinkAttributeName, value: URL(string: href)!, range: textRange)
             }
         }

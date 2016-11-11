@@ -42,12 +42,11 @@ class LBParagraph
     
     func json() -> [String: AnyObject]
     {
-        // prepare json object
-        return [
-            "id": id as AnyObject,
-            "type": type as AnyObject,
-            "content": content as AnyObject
-        ]
+        var json = [String: AnyObject]()
+        json["id"] = id as AnyObject
+        json["type"] = type as AnyObject
+        json["content"] = content as AnyObject
+        return json
     }
     
     func search(_ keywords: String) -> Int

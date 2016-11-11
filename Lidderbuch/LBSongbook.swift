@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LBSongbook
+class LBSongbook: NSObject
 {
     fileprivate var hasChangesToSave = false
     
@@ -23,9 +23,9 @@ class LBSongbook
     {
         // determin songbook version by latest song update time
         var updateTime: Date?
-        for i in 0 ..< songs.count += 1 {
-            if updateTime == nil || songs[i].updateTime > updateTime! {
-                updateTime = songs[i].updateTime as Date?
+        for song in songs {
+            if updateTime == nil || song.updateTime > updateTime! {
+                updateTime = song.updateTime as Date?
             }
         }
         
@@ -38,8 +38,10 @@ class LBSongbook
         return documentDirectoryURL.appendingPathComponent("songs.json")
     }
     
-    init()
+    override init()
     {
+        super.init()
+        
         // load songs
         songs = load()
         reloadMeta()
@@ -54,7 +56,7 @@ class LBSongbook
         }
     }
     
-    @IBAction func applicationDidEnterBackground(_ notification: Notification)
+    func applicationDidEnterBackground(_ notification: Notification)
     {
         // save songs when entering background
         if hasChangesToSave {
@@ -151,7 +153,7 @@ class LBSongbook
     func integrateSongs(_ songs: [LBSong], replaceMeta: Bool)
     {
         // integrate each song and ask last one to propagate changes
-        for (i in 0 ..< songs.count) {
+        for i in 0 ..< songs.count {
             integrateSong(songs[i], replaceMeta: false, propagate: (i != songs.count - 1))
         }
     }

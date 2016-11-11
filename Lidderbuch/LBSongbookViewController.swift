@@ -288,7 +288,7 @@ class LBSongbookViewController: LBViewController,
             if indexPath != nil
             {
                 // pop to this view controller
-                navigationController?.popToViewController(self, animated: false)
+                _ = navigationController?.popToViewController(self, animated: false)
                 
                 // select song row
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)

@@ -317,10 +317,9 @@ class LBLyricsView: UIScrollView
             return 0
         }
         
-        var line = 0
-        while ++line < lineOrigins.count - 1 && lineOrigins[line].y <= topOffset + contentInset.top + bounds.size.height * 0.15 {
-            // nothing to do here
-            // just sitting around and waiting for the next turn
+        var line = 1
+        while line < lineOrigins.count - 1 && lineOrigins[line].y <= topOffset + contentInset.top + bounds.size.height * 0.15 {
+            line += 1
         }
         
         let middleBetweenLinesTopOffset = (lineOrigins[line].y - lineOrigins[line - 1].y) * 0.5 + lineOrigins[line - 1].y
