@@ -50,8 +50,7 @@ class LBSongbook: NSObject
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         
         // schedule songs update at low QOS in 2 seconds
-        let utilityQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.utility)
-        utilityQueue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).asyncAfter(deadline: .now() + 2.0) {
             self.update()
         }
     }
@@ -154,7 +153,7 @@ class LBSongbook: NSObject
     {
         // integrate each song and ask last one to propagate changes
         for i in 0 ..< songs.count {
-            integrateSong(songs[i], replaceMeta: false, propagate: (i != songs.count - 1))
+            integrateSong(songs[i], replaceMeta: false, propagate: (i == songs.count - 1))
         }
     }
     
@@ -174,8 +173,7 @@ class LBSongbook: NSObject
                 }
                 
                 // replace song
-                songs.remove(at: index)
-                songs.insert(song, at: index)
+                songs[index] = song
             }
         }
         else
