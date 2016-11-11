@@ -69,9 +69,9 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         let creditsLinks = [
             "Lidderbuch": "itms://itunes.apple.com/app/lidderbuch/id997143407?mt=8",
             "ACEL": "https://acel.lu/",
-            "Fränz Friederes": "http://2f.lt/1GioavM",
+            "Fränz Friederes": "https://fraenz.frieder.es/",
             "GitHub": "https://github.com/AcelLuxembourg/LidderbuchApp",
-            NSLocalizedString("credits text contact us", comment: "Contact us part which gets transformed to a link."): "http://acel.lu/about/contact"
+            NSLocalizedString("credits text contact us", comment: "Contact us part which gets transformed to a link."): "https://acel.lu/contact"
         ]
         
         let attributedText = NSMutableAttributedString(string: creditsText)
