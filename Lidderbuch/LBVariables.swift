@@ -13,6 +13,9 @@ struct LBVariables
     // endpoint url of songbook api
     static let songbookApiEndpoint = "https://acel.lu/api/v1/songs"
     
+    // endpoint utl of backer api
+    static let backerApiEndpoint = "https://acel.lu/api/v1/backers/lidderbuch_app"
+    
     // global tint color
     static let tintColor = UIColor(
         hue: (11.0 / 360.0),

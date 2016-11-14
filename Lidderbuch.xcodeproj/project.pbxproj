@@ -12,6 +12,9 @@
 		A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */; };
 		A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */; };
 		A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */ = {isa = PBXBuildFile; fileRef = A521D1091B1DBB0E002ADE4E /* songs.json */; };
+		A53E3F041DD7298700D8C269 /* LBIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3F031DD7298700D8C269 /* LBIntroViewController.swift */; };
+		A53E3F061DD7343B00D8C269 /* LBBacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3F051DD7343B00D8C269 /* LBBacker.swift */; };
+		A53E3F081DD748E000D8C269 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3F071DD748E000D8C269 /* Array.swift */; };
 		A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */; };
 		A56962EC1BB94D1D009167E5 /* LBVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56962EB1BB94D1D009167E5 /* LBVariables.swift */; };
 		A57F2AAC1B237B33006EE0A8 /* LBModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F2AAB1B237B33006EE0A8 /* LBModalTransitionAnimator.swift */; };
@@ -48,6 +51,9 @@
 		A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongTableViewCell.swift; sourceTree = "<group>"; };
 		A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBLyricsView.swift; sourceTree = "<group>"; };
 		A521D1091B1DBB0E002ADE4E /* songs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs.json; sourceTree = "<group>"; };
+		A53E3F031DD7298700D8C269 /* LBIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBIntroViewController.swift; sourceTree = "<group>"; };
+		A53E3F051DD7343B00D8C269 /* LBBacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBBacker.swift; sourceTree = "<group>"; };
+		A53E3F071DD748E000D8C269 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		A5509C371B20EEF600F16A7E /* LBCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		A56962EB1BB94D1D009167E5 /* LBVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBVariables.swift; sourceTree = "<group>"; };
 		A56962F11BB9AB43009167E5 /* Lidderbuch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lidderbuch.entitlements; sourceTree = "<group>"; };
@@ -97,7 +103,9 @@
 				A51E1C8E1B033860004B64AA /* LBSongbook.swift */,
 				A5DEC24D1AF7F7F8009F41D9 /* LBSong.swift */,
 				A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */,
+				A53E3F051DD7343B00D8C269 /* LBBacker.swift */,
 				A5EE729A1B08CDF2007F8EA9 /* String.swift */,
+				A53E3F071DD748E000D8C269 /* Array.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -105,6 +113,7 @@
 		A51E1C951B035EC4004B64AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A53E3F031DD7298700D8C269 /* LBIntroViewController.swift */,
 				A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */,
 				A5BA0E9E1B064C390049967B /* LBSongViewController.swift */,
 				A5EE72921B065094007F8EA9 /* LBViewController.swift */,
@@ -310,11 +319,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D944F01B24EF6B008CAF2F /* LBReplaceSegue.swift in Sources */,
+				A53E3F081DD748E000D8C269 /* Array.swift in Sources */,
 				A51E1C941B035E9B004B64AA /* LBSongbookViewController.swift in Sources */,
 				A5BA0E9F1B064C390049967B /* LBSongViewController.swift in Sources */,
 				A5DEC2501AFD0BEB009F41D9 /* LBParagraph.swift in Sources */,
 				A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */,
 				A5BA0E9B1B04EF440049967B /* LBHeaderBar.swift in Sources */,
+				A53E3F061DD7343B00D8C269 /* LBBacker.swift in Sources */,
 				A5509C381B20EEF600F16A7E /* LBCategoryTableViewCell.swift in Sources */,
 				A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */,
 				A57F2AAE1B2386A2006EE0A8 /* LBMenuViewController.swift in Sources */,
@@ -322,6 +333,7 @@
 				A56962EC1BB94D1D009167E5 /* LBVariables.swift in Sources */,
 				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,
 				A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */,
+				A53E3F041DD7298700D8C269 /* LBIntroViewController.swift in Sources */,
 				A57F2AAC1B237B33006EE0A8 /* LBModalTransitionAnimator.swift in Sources */,
 				A5BA0E9D1B056BAB0049967B /* LBPushTransitionAnimator.swift in Sources */,
 				A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */,

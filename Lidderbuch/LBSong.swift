@@ -94,17 +94,16 @@ class LBSong: NSObject, NSUserActivityDelegate
         if let songJson = json as? [String: AnyObject]
         {
             // retrieve required attributes
-            if let
-                id = songJson["id"] as? Int,
-                let name = songJson["name"] as? String,
-                let language = songJson["language"] as? String,
-                let category = songJson["category"] as? String,
-                let position = songJson["position"] as? Int,
-                let updateTimestamp = songJson["update_time"] as? Int,
-                let paragraphsJson = songJson["paragraphs"] as? [AnyObject],
+            if let id = songJson["id"] as? Int,
+               let name = songJson["name"] as? String,
+               let language = songJson["language"] as? String,
+               let category = songJson["category"] as? String,
+               let position = songJson["position"] as? Int,
+               let updateTimestamp = songJson["update_time"] as? Int,
+               let paragraphsJson = songJson["paragraphs"] as? [AnyObject],
             
-                let urlString = songJson["url"] as? String,
-                let url = URL(string: urlString)
+               let urlString = songJson["url"] as? String,
+               let url = URL(string: urlString)
             {
                 // basic attributes
                 self.id = id

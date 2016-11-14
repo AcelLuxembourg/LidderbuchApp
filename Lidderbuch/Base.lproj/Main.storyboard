@@ -49,6 +49,42 @@ Hello World</string>
             </objects>
             <point key="canvasLocation" x="1014" y="982"/>
         </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="3QK-7K-8UJ">
+            <objects>
+                <viewController id="dca-z4-cIw" customClass="LBIntroViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9G7-yG-fvX"/>
+                        <viewControllerLayoutGuide type="bottom" id="5fB-TZ-pxb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OEO-oB-eZf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fAn-sc-hoo">
+                                <rect key="frame" x="62" y="183.5" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="b0Q-8t-TFn"/>
+                                    <constraint firstAttribute="width" constant="250" id="hVy-74-bEN"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fAn-sc-hoo" firstAttribute="centerX" secondItem="OEO-oB-eZf" secondAttribute="centerX" id="Cwa-g3-1Sh"/>
+                            <constraint firstItem="fAn-sc-hoo" firstAttribute="centerY" secondItem="OEO-oB-eZf" secondAttribute="centerY" constant="-25" id="Km8-GZ-3IE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ue5-3R-ZEY"/>
+                    <connections>
+                        <outlet property="logoView" destination="fAn-sc-hoo" id="80Q-yK-OxF"/>
+                        <segue destination="pX0-Er-gsZ" kind="custom" identifier="ShowMain" customClass="LBReplaceSegue" customModule="Lidderbuch" customModuleProvider="target" id="YpH-GB-INa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WaN-ud-8hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="272.80000000000001" y="231.63418290854574"/>
+        </scene>
         <!--Lidderbuch-->
         <scene sceneID="Bfr-K5-waV">
             <objects>
@@ -69,7 +105,7 @@ Hello World</string>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWX-X1-7vq">
-                                            <rect key="frame" x="19" y="20" width="561" height="27"/>
+                                            <rect key="frame" x="19" y="20" width="336" height="27"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Leschten Update: 22.10.2015">
                                                     <attributes>
@@ -283,15 +319,16 @@ Hello World</string>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Urk-EX-55x">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="pX0-Er-gsZ" kind="relationship" relationship="rootViewController" id="Q7e-9h-RRI"/>
+                        <segue destination="dca-z4-cIw" kind="relationship" relationship="rootViewController" id="PL6-0n-sXR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgf-Zv-Cb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="232"/>
+            <point key="canvasLocation" x="-470" y="232"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="ZV0-oI-cPk">
