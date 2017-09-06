@@ -125,7 +125,7 @@ class LBSongbook: NSObject
         
         // include songbook version in request
         if let updateTime = updateTime {
-            webServiceUrl = URL(string: "\(LBVariables.songbookApiEndpoint)?clientid=\(LBVariables.clientId)&since=\(Int(updateTime.timeIntervalSince1970))")!
+            webServiceUrl = URL(string: "\(LBVariables.songbookApiEndpoint)?since=\(Int(updateTime.timeIntervalSince1970))")!
         }
         
         // retrieve song updates from web service

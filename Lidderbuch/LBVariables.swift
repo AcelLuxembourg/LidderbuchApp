@@ -11,8 +11,7 @@ import UIKit
 struct LBVariables
 {
     // endpoint url of songbook api
-    static let songbookApiEndpoint = "https://acel.lu/api/v1/songs"
-    static let clientId = "1.5"
+    static let songbookApiEndpoint = "https://acel.lu/api/v2/songs"
     
     // endpoint url of backer api
     static let backerApiEndpoint = "https://acel.lu/api/v1/backers/lidderbuch_app"
