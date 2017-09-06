@@ -11,9 +11,9 @@ import UIKit
 struct LBVariables
 {
     // endpoint url of songbook api
-    static let songbookApiEndpoint = "https://acel.lu/api/v1/songs"
+    static let songbookApiEndpoint = "https://acel.lu/api/v2/songs"
     
-    // endpoint utl of backer api
+    // endpoint url of backer api
     static let backerApiEndpoint = "https://acel.lu/api/v1/backers/lidderbuch_app"
     
     // global tint color

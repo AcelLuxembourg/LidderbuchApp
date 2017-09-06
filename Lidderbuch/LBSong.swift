@@ -25,7 +25,7 @@ class LBSong: NSObject, NSUserActivityDelegate
     var views: Int = 0
     var viewTime: Date?
     
-    var number: Int?
+    var number: String?
     var way: String?
     var year: Int?
     var lyricsAuthor: String?
@@ -123,7 +123,14 @@ class LBSong: NSObject, NSUserActivityDelegate
                 }
                 
                 // optional attributes
-                self.number = songJson["number"] as? Int
+                if let num = songJson["number"] as? String {
+                    self.number = num
+                }
+                
+                if let num = songJson["number"] as? Int {
+                    self.number = "\(num)"
+                }
+                
                 self.way = songJson["way"] as? String
                 self.year = songJson["year"] as? Int
                 self.lyricsAuthor = songJson["lyrics_author"] as? String
