@@ -33,12 +33,12 @@ class LBSongViewController: LBViewController,
         lineHeightMultipleStyle.lineHeightMultiple = 1.25
         
         let nameAttributedString = NSMutableAttributedString(string: song.name)
-        nameAttributedString.addAttribute(NSParagraphStyleAttributeName, value: lineHeightMultipleStyle, range: NSMakeRange(0, nameAttributedString.length))
+        nameAttributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: lineHeightMultipleStyle, range: NSMakeRange(0, nameAttributedString.length))
         
         nameLabel.attributedText = nameAttributedString
         
         let detailAttributedString = NSMutableAttributedString(string: song.detail)
-        detailAttributedString.addAttribute(NSParagraphStyleAttributeName, value: lineHeightMultipleStyle, range: NSMakeRange(0, detailAttributedString.length))
+        detailAttributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: lineHeightMultipleStyle, range: NSMakeRange(0, detailAttributedString.length))
         
         detailLabel.attributedText = detailAttributedString
         
@@ -117,7 +117,7 @@ class LBSongViewController: LBViewController,
         }
     }
     
-    func viewTimerDidFire(_ timer: Timer)
+    @objc func viewTimerDidFire(_ timer: Timer)
     {
         // track view
         song.views += 1
@@ -129,12 +129,12 @@ class LBSongViewController: LBViewController,
         stopTrackingView()
     }
     
-    func applicationDidBecomeActiveNotification(_ notification: Notification)
+    @objc func applicationDidBecomeActiveNotification(_ notification: Notification)
     {
         startTrackingView()
     }
     
-    func applicationWillResignActiveNotification(_ notification: Notification)
+    @objc func applicationWillResignActiveNotification(_ notification: Notification)
     {
         stopTrackingView()
     }

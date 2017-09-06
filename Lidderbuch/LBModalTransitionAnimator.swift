@@ -53,7 +53,7 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             
             // calculate fitting height with horizontal priority UILayoutPriorityDefaultHigh
             //  and vertical priority UILayoutPriorityFittingSizeLevel
-            let modalHeight = toViewController.view.systemLayoutSizeFitting(finalFrame.size, withHorizontalFittingPriority: 750, verticalFittingPriority: 50).height
+            let modalHeight = toViewController.view.systemLayoutSizeFitting(finalFrame.size, withHorizontalFittingPriority: UILayoutPriority(rawValue: 750), verticalFittingPriority: UILayoutPriority(rawValue: 50)).height
             
             // position modal view and arrow
             toViewController.view.frame = CGRect(x: 0.0, y: -modalHeight, width: containerView.bounds.size.width, height: modalHeight)

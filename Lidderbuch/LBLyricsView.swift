@@ -251,7 +251,7 @@ class LBLyricsView: UIScrollView
     {
         // compose attributed string with given font
         let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(NSFontAttributeName, value: font,
+        attributedString.addAttribute(NSAttributedStringKey.font, value: font,
             range: NSMakeRange(0, attributedString.length))
         
         // compose layout manager

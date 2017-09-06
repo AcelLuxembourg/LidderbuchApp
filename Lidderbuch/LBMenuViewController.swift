@@ -19,7 +19,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         super.viewDidLoad()
         
         creditsTextView.linkTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white]
+            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
         
         // make links clickable
         creditsTextView.isEditable = false
@@ -70,6 +70,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
             "Lidderbuch": "itms://itunes.apple.com/app/lidderbuch/id997143407?mt=8",
             "ACEL": "https://acel.lu/",
             "Fränz Friederes": "https://fraenz.frieder.es/",
+            "Mirko Mack": "https://mirkomack.lu/",
             "GitHub": "https://github.com/AcelLuxembourg/LidderbuchApp",
             NSLocalizedString("credits text contact us", comment: "Contact us part which gets transformed to a link."): "https://acel.lu/contact"
         ]
@@ -80,13 +81,13 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         // paragraph style attribute
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.4
-        attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: fullTextRange)
+        attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: fullTextRange)
         
         // set font
-        attributedText.addAttribute(NSFontAttributeName, value: font, range: fullTextRange)
+        attributedText.addAttribute(NSAttributedStringKey.font, value: font, range: fullTextRange)
         
         // set foreground color
-        attributedText.addAttribute(NSForegroundColorAttributeName, value: color, range: fullTextRange)
+        attributedText.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: fullTextRange)
         
         // set link attribute for each link
         for (name, href) in creditsLinks
@@ -94,7 +95,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
             if let range = creditsText.range(of: name, options: NSString.CompareOptions.diacriticInsensitive, range: nil, locale: nil)
             {
                 let textRange = NSMakeRange(creditsText.characters.distance(from: creditsText.startIndex, to: range.lowerBound), creditsText.characters.distance(from: range.lowerBound, to: range.upperBound))
-                attributedText.addAttribute(NSLinkAttributeName, value: URL(string: href)!, range: textRange)
+                attributedText.addAttribute(NSAttributedStringKey.link, value: URL(string: href)!, range: textRange)
             }
         }
         

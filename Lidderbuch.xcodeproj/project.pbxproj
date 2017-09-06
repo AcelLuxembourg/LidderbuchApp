@@ -11,7 +11,7 @@
 		A51E1C941B035E9B004B64AA /* LBSongbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */; };
 		A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */; };
 		A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */; };
-		A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */ = {isa = PBXBuildFile; fileRef = A521D1091B1DBB0E002ADE4E /* songs.json */; };
+		A521D10A1B1DBB0E002ADE4E /* songs_2015.json in Resources */ = {isa = PBXBuildFile; fileRef = A521D1091B1DBB0E002ADE4E /* songs_2015.json */; };
 		A53E3F041DD7298700D8C269 /* LBIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3F031DD7298700D8C269 /* LBIntroViewController.swift */; };
 		A53E3F061DD7343B00D8C269 /* LBBacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3F051DD7343B00D8C269 /* LBBacker.swift */; };
 		A53E3F081DD748E000D8C269 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3F071DD748E000D8C269 /* Array.swift */; };
@@ -33,6 +33,7 @@
 		A5DEC2501AFD0BEB009F41D9 /* LBParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */; };
 		A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE72921B065094007F8EA9 /* LBViewController.swift */; };
 		A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE729A1B08CDF2007F8EA9 /* String.swift */; };
+		AE0390BA1F5EF7E8002D560E /* songs_2017.json in Resources */ = {isa = PBXBuildFile; fileRef = AE0390B91F5EF7E8002D560E /* songs_2017.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,7 @@
 		A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbookViewController.swift; sourceTree = "<group>"; };
 		A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongTableViewCell.swift; sourceTree = "<group>"; };
 		A51E1C9B1B03F1A6004B64AA /* LBLyricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBLyricsView.swift; sourceTree = "<group>"; };
-		A521D1091B1DBB0E002ADE4E /* songs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs.json; sourceTree = "<group>"; };
+		A521D1091B1DBB0E002ADE4E /* songs_2015.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs_2015.json; sourceTree = "<group>"; };
 		A53E3F031DD7298700D8C269 /* LBIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBIntroViewController.swift; sourceTree = "<group>"; };
 		A53E3F051DD7343B00D8C269 /* LBBacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBBacker.swift; sourceTree = "<group>"; };
 		A53E3F071DD748E000D8C269 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		A5DEC24F1AFD0BEB009F41D9 /* LBParagraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBParagraph.swift; sourceTree = "<group>"; };
 		A5EE72921B065094007F8EA9 /* LBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBViewController.swift; sourceTree = "<group>"; };
 		A5EE729A1B08CDF2007F8EA9 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		AE0390B91F5EF7E8002D560E /* songs_2017.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = songs_2017.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +141,8 @@
 		A521D10B1B1DBB13002ADE4E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				A521D1091B1DBB0E002ADE4E /* songs.json */,
+				A521D1091B1DBB0E002ADE4E /* songs_2015.json */,
+				AE0390B91F5EF7E8002D560E /* songs_2017.json */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -258,7 +261,7 @@
 					A5DEC2271AF7F577009F41D9 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = PP4747DU3M;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -267,7 +270,7 @@
 					};
 					A5DEC23C1AF7F577009F41D9 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						TestTargetID = A5DEC2271AF7F577009F41D9;
 					};
 				};
@@ -297,7 +300,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D944EC1B246437008CAF2F /* Localizable.strings in Resources */,
-				A521D10A1B1DBB0E002ADE4E /* songs.json in Resources */,
+				A521D10A1B1DBB0E002ADE4E /* songs_2015.json in Resources */,
+				AE0390BA1F5EF7E8002D560E /* songs_2017.json in Resources */,
 				A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */,
 				A5DEC2381AF7F577009F41D9 /* LaunchScreen.xib in Resources */,
 				A5DEC2351AF7F577009F41D9 /* Images.xcassets in Resources */,
@@ -418,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -458,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -475,12 +479,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PP4747DU3M;
 				INFOPLIST_FILE = Lidderbuch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -493,12 +498,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PP4747DU3M;
 				INFOPLIST_FILE = Lidderbuch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -518,7 +524,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lidderbuch.app/Lidderbuch";
 			};
 			name = Debug;
@@ -535,7 +542,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lidderbuch.app/Lidderbuch";
 			};
 			name = Release;

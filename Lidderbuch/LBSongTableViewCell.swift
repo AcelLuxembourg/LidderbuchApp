@@ -22,7 +22,7 @@ class LBSongTableViewCell: UITableViewCell
                 
                 if let number = song.number {
                     let numberAttributedString = NSMutableAttributedString(string: "\(number) ")
-                    numberAttributedString.addAttribute(NSForegroundColorAttributeName, value: LBVariables.tintColor, range: NSMakeRange(0, numberAttributedString.length))
+                    numberAttributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: LBVariables.tintColor, range: NSMakeRange(0, numberAttributedString.length))
                     nameAttributedString.append(numberAttributedString)
                 }
                 
@@ -35,7 +35,7 @@ class LBSongTableViewCell: UITableViewCell
                 paragraphStyle.lineSpacing = 4
                 
                 let previewAttributedString = NSMutableAttributedString(string: song.preview)
-                previewAttributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, previewAttributedString.length))
+                previewAttributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, previewAttributedString.length))
                 
                 previewLabel.attributedText = previewAttributedString
             }
