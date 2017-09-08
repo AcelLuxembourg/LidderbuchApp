@@ -19,6 +19,9 @@ class LBSongbook: NSObject
     
     var delegate: LBSongbookDelegate?
     
+    fileprivate var songsUrl2017 = "songs_2017";
+    fileprivate var songsUrl = "songs_2015";
+    
     var updateTime: Date?
     {
         // determin songbook version by latest song update time
@@ -32,10 +35,32 @@ class LBSongbook: NSObject
         return updateTime
     }
     
+    fileprivate var isAfterPressConference: Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let pc = formatter.date(from: "2017-09-15 09:45:00")
+
+        let today = Date();
+
+        return today > pc!
+    }
+    
+    fileprivate var correctAssets: String {
+        var url = songsUrl;
+        if(isAfterPressConference) {
+            url = songsUrl2017;
+        }
+        
+        return url;
+    }
+    
     fileprivate var localSongsFileURL: URL {
         let fileManager = FileManager.default
-        let documentDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first! 
-        return documentDirectoryURL.appendingPathComponent("songs.json")
+        let documentDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let url = correctAssets + ".json";
+        
+        return documentDirectoryURL.appendingPathComponent(url)
     }
     
     override init()
@@ -76,7 +101,7 @@ class LBSongbook: NSObject
         {
             // try loading songs delivered with bundle
             if let
-                bundleSongsFilePath = Bundle.main.path(forResource: "songs", ofType: "json") ,
+                bundleSongsFilePath = Bundle.main.path(forResource: correctAssets, ofType: "json") ,
                 let data = try? Data(contentsOf: URL(fileURLWithPath: bundleSongsFilePath))
             {
                 songs = songsWithData(data)
@@ -230,13 +255,9 @@ class LBSongbook: NSObject
     func search(_ keywords: String, callback: @escaping (([LBSong], String) -> Void))
     {
         // handle song number
-        if let number = Int(keywords) {
-            if let song = songWithNumber(number) {
-                callback([song], keywords)
-            } else {
-                callback([LBSong](), keywords)
-            }
-            
+        
+        if let song = songWithNumber(keywords) {
+            callback([song], keywords)
             return
         }
         
@@ -276,10 +297,10 @@ class LBSongbook: NSObject
         return (index != nil ? songs[index!] : nil)
     }
     
-    func songWithNumber(_ number: Int) -> LBSong?
+    func songWithNumber(_ number: String) -> LBSong?
     {
         let index = songs.index(where: { (song: LBSong) -> Bool in
-            return song.number == number
+            return song.number?.lowercased() == number.lowercased()
         })
         
         return (index != nil ? songs[index!] : nil)

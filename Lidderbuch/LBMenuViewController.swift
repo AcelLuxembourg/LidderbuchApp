@@ -70,6 +70,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
             "Lidderbuch": "itms://itunes.apple.com/app/lidderbuch/id997143407?mt=8",
             "ACEL": "https://acel.lu/",
             "Fränz Friederes": "https://fraenz.frieder.es/",
+            "Mirko Mack": "https://mirkomack.lu/",
             "GitHub": "https://github.com/AcelLuxembourg/LidderbuchApp",
             NSLocalizedString("credits text contact us", comment: "Contact us part which gets transformed to a link."): "https://acel.lu/contact"
         ]
