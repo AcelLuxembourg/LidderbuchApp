@@ -19,8 +19,7 @@ class LBSongbook: NSObject
     
     var delegate: LBSongbookDelegate?
     
-    fileprivate var songsUrl2017 = "songs_2017";
-    fileprivate var songsUrl = "songs_2015";
+    fileprivate var songsUrl = "songs_2017";
     
     var updateTime: Date?
     {
@@ -35,30 +34,11 @@ class LBSongbook: NSObject
         return updateTime
     }
     
-    fileprivate var isAfterPressConference: Bool {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let pc = formatter.date(from: "2017-09-15 09:45:00")
-        
-        let today = Date();
-        
-        return pc! < today
-    }
-    
-    fileprivate var correctAssets: String {
-        var url = songsUrl;
-        if(isAfterPressConference) {
-            url = songsUrl2017;
-        }
-        
-        return url;
-    }
-    
     fileprivate var localSongsFileURL: URL {
         let fileManager = FileManager.default
         let documentDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         
-        let url = correctAssets + ".json";
+        let url = songsUrl + ".json";
         
         return documentDirectoryURL.appendingPathComponent(url)
     }
@@ -101,7 +81,7 @@ class LBSongbook: NSObject
         {
             // try loading songs delivered with bundle
             if let
-                bundleSongsFilePath = Bundle.main.path(forResource: correctAssets, ofType: "json") ,
+                bundleSongsFilePath = Bundle.main.path(forResource: songsUrl, ofType: "json") ,
                 let data = try? Data(contentsOf: URL(fileURLWithPath: bundleSongsFilePath))
             {
                 songs = songsWithData(data)
@@ -261,7 +241,7 @@ class LBSongbook: NSObject
         }
         
         // return no results when query too short
-        if keywords.characters.count < 2 {
+        if keywords.count < 2 {
             callback([LBSong](), keywords)
             return
         }
