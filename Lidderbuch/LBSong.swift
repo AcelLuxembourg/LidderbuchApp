@@ -32,7 +32,7 @@ class LBSong: NSObject, NSUserActivityDelegate
     var melodyAuthor: String?
     
     override var description: String {
-        return "\(id): \(name)"
+        return "\(id!): \(name!)"
     }
     
     var preview: String {

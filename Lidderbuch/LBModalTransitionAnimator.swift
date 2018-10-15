@@ -39,7 +39,7 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             arrowView = containerView.subviews.last!
         } else {
             arrowView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: arrowSize, height: arrowSize))
-            arrowView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI * 0.25))
+            arrowView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 0.25))
             arrowView.backgroundColor = toViewController.view.backgroundColor
         }
         
