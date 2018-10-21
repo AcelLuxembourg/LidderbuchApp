@@ -273,6 +273,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = PP4747DU3M;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -489,6 +490,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lidderbuch/Lidderbuch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PP4747DU3M;
 				INFOPLIST_FILE = Lidderbuch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -496,6 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -507,6 +510,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lidderbuch/Lidderbuch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PP4747DU3M;
 				INFOPLIST_FILE = Lidderbuch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -514,6 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
