@@ -12,7 +12,8 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
 {
     var offset : CGFloat { //offset in Header Bar for iphone x and newer for scrolling down
         let modelName = UIDevice.modelName
-        let devices = ["iPhone X", "iPhone XS", "Simulator iPhone XS Max", "Simulator iPhone X", "Simulator iPhone XS", "Simulator iPhone XS Max" ]
+        print(modelName)
+        let devices = ["iPhone X", "iPhone XS", "iPhone XS Max", "Simulator iPhone X", "Simulator iPhone XS", "Simulator iPhone XS Max" ]
         if devices.contains(modelName) {
             return 25
         }
