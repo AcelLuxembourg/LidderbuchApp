@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		059254EC217CA6B8004A10C4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059254EB217CA6B8004A10C4 /* Device.swift */; };
 		A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C8E1B033860004B64AA /* LBSongbook.swift */; };
 		A51E1C941B035E9B004B64AA /* LBSongbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */; };
 		A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		059254EB217CA6B8004A10C4 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A51E1C8E1B033860004B64AA /* LBSongbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbook.swift; sourceTree = "<group>"; };
 		A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbookViewController.swift; sourceTree = "<group>"; };
 		A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongTableViewCell.swift; sourceTree = "<group>"; };
@@ -99,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		059254ED217CA6BC004A10C4 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				059254EB217CA6B8004A10C4 /* Device.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		A51E1C901B035486004B64AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +183,7 @@
 				A51E1C951B035EC4004B64AA /* Controller */,
 				A51E1C961B036E81004B64AA /* View */,
 				A51E1C901B035486004B64AA /* Model */,
+				059254ED217CA6BC004A10C4 /* Helper */,
 				A521D10B1B1DBB13002ADE4E /* Data */,
 				A5D944EB1B246437008CAF2F /* Localizable.strings */,
 				A5DEC2311AF7F577009F41D9 /* Main.storyboard */,
@@ -262,6 +273,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = PP4747DU3M;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -334,6 +346,7 @@
 				A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */,
 				A57F2AAE1B2386A2006EE0A8 /* LBMenuViewController.swift in Sources */,
 				A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */,
+				059254EC217CA6B8004A10C4 /* Device.swift in Sources */,
 				A56962EC1BB94D1D009167E5 /* LBVariables.swift in Sources */,
 				A51E1C9C1B03F1A6004B64AA /* LBLyricsView.swift in Sources */,
 				A5DEC24E1AF7F7F8009F41D9 /* LBSong.swift in Sources */,
@@ -477,6 +490,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lidderbuch/Lidderbuch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PP4747DU3M;
 				INFOPLIST_FILE = Lidderbuch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -484,6 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -495,6 +510,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lidderbuch/Lidderbuch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PP4747DU3M;
 				INFOPLIST_FILE = Lidderbuch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -502,6 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "lu.acel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

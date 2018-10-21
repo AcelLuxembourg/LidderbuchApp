@@ -71,6 +71,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
             "ACEL": "https://acel.lu/",
             "Fränz Friederes": "https://fraenz.frieder.es/",
             "Mirko Mack": "https://mirkomack.lu/",
+            "Benoît Frisch": "https://fresh.lu/",
             "GitHub": "https://github.com/AcelLuxembourg/LidderbuchApp",
             NSLocalizedString("credits text contact us", comment: "Contact us part which gets transformed to a link."): "https://acel.lu/contact"
         ]
@@ -94,7 +95,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         {
             if let range = creditsText.range(of: name, options: NSString.CompareOptions.diacriticInsensitive, range: nil, locale: nil)
             {
-                let textRange = NSMakeRange(creditsText.characters.distance(from: creditsText.startIndex, to: range.lowerBound), creditsText.characters.distance(from: range.lowerBound, to: range.upperBound))
+                let textRange = NSMakeRange(creditsText.distance(from: creditsText.startIndex, to: range.lowerBound), creditsText.characters.distance(from: range.lowerBound, to: range.upperBound))
                 attributedText.addAttribute(NSLinkAttributeName, value: URL(string: href)!, range: textRange)
             }
         }

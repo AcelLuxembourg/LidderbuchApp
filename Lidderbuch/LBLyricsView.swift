@@ -278,7 +278,7 @@ class LBLyricsView: UIScrollView
                 let fragment = NSString(string: text).substring(with: range)
                 let remainder: String = NSString(string: text).substring(from: range.length)
                 
-                result = (fragment: fragment, remainder: (remainder.characters.count > 0 ? remainder : nil))
+                result = (fragment: fragment, remainder: (remainder.count > 0 ? remainder : nil))
             }
         })
         
