@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CY6-wC-iji">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CY6-wC-iji">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypD-2d-dEc">
-                                <rect key="frame" x="16" y="30" width="343" height="597"/>
+                                <rect key="frame" x="16" y="50" width="343" height="577"/>
                                 <string key="text">Credits
 Hello World</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,7 +61,7 @@ Hello World</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fAn-sc-hoo">
-                                <rect key="frame" x="62" y="183.5" width="250" height="250"/>
+                                <rect key="frame" x="62.5" y="183.5" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="b0Q-8t-TFn"/>
                                     <constraint firstAttribute="width" constant="250" id="hVy-74-bEN"/>
@@ -98,7 +97,7 @@ Hello World</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dmz-Bh-x2H">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="MhZ-1g-Oe6">
                                     <rect key="frame" x="0.0" y="227" width="375" height="67"/>
@@ -131,14 +130,14 @@ Hello World</string>
                                         <rect key="frame" x="0.0" y="22" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fg9-jO-P8m" id="Vqo-bM-UJQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-V3-I8b">
-                                                    <rect key="frame" x="19" y="33" width="110" height="54"/>
+                                                    <rect key="frame" x="26" y="36" width="110" height="49"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditionell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="54"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="49"/>
                                                             <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
                                                             <color key="textColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -168,17 +167,17 @@ Hello World</string>
                                         <rect key="frame" x="0.0" y="122" width="375" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00j-W9-pWp" id="Nqh-W2-vQj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-Ya-O6Z">
-                                                    <rect key="frame" x="19" y="11" width="318" height="18.5"/>
+                                                    <rect key="frame" x="26" y="11" width="304" height="18.5"/>
                                                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="16"/>
                                                     <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjK-JV-RJ0">
-                                                    <rect key="frame" x="19" y="32.5" width="348" height="57.5"/>
+                                                    <rect key="frame" x="26" y="32.5" width="334" height="55.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Preview 1 Preview 2">
                                                             <attributes>
@@ -214,10 +213,10 @@ Hello World</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
-                                        <rect key="frame" x="91" y="0.0" width="227" height="60"/>
+                                        <rect key="frame" x="91" y="0.0" width="227" height="100"/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                         <connections>
@@ -226,7 +225,7 @@ Hello World</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
-                                        <rect key="frame" x="326" y="0.0" width="40" height="60"/>
+                                        <rect key="frame" x="326" y="0.0" width="40" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Elk-pL-dQP"/>
                                         </constraints>
@@ -238,7 +237,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
-                                        <rect key="frame" x="9" y="0.0" width="40" height="60"/>
+                                        <rect key="frame" x="9" y="0.0" width="40" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="hlU-dS-pDT"/>
                                         </constraints>
@@ -250,7 +249,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
-                                        <rect key="frame" x="49" y="0.0" width="40" height="60"/>
+                                        <rect key="frame" x="49" y="0.0" width="40" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="qLT-1X-lV0"/>
                                         </constraints>
@@ -289,6 +288,7 @@ Hello World</string>
                             <constraint firstItem="VqZ-4g-yAW" firstAttribute="top" secondItem="Dmz-Bh-x2H" secondAttribute="bottom" id="Njv-25-KGw"/>
                             <constraint firstAttribute="trailing" secondItem="Dmz-Bh-x2H" secondAttribute="trailing" id="WvD-mt-kWs"/>
                             <constraint firstItem="Dmz-Bh-x2H" firstAttribute="top" secondItem="qcp-2q-A1B" secondAttribute="bottom" id="naj-PN-Pt4"/>
+                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="top" secondItem="qcp-2q-A1B" secondAttribute="bottom" id="pbJ-ac-pYh"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -315,11 +315,9 @@ Hello World</string>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GET-DW-BxC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Urk-EX-55x">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -342,11 +340,11 @@ Hello World</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-0R-E07" userLabel="Lyrics Header View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="116.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
                                                 <rect key="frame" x="20" y="25" width="335" height="30"/>
@@ -395,10 +393,10 @@ Hello World</string>
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="JWF-U9-ZXj" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw" userLabel="Back Button">
-                                        <rect key="frame" x="10" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="10" y="0.0" width="60" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="hQv-s7-dCm"/>
                                         </constraints>
@@ -412,7 +410,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b" userLabel="Bookmark Button">
-                                        <rect key="frame" x="323" y="0.0" width="40" height="60"/>
+                                        <rect key="frame" x="323" y="0.0" width="40" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="sYb-aR-xjz"/>
                                         </constraints>
@@ -424,7 +422,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b" userLabel="Share Button">
-                                        <rect key="frame" x="283" y="0.0" width="40" height="60"/>
+                                        <rect key="frame" x="283" y="0.0" width="40" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="CHo-7P-aOz"/>
                                         </constraints>
@@ -478,11 +476,11 @@ Hello World</string>
         </scene>
     </scenes>
     <resources>
-        <image name="AboutIcon" width="40" height="50"/>
-        <image name="BackIcon" width="35" height="50"/>
-        <image name="BookmarkIcon" width="40" height="50"/>
-        <image name="CloseIcon" width="40" height="50"/>
-        <image name="SearchIcon" width="40" height="50"/>
-        <image name="ShareIcon" width="40" height="50"/>
+        <image name="AboutIcon" width="80" height="100"/>
+        <image name="BackIcon" width="70" height="100"/>
+        <image name="BookmarkIcon" width="80" height="100"/>
+        <image name="CloseIcon" width="80" height="100"/>
+        <image name="SearchIcon" width="80" height="100"/>
+        <image name="ShareIcon" width="80" height="100"/>
     </resources>
 </document>

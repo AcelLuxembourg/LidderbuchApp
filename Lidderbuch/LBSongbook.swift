@@ -262,7 +262,7 @@ class LBSongbook: NSObject
         }
         
         // return no results when query too short
-        if keywords.characters.count < 2 {
+        if keywords.count < 2 {
             callback([LBSong](), keywords)
             return
         }
