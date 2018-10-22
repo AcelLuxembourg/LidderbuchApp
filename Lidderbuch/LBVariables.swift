@@ -17,7 +17,7 @@ struct LBVariables
     static let backerApiEndpoint = "https://acel.lu/api/v1/backers/lidderbuch_app"
     
     // global tint color
-    static let tintColor = UIColor(red:0.90, green:0.58, blue:0.21, alpha:1.0)
+    static let tintColor = UIColor(red:0.95, green:0.57, blue:0.00, alpha:1.0)
     
     // user activity type for song views
     static let viewSongUserActivityType = "lu.acel.Lidderbuch.Song.View"

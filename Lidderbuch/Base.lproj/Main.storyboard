@@ -139,7 +139,7 @@ Hello World</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditionell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="49"/>
                                                             <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
-                                                            <color key="textColor" red="0.89803921568627454" green="0.58431372549019611" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.95294117649999999" green="0.57254901960000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -213,10 +213,10 @@ Hello World</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-Qz-oTi" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-br-pXR" userLabel="Search Field">
-                                        <rect key="frame" x="91" y="0.0" width="227" height="100"/>
+                                        <rect key="frame" x="91" y="0.0" width="227" height="60"/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                         <connections>
@@ -225,7 +225,7 @@ Hello World</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egV-G9-Wnr" userLabel="Cancel Search Button">
-                                        <rect key="frame" x="326" y="0.0" width="40" height="100"/>
+                                        <rect key="frame" x="326" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Elk-pL-dQP"/>
                                         </constraints>
@@ -237,7 +237,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Hd-fXP" userLabel="Menu Button">
-                                        <rect key="frame" x="9" y="0.0" width="40" height="100"/>
+                                        <rect key="frame" x="9" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="hlU-dS-pDT"/>
                                         </constraints>
@@ -249,7 +249,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeb-vw-0al" userLabel="Search Button">
-                                        <rect key="frame" x="49" y="0.0" width="40" height="100"/>
+                                        <rect key="frame" x="49" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="qLT-1X-lV0"/>
                                         </constraints>
@@ -351,7 +351,7 @@ Hello World</string>
                                                 <attributedString key="attributedText">
                                                     <fragment content="This is a very long song title">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.89803921568627454" green="0.58431372549019611" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.95294117647058818" green="0.5725490196078431" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="21" name="Georgia"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -393,10 +393,10 @@ Hello World</string>
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="JWF-U9-ZXj" customClass="LBHeaderBar" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgz-Zv-Emw" userLabel="Back Button">
-                                        <rect key="frame" x="10" y="0.0" width="60" height="100"/>
+                                        <rect key="frame" x="10" y="0.0" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="hQv-s7-dCm"/>
                                         </constraints>
@@ -410,7 +410,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYG-GA-l6b" userLabel="Bookmark Button">
-                                        <rect key="frame" x="323" y="0.0" width="40" height="100"/>
+                                        <rect key="frame" x="323" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="sYb-aR-xjz"/>
                                         </constraints>
@@ -422,7 +422,7 @@ Hello World</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGH-F9-M7b" userLabel="Share Button">
-                                        <rect key="frame" x="283" y="0.0" width="40" height="100"/>
+                                        <rect key="frame" x="283" y="0.0" width="40" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="CHo-7P-aOz"/>
                                         </constraints>
@@ -476,11 +476,11 @@ Hello World</string>
         </scene>
     </scenes>
     <resources>
-        <image name="AboutIcon" width="80" height="100"/>
-        <image name="BackIcon" width="70" height="100"/>
-        <image name="BookmarkIcon" width="80" height="100"/>
-        <image name="CloseIcon" width="80" height="100"/>
-        <image name="SearchIcon" width="80" height="100"/>
-        <image name="ShareIcon" width="80" height="100"/>
+        <image name="AboutIcon" width="40" height="50"/>
+        <image name="BackIcon" width="25" height="25"/>
+        <image name="BookmarkIcon" width="25" height="25"/>
+        <image name="CloseIcon" width="25" height="25"/>
+        <image name="SearchIcon" width="25" height="25"/>
+        <image name="ShareIcon" width="25" height="25"/>
     </resources>
 </document>
