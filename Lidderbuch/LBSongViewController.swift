@@ -22,6 +22,7 @@ class LBSongViewController: LBViewController,
     @IBOutlet weak var lyricsScrollView: LBLyricsView!
     
     @IBOutlet weak var bookmarkButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     var delegate: LBSongViewControllerDelegate?
     
@@ -161,6 +162,11 @@ class LBSongViewController: LBViewController,
             activityItems: [song.url], applicationActivities: nil)
         
         activityViewController.excludedActivityTypes = [UIActivityType.airDrop]
+
+        if let popOver = activityViewController.popoverPresentationController {
+            popOver.sourceView = self.shareButton
+            popOver.sourceRect = self.shareButton.bounds
+        }
         present(activityViewController, animated: true, completion: nil)
     }
 }

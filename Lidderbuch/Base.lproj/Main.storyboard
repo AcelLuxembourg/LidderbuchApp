@@ -468,6 +468,7 @@ Hello World</string>
                         <outlet property="lyricsScrollView" destination="aQy-Nw-0mG" id="kxw-w3-OcI"/>
                         <outlet property="nameLabel" destination="M7g-Kc-apS" id="Usn-Pr-mzd"/>
                         <outlet property="scrollView" destination="aQy-Nw-0mG" id="SJP-px-2Xk"/>
+                        <outlet property="shareButton" destination="tGH-F9-M7b" id="K9f-2n-WDK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kE9-Ej-tKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
