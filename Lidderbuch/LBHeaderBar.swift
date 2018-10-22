@@ -10,23 +10,13 @@ import UIKit
 
 class LBHeaderBar: UIView, UIScrollViewDelegate
 {
-    var offset : CGFloat { //offset in Header Bar for iphone x and newer for scrolling down
-        let modelName = UIDevice.modelName
-        print(modelName)
-        let devices = ["iPhone X", "iPhone XS", "iPhone XS Max", "Simulator iPhone X", "Simulator iPhone XS", "Simulator iPhone XS Max" ]
-        if devices.contains(modelName) {
-            return 25
-        }
-        return 0
-    }
-    
     var lastVerticalTranslation: CGFloat = 0
     var verticalTranslation: CGFloat {
         get {
             return lastVerticalTranslation
         }
         set(newValue) {
-            let verticalTranslation = max(min(newValue, bounds.size.height - self.offset), 0)
+            let verticalTranslation = max(min(newValue, bounds.size.height - LBVariables.headerOffset), 0)
             if lastVerticalTranslation != verticalTranslation && !disableVerticalTranslation {
                 transform = CGAffineTransform.identity.translatedBy(x: 0.0, y: -verticalTranslation)
                 lastVerticalTranslation = verticalTranslation
@@ -78,7 +68,7 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
     
     func translateVertically(_ delta: CGFloat)
     {
-        let verticalTranslation = max(min(self.verticalTranslation + delta, bounds.size.height-offset), 0)
+        let verticalTranslation = max(min(self.verticalTranslation + delta, bounds.size.height - LBVariables.headerOffset), 0)
         
         // check if vertical translation changed
         if self.verticalTranslation != verticalTranslation
@@ -95,7 +85,7 @@ class LBHeaderBar: UIView, UIScrollViewDelegate
     @IBAction func handleCancelSlideTimer(_ timer: Timer)
     {
         // cancel if slide not finished yet
-        if verticalTranslation != bounds.size.height-offset && verticalTranslation != 0 {
+        if verticalTranslation != bounds.size.height - LBVariables.headerOffset && verticalTranslation != 0 {
             UIView.animate(withDuration: 0.1, animations: {
                 self.verticalTranslation = 0.0
             }) 

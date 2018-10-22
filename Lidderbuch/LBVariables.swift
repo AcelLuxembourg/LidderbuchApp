@@ -28,4 +28,14 @@ struct LBVariables
     
     // it is considered a song view when a user views a song for this duration
     static let songViewDuration = 15.0
+    
+    //offset in Header Bar for iphone x and newer for scrolling down
+    static var headerOffset : CGFloat {
+        let modelName = UIDevice.modelName
+        let devices = ["iPhone X", "iPhone XS", "iPhone XS Max", "Simulator iPhone X", "Simulator iPhone XS", "Simulator iPhone XS Max" ]
+        if devices.contains(modelName) {
+            return 25
+        }
+        return 0
+    }
 }

@@ -19,15 +19,6 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         self.presenting = presenting
     }
     
-    var offset : CGFloat { //offset in Header Bar for iphone x and newer for scrolling down
-        let modelName = UIDevice.modelName
-        let devices = ["iPhone X", "iPhone XS", "iPhone XS Max", "Simulator iPhone X", "Simulator iPhone XS", "Simulator iPhone XS Max" ]
-        if devices.contains(modelName) {
-            return 25
-        }
-        return 0
-    }
-    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval
     {
         return 0.25
@@ -62,7 +53,7 @@ class LBModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             
             // calculate fitting height with horizontal priority UILayoutPriorityDefaultHigh
             //  and vertical priority UILayoutPriorityFittingSizeLevel
-            let modalHeight = toViewController.view.systemLayoutSizeFitting(finalFrame.size, withHorizontalFittingPriority: 750, verticalFittingPriority: 50).height - self.offset
+            let modalHeight = toViewController.view.systemLayoutSizeFitting(finalFrame.size, withHorizontalFittingPriority: 750, verticalFittingPriority: 50).height - LBVariables.headerOffset
             
             // position modal view and arrow
             toViewController.view.frame = CGRect(x: 0.0, y: -modalHeight, width: containerView.bounds.size.width, height: modalHeight)

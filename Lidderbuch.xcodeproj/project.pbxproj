@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		059254EC217CA6B8004A10C4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059254EB217CA6B8004A10C4 /* Device.swift */; };
+		059254F4217E18A2004A10C4 /* songs_2017.json in Resources */ = {isa = PBXBuildFile; fileRef = 059254F3217E18A1004A10C4 /* songs_2017.json */; };
 		A51E1C8F1B033860004B64AA /* LBSongbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C8E1B033860004B64AA /* LBSongbook.swift */; };
 		A51E1C941B035E9B004B64AA /* LBSongbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */; };
 		A51E1C981B036EA0004B64AA /* LBSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */; };
@@ -34,7 +35,6 @@
 		A5EE72931B065094007F8EA9 /* LBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE72921B065094007F8EA9 /* LBViewController.swift */; };
 		A5EE729B1B08CDF2007F8EA9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE729A1B08CDF2007F8EA9 /* String.swift */; };
 		AE34C8C21F5FE95800B773B4 /* songs_2015.json in Resources */ = {isa = PBXBuildFile; fileRef = AE34C8C01F5FE95800B773B4 /* songs_2015.json */; };
-		AE34C8C31F5FE95800B773B4 /* songs_2017.json in Resources */ = {isa = PBXBuildFile; fileRef = AE34C8C11F5FE95800B773B4 /* songs_2017.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		059254EB217CA6B8004A10C4 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		059254F3217E18A1004A10C4 /* songs_2017.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs_2017.json; sourceTree = "<group>"; };
 		A51E1C8E1B033860004B64AA /* LBSongbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbook.swift; sourceTree = "<group>"; };
 		A51E1C931B035E9B004B64AA /* LBSongbookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongbookViewController.swift; sourceTree = "<group>"; };
 		A51E1C971B036EA0004B64AA /* LBSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBSongTableViewCell.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		A5EE72921B065094007F8EA9 /* LBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBViewController.swift; sourceTree = "<group>"; };
 		A5EE729A1B08CDF2007F8EA9 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		AE34C8C01F5FE95800B773B4 /* songs_2015.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs_2015.json; sourceTree = "<group>"; };
-		AE34C8C11F5FE95800B773B4 /* songs_2017.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs_2017.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +151,8 @@
 		A521D10B1B1DBB13002ADE4E /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				059254F3217E18A1004A10C4 /* songs_2017.json */,
 				AE34C8C01F5FE95800B773B4 /* songs_2015.json */,
-				AE34C8C11F5FE95800B773B4 /* songs_2017.json */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -313,9 +313,9 @@
 			files = (
 				A5D944EC1B246437008CAF2F /* Localizable.strings in Resources */,
 				AE34C8C21F5FE95800B773B4 /* songs_2015.json in Resources */,
+				059254F4217E18A2004A10C4 /* songs_2017.json in Resources */,
 				A5DEC2331AF7F577009F41D9 /* Main.storyboard in Resources */,
 				A5DEC2381AF7F577009F41D9 /* LaunchScreen.xib in Resources */,
-				AE34C8C31F5FE95800B773B4 /* songs_2017.json in Resources */,
 				A5DEC2351AF7F577009F41D9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
