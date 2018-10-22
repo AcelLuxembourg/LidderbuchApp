@@ -31,7 +31,7 @@ Hello World</string>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.57254901960000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="trailing" secondItem="n7V-Qa-1mu" secondAttribute="trailingMargin" id="EPK-8Q-3MQ"/>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="leading" secondItem="n7V-Qa-1mu" secondAttribute="leadingMargin" id="RIG-qy-uSb"/>
@@ -139,7 +139,7 @@ Hello World</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditionell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0l-RE-MCF">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="49"/>
                                                             <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="21"/>
-                                                            <color key="textColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.89803921568627454" green="0.58431372549019611" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -351,7 +351,7 @@ Hello World</string>
                                                 <attributedString key="attributedText">
                                                     <fragment content="This is a very long song title">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.75513756275177002" green="0.18128128349781036" blue="0.10692727565765381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.89803921568627454" green="0.58431372549019611" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="21" name="Georgia"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
