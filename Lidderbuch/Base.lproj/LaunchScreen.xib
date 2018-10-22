@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AcelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="uK8-Ii-yKN">
-                    <rect key="frame" x="177.5" y="110" width="125" height="200"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AcelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="uK8-Ii-yKN">
+                    <rect key="frame" x="176.5" y="110" width="125" height="200"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="6QX-n8-Phf"/>
                         <constraint firstAttribute="height" constant="200" id="ebv-fZ-JtZ"/>
@@ -25,7 +25,7 @@
             </subviews>
             <color key="backgroundColor" red="0.95294117647058818" green="0.5725490196078431" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="uK8-Ii-yKN" secondAttribute="centerX" id="Gmr-TX-rQP"/>
+                <constraint firstAttribute="centerX" secondItem="uK8-Ii-yKN" secondAttribute="centerX" constant="1" id="Gmr-TX-rQP"/>
                 <constraint firstAttribute="centerY" secondItem="uK8-Ii-yKN" secondAttribute="centerY" constant="30" id="ehl-Wb-1Gi"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

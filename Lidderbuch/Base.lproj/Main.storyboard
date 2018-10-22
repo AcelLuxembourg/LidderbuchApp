@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CY6-wC-iji">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CY6-wC-iji">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,10 +14,6 @@
         <scene sceneID="6qG-v3-eF0">
             <objects>
                 <viewController id="s17-fh-2RG" customClass="LBMenuViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="57P-oa-mPE"/>
-                        <viewControllerLayoutGuide type="bottom" id="hkR-AT-acb"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="n7V-Qa-1mu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,9 +32,10 @@ Hello World</string>
                         <constraints>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="trailing" secondItem="n7V-Qa-1mu" secondAttribute="trailingMargin" id="EPK-8Q-3MQ"/>
                             <constraint firstItem="ypD-2d-dEc" firstAttribute="leading" secondItem="n7V-Qa-1mu" secondAttribute="leadingMargin" id="RIG-qy-uSb"/>
-                            <constraint firstItem="ypD-2d-dEc" firstAttribute="top" secondItem="57P-oa-mPE" secondAttribute="bottom" constant="30" id="VQx-x4-f21"/>
-                            <constraint firstItem="hkR-AT-acb" firstAttribute="top" secondItem="ypD-2d-dEc" secondAttribute="bottom" constant="40" id="fnY-PP-CLB"/>
+                            <constraint firstItem="ypD-2d-dEc" firstAttribute="top" secondItem="S7r-Nu-XkU" secondAttribute="top" constant="30" id="VQx-x4-f21"/>
+                            <constraint firstItem="S7r-Nu-XkU" firstAttribute="bottom" secondItem="ypD-2d-dEc" secondAttribute="bottom" constant="40" id="fnY-PP-CLB"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="S7r-Nu-XkU"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="600" height="250"/>
                     <connections>
@@ -52,10 +50,6 @@ Hello World</string>
         <scene sceneID="3QK-7K-8UJ">
             <objects>
                 <viewController id="dca-z4-cIw" customClass="LBIntroViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9G7-yG-fvX"/>
-                        <viewControllerLayoutGuide type="bottom" id="5fB-TZ-pxb"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OEO-oB-eZf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,9 +64,10 @@ Hello World</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fAn-sc-hoo" firstAttribute="centerX" secondItem="OEO-oB-eZf" secondAttribute="centerX" id="Cwa-g3-1Sh"/>
+                            <constraint firstItem="fAn-sc-hoo" firstAttribute="centerX" secondItem="iFT-bo-UG1" secondAttribute="centerX" id="Cwa-g3-1Sh"/>
                             <constraint firstItem="fAn-sc-hoo" firstAttribute="centerY" secondItem="OEO-oB-eZf" secondAttribute="centerY" constant="-25" id="Km8-GZ-3IE"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="iFT-bo-UG1"/>
                     </view>
                     <navigationItem key="navigationItem" id="ue5-3R-ZEY"/>
                     <connections>
@@ -88,10 +83,6 @@ Hello World</string>
         <scene sceneID="Bfr-K5-waV">
             <objects>
                 <viewController title="Lidderbuch" automaticallyAdjustsScrollViewInsets="NO" id="pX0-Er-gsZ" customClass="LBSongbookViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qcp-2q-A1B"/>
-                        <viewControllerLayoutGuide type="bottom" id="VqZ-4g-yAW"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A8m-DT-f63">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,15 +272,17 @@ Hello World</string>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Dmz-Bh-x2H" firstAttribute="leading" secondItem="A8m-DT-f63" secondAttribute="leading" id="7NV-yw-tqX"/>
-                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="leading" secondItem="A8m-DT-f63" secondAttribute="leading" id="9yf-PV-gVC"/>
-                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="top" secondItem="qcp-2q-A1B" secondAttribute="bottom" id="JIP-pN-kKf"/>
-                            <constraint firstAttribute="trailing" secondItem="rCO-Qz-oTi" secondAttribute="trailing" id="M4f-Ee-WTE"/>
-                            <constraint firstItem="VqZ-4g-yAW" firstAttribute="top" secondItem="Dmz-Bh-x2H" secondAttribute="bottom" id="Njv-25-KGw"/>
-                            <constraint firstAttribute="trailing" secondItem="Dmz-Bh-x2H" secondAttribute="trailing" id="WvD-mt-kWs"/>
-                            <constraint firstItem="Dmz-Bh-x2H" firstAttribute="top" secondItem="qcp-2q-A1B" secondAttribute="bottom" id="naj-PN-Pt4"/>
-                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="top" secondItem="qcp-2q-A1B" secondAttribute="bottom" id="pbJ-ac-pYh"/>
+                            <constraint firstItem="Dmz-Bh-x2H" firstAttribute="leading" secondItem="08Y-V3-Iyb" secondAttribute="leading" id="7NV-yw-tqX"/>
+                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="leading" secondItem="08Y-V3-Iyb" secondAttribute="leading" id="9yf-PV-gVC"/>
+                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="top" secondItem="08Y-V3-Iyb" secondAttribute="top" id="JIP-pN-kKf"/>
+                            <constraint firstItem="08Y-V3-Iyb" firstAttribute="trailing" secondItem="rCO-Qz-oTi" secondAttribute="trailing" id="M4f-Ee-WTE"/>
+                            <constraint firstItem="08Y-V3-Iyb" firstAttribute="bottom" secondItem="Dmz-Bh-x2H" secondAttribute="bottom" id="Njv-25-KGw"/>
+                            <constraint firstItem="08Y-V3-Iyb" firstAttribute="trailing" secondItem="Dmz-Bh-x2H" secondAttribute="trailing" id="WvD-mt-kWs"/>
+                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="width" secondItem="08Y-V3-Iyb" secondAttribute="width" id="awG-hj-PWq"/>
+                            <constraint firstItem="Dmz-Bh-x2H" firstAttribute="top" secondItem="08Y-V3-Iyb" secondAttribute="top" id="naj-PN-Pt4"/>
+                            <constraint firstItem="rCO-Qz-oTi" firstAttribute="top" secondItem="08Y-V3-Iyb" secondAttribute="top" id="pbJ-ac-pYh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="08Y-V3-Iyb"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="sLE-RP-yjm"/>
@@ -332,21 +325,17 @@ Hello World</string>
         <scene sceneID="ZV0-oI-cPk">
             <objects>
                 <viewController id="vQV-v3-ytI" customClass="LBSongViewController" customModule="Lidderbuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kPg-ED-dje"/>
-                        <viewControllerLayoutGuide type="bottom" id="xxH-Kf-x1s"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dQR-of-LTJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQy-Nw-0mG" customClass="LBLyricsView" customModule="Lidderbuch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-0R-E07" userLabel="Lyrics Header View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-Kc-apS" userLabel="Song Name">
                                                 <rect key="frame" x="20" y="25" width="335" height="30"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="This is a very long song title">
@@ -359,8 +348,8 @@ Hello World</string>
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtK-q0-8Hg" userLabel="Song Detail">
-                                                <rect key="frame" x="20" y="58" width="335" height="48.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtK-q0-8Hg" userLabel="Song Detail">
+                                                <rect key="frame" x="20" y="58" width="335" height="49"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Weis: On the Atchison, Topeka and the Santa Fe, Text: Fernand Wark, Jeff Bësch">
                                                         <attributes>
@@ -374,6 +363,7 @@ Hello World</string>
                                             </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="117" id="3UM-FQ-gyS"/>
                                             <constraint firstItem="OtK-q0-8Hg" firstAttribute="leading" secondItem="aV6-0R-E07" secondAttribute="leading" constant="20" symbolic="YES" id="Iqi-DZ-aav"/>
                                             <constraint firstItem="OtK-q0-8Hg" firstAttribute="top" secondItem="M7g-Kc-apS" secondAttribute="bottom" constant="3" id="Ly2-Ge-bdE"/>
                                             <constraint firstItem="M7g-Kc-apS" firstAttribute="leading" secondItem="aV6-0R-E07" secondAttribute="leading" constant="20" symbolic="YES" id="VOp-o8-la2"/>
@@ -386,7 +376,9 @@ Hello World</string>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="aV6-0R-E07" firstAttribute="top" secondItem="aQy-Nw-0mG" secondAttribute="top" id="Ef2-ZM-NRQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="aV6-0R-E07" secondAttribute="trailing" constant="225" id="IxD-Eb-h9o"/>
                                     <constraint firstItem="aV6-0R-E07" firstAttribute="leading" secondItem="aQy-Nw-0mG" secondAttribute="leading" id="LLI-uB-Ilo"/>
+                                    <constraint firstAttribute="bottom" secondItem="aV6-0R-E07" secondAttribute="bottom" constant="463" id="Us7-Vz-UB9"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="headerView" destination="aV6-0R-E07" id="An6-7v-L6v"/>
@@ -450,15 +442,17 @@ Hello World</string>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="aQy-Nw-0mG" secondAttribute="trailing" id="21i-FM-1sj"/>
+                            <constraint firstItem="YXK-ng-tNc" firstAttribute="trailing" secondItem="aQy-Nw-0mG" secondAttribute="trailing" id="21i-FM-1sj"/>
                             <constraint firstItem="aV6-0R-E07" firstAttribute="width" secondItem="dQR-of-LTJ" secondAttribute="width" id="8kW-Do-gaO"/>
-                            <constraint firstItem="JWF-U9-ZXj" firstAttribute="top" secondItem="kPg-ED-dje" secondAttribute="bottom" id="DsV-eB-E2H"/>
-                            <constraint firstAttribute="trailing" secondItem="JWF-U9-ZXj" secondAttribute="trailing" id="FO1-nU-OiK"/>
-                            <constraint firstItem="aQy-Nw-0mG" firstAttribute="leading" secondItem="dQR-of-LTJ" secondAttribute="leading" id="IDb-e4-r9q"/>
-                            <constraint firstItem="aQy-Nw-0mG" firstAttribute="top" secondItem="kPg-ED-dje" secondAttribute="bottom" id="Ur3-Lh-hAO"/>
-                            <constraint firstItem="aQy-Nw-0mG" firstAttribute="bottom" secondItem="xxH-Kf-x1s" secondAttribute="top" id="V98-kL-TTh"/>
-                            <constraint firstItem="JWF-U9-ZXj" firstAttribute="leading" secondItem="dQR-of-LTJ" secondAttribute="leading" id="bYv-b8-cOU"/>
+                            <constraint firstItem="JWF-U9-ZXj" firstAttribute="top" secondItem="YXK-ng-tNc" secondAttribute="top" id="DsV-eB-E2H"/>
+                            <constraint firstItem="YXK-ng-tNc" firstAttribute="trailing" secondItem="JWF-U9-ZXj" secondAttribute="trailing" id="FO1-nU-OiK"/>
+                            <constraint firstItem="aQy-Nw-0mG" firstAttribute="leading" secondItem="YXK-ng-tNc" secondAttribute="leading" id="IDb-e4-r9q"/>
+                            <constraint firstItem="JWF-U9-ZXj" firstAttribute="width" secondItem="YXK-ng-tNc" secondAttribute="width" id="Uq3-SV-ICT"/>
+                            <constraint firstItem="aQy-Nw-0mG" firstAttribute="top" secondItem="YXK-ng-tNc" secondAttribute="top" id="Ur3-Lh-hAO"/>
+                            <constraint firstItem="aQy-Nw-0mG" firstAttribute="bottom" secondItem="YXK-ng-tNc" secondAttribute="bottom" id="V98-kL-TTh"/>
+                            <constraint firstItem="JWF-U9-ZXj" firstAttribute="leading" secondItem="YXK-ng-tNc" secondAttribute="leading" id="bYv-b8-cOU"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="YXK-ng-tNc"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>

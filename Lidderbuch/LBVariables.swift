@@ -30,7 +30,7 @@ struct LBVariables
         let modelName = UIDevice.modelName
         let devices = ["iPhone X", "iPhone XS", "iPhone XR", "iPhone XS Max", "Simulator iPhone X", "Simulator iPhone XS", "Simulator iPhone XR", "Simulator iPhone XS Max" ]
         if devices.contains(modelName) {
-            return 25
+            return UIDevice.current.orientation.isLandscape ? 0 : 25
         }
         return 0
     }
