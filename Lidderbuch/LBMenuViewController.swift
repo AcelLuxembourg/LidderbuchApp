@@ -95,7 +95,7 @@ class LBMenuViewController: UIViewController, UIGestureRecognizerDelegate
         {
             if let range = creditsText.range(of: name, options: NSString.CompareOptions.diacriticInsensitive, range: nil, locale: nil)
             {
-                let textRange = NSMakeRange(creditsText.distance(from: creditsText.startIndex, to: range.lowerBound), creditsText.characters.distance(from: range.lowerBound, to: range.upperBound))
+                let textRange = NSMakeRange(creditsText.distance(from: creditsText.startIndex, to: range.lowerBound), creditsText.distance(from: range.lowerBound, to: range.upperBound))
                 attributedText.addAttribute(NSLinkAttributeName, value: URL(string: href)!, range: textRange)
             }
         }
